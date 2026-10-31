@@ -1,60 +1,54 @@
-import json
+import subprocess
+import sys
 
-from examples.tower import cli as tower
-from kit import cli as kit
-from kit.paths import ROOT, exchange_dir, runs_dir
-
-from .fake_gh import FakeGrasshopper
-
-BRIEF = str(ROOT / "examples" / "tower" / "briefs" / "lighthouse-keeper.json")
+import gallery
+import tower
 
 
-def generate(capsys, *args):
-    code = tower.main(["generate", *args])
-    out = capsys.readouterr()
-    return code, (json.loads(out.out) if code == 0 else None), out.err
+def dice(*args):
+    script = gallery.ROOT / "tools" / "dice.py"
+    return subprocess.run([sys.executable, str(script), *args], capture_output=True, text=True)
 
 
-def test_generate_with_python_backend_makes_a_complete_run(capsys):
-    code, summary, _ = generate(capsys, "--backend", "python", "--floors", "8", "--floor-height", "3",
-                                "--width", "16", "--depth", "16", "--brief", BRIEF, "--skill", "tower-designer", "--label", "A: squat", "--why", "grounded")
+def test_dice_rolls_the_requested_dice_within_range():
+    result = dice("--sides", "20", "--count", "50")
+    assert result.returncode == 0
+    lines = result.stdout.splitlines()
+    rolls = [int(n) for n in lines[0].removeprefix("Rolls:").split()]
+    assert len(rolls) == 50 and all(1 <= r <= 20 for r in rolls)
+    assert lines[1] == f"Total: {sum(rolls)}"
+
+
+def test_dice_rejects_impossible_requests():
+    assert dice("--sides", "1").returncode == 2
+    assert dice("--count", "0").returncode == 2
+
+
+def test_tower_makes_a_complete_run(capsys):
+    code = tower.main(["--floors", "8", "--floor-height", "3", "--width", "16", "--depth", "16", "--plot", "18x18",
+                       "--require", "height_m<=30", "--require", "floors>10",
+                       "--project", "The Keeper", "--skill", "tower-designer", "--label", "A: squat", "--why", "grounded"])
+    out = capsys.readouterr().out
     assert code == 0
-    run = runs_dir() / summary["run"].split("/")[-1]
-    for name in ("meta.json", "brief.json", "params.json", "geometry.json", "metrics.json", "image.png"):
+    assert "height_m = 24 m" in out and "beyond_plot_m = 0 m" in out
+    assert "PASS  height_m <= 30" in out and "FAIL  floors > 10" in out
+    run = next(p for p in gallery.runs_dir().iterdir() if p.is_dir())
+    for name in ("run.json", "geometry.json", "image.png"):
         assert (run / name).exists(), name
-    assert summary["metrics"]["height_m"] == 24
-    assert {c["metric"]: c["pass"] for c in summary["constraints"]} == {"beyond_plot_m": True, "height_m": True, "slenderness": True}
-    gallery = (runs_dir() / "gallery.html").read_text(encoding="utf-8")
-    assert "A: squat" in gallery and "The Lighthouse Keeper" in gallery
+    page = (gallery.runs_dir() / "gallery.html").read_text(encoding="utf-8")
+    assert "A: squat" in page and "The Keeper" in page and "tower-designer" in page and 'class=fail' in page
 
 
-def test_generate_rejects_out_of_range_params(capsys):
-    code, _, err = generate(capsys, "--backend", "python", "--taper", "5")
-    assert code == 2 and "taper=5" in err
-    assert not runs_dir().exists() or not any(runs_dir().iterdir())
+def test_gallery_escapes_what_it_is_given(capsys):
+    assert tower.main(["--label", "<b>bold</b>", "--why", "a & b"]) == 0
+    page = (gallery.runs_dir() / "gallery.html").read_text(encoding="utf-8")
+    assert "<b>bold</b>" not in page and "&lt;b&gt;" in page and "a &amp; b" in page
 
 
-def test_generate_through_the_bridge(capsys):
-    exchange_dir().mkdir(parents=True)
-    with FakeGrasshopper(exchange_dir()):
-        code, summary, _ = generate(capsys, "--floors", "5", "--timeout", "5")
-    assert code == 0
-    assert summary["backend"] == "grasshopper" and summary["warnings"] == []
-
-
-def test_failed_bridge_run_is_discarded(capsys):
-    code, _, err = generate(capsys, "--timeout", "0.3")
-    assert code == 2 and "did not answer" in err
-    assert not [p for p in runs_dir().iterdir() if p.is_dir()]
-
-
-def test_check_brief_and_params(capsys):
-    assert tower.main(["check-brief", BRIEF]) == 0
-    assert "Brief OK" in capsys.readouterr().out
-    assert tower.main(["params"]) == 0
-    assert "--lean-dir" in capsys.readouterr().out
-
-
-def test_kit_ping_reports_missing_grasshopper(capsys):
-    assert kit.main(["ping", "--timeout", "0.3"]) == 1
-    assert "No answer" in capsys.readouterr().out
+def test_bad_input_makes_no_run(capsys):
+    assert tower.main(["--taper", "5"]) == 2
+    assert "taper=5" in capsys.readouterr().err
+    assert tower.main(["--require", "beauty>5"]) == 2
+    assert tower.main(["--require", "beyond_plot_m<=0"]) == 2
+    assert "needs a plot" in capsys.readouterr().err
+    assert not gallery.runs_dir().exists() or not any(gallery.runs_dir().iterdir())

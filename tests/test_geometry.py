@@ -1,12 +1,11 @@
-from kit import geometry as geo
+import drawing as geo
 
 SQUARE = [(0, 0), (10, 0), (10, 10), (0, 10)]
 
 
-def test_area_and_perimeter():
+def test_area_and_shortest_edge():
     assert geo.area(SQUARE) == 100
     assert geo.area(list(reversed(SQUARE))) == 100
-    assert geo.perimeter(SQUARE) == 40
     assert geo.shortest_edge([(0, 0), (4, 0), (4, 9), (0, 9)]) == 4
 
 

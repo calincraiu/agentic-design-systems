@@ -1,0 +1,7 @@
+# Same line endings on Windows and Mac
+* text=auto eol=lf
+
+# Left out of the student copy: git archive --format=zip -o student.zip HEAD
+instructor export-ignore
+tests export-ignore
+.gitattributes export-ignore

@@ -1,0 +1,71 @@
+# Concepts: the parts of an agentic design system
+
+These words get used loosely. In this course they mean specific things, and each one has a concrete example in this repo.
+
+## The parts
+
+**LLM.** A large language model: the AI itself. It reads and writes text. On its own it can't roll a die or measure a floor plate; it can only write something that fits.
+> Here: what you get in the Chat tab.
+
+**Tool.** A capability with defined inputs and outputs that an agent can use. A tool really does what it says, and it doesn't get creative about it.
+> Here: [tools/dice.py](../tools/dice.py) takes a number of sides and a count, and returns rolls. [tools/tower.py](../tools/tower.py) takes eight numbers and returns geometry, metrics and an image. Claude also has built-in tools, for reading files, writing files and running commands.
+
+**Agent.** An LLM that can use tools and decide what to do next: read files, run tools, look at results and try again, within limits you set.
+> Here: Claude, in the Code tab. Rolling until a double, it decides by itself when to stop.
+
+**Skill.** Reusable know-how: instructions (and any supporting files) that tell the agent *how to approach* a kind of task. A skill doesn't *do* anything by itself; it shapes how the agent uses its tools.
+> Here: [.claude/skills/tie-breaker/SKILL.md](../.claude/skills/tie-breaker/SKILL.md). It is plain text, and you can write one.
+
+**Workflow.** The sequence of steps, decisions and checkpoints that connects everything. It can live inside a skill, in code or in your head.
+> Here: the steps in the tower-designer skill: read → write the brief → *ask the client* → generate → check → report.
+
+**Context.** Everything the agent knows when it starts working: the conversation, the files it reads and the project instructions.
+> Here: [CLAUDE.md](../CLAUDE.md), loaded at the start of every session, and your brief.
+
+**Metric.** A number the tool measures, so that "better" can be argued rather than asserted. The list of metrics decides what the system is able to notice.
+> Here: the `METRICS` list in [tools/tower.py](../tools/tower.py). Look for what's missing from it.
+
+## Who does what
+
+| Job | Best done by | Why |
+|---|---|---|
+| Reading a vague, emotional brief | the **agent** | good with ambiguity and language |
+| Making exact geometry | a **tool** | the same input always gives the same output |
+| Measuring and checking limits | a **tool** | numbers must be right, not plausible |
+| Proposing and comparing options | the **agent**, using the tools | it can explore quickly and explain trade-offs |
+| Deciding what is good | **you** | that is design |
+
+An image or a confident paragraph is not evidence. The metrics are, as far as they go.
+
+## The loop
+
+```
+ client card ──► INTERPRET ──► brief ──► you + client answer questions
+                                                 │
+          ┌──────────────────────────────────────┘
+          ▼
+      GENERATE (tool) ──► MEASURE (tool) ──► COMPARE (agent) ──► DECIDE (you)
+          ▲                                                         │
+          └───────────── change the brief, the skill, the tool ◄────┘
+```
+
+## The ladder of authorship
+
+Over the four sessions you move from *using* an agent to *designing the system it works in*:
+
+1. **Prompt**: asking for things
+2. **Context**: writing the brief and project instructions ← *Session 1*
+3. **Skill**: encoding your approach ← *Session 1*
+4. **Tool**: deciding what a tool takes and returns ← *Session 2*
+5. **Measure**: deciding what "good" means, in numbers ← *Session 2*
+6. **Workflow**: connecting it all, with your decisions built in ← *Sessions 3–4*
+
+## Checkpoint questions
+
+- What is the difference between a tool and a skill? Give an example of each from this repo.
+- Why can't an LLM on its own roll a die? What did it do when you asked it to pick a random number?
+- Why does the tower designer stop and ask questions before generating anything?
+- Claude says a variant is "elegant and grounded". What would you check before believing it?
+- Why does each limit in the brief record where it came from?
+- If the client wants "lots of terraces", which part of the system would have to change to measure that?
+- What happens to the design if you change the skill, and what happens if you change the tool?

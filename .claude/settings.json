@@ -1,11 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(uv run tower:*)",
-      "Bash(uv run kit:*)",
-      "Bash(uv sync:*)",
+      "Bash(uv run tools/dice.py *)",
+      "Bash(uv run tools/tower.py *)",
+      "Bash(uv run tools/gallery.py *)",
+      "Bash(uv sync *)",
       "Bash(uv --version)",
-      "Bash(uv run pytest:*)"
+      "PowerShell(uv run tools/dice.py *)",
+      "PowerShell(uv run tools/tower.py *)",
+      "PowerShell(uv run tools/gallery.py *)",
+      "PowerShell(uv sync *)",
+      "PowerShell(uv --version)"
     ]
   }
 }

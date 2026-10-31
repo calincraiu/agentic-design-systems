@@ -1,11 +1,8 @@
 import math
 
+import drawing
 import pytest
-
-from examples.tower.evaluate import evaluate
-from examples.tower.generate import build
-from examples.tower.params import resolve
-from kit import geometry as geo
+from tower import build, evaluate, parse_limit, parse_plot, resolve
 
 
 def test_resolve_fills_defaults_and_rejects_bad_values():
@@ -34,45 +31,40 @@ def test_twist_rotates_the_top_floor():
 def test_taper_and_lean_move_the_top_floor():
     g = build({"floors": 11, "width": 20, "depth": 20, "taper": 0.5, "lean": 10, "lean_dir": 90})
     top = g["curves"][-1]
-    assert math.isclose(geo.area(top), 100, rel_tol=1e-6)
+    assert math.isclose(drawing.area(top), 100, rel_tol=1e-6)
     assert math.isclose(sum(p[0] for p in top) / 4, 10, abs_tol=1e-3)  # moved 10 m east
 
 
+def test_same_parameters_give_identical_results():
+    params = {"floors": 30, "twist": 77, "taper": 1.3, "lean": 8, "lean_dir": 200}
+    assert evaluate(build(params)) == evaluate(build(params))
+
+
 def test_evaluate_plain_box():
-    r = evaluate(build({"floors": 10, "floor_height": 3, "width": 20, "depth": 10}))
-    m = r["metrics"]
+    m = evaluate(build({"floors": 10, "floor_height": 3, "width": 20, "depth": 10}))["metrics"]
     assert m["height_m"] == 30
     assert m["gfa_m2"] == 2000
     assert m["footprint_m2"] == m["top_floor_m2"] == 200
-    assert m["envelope_m2"] == 60 * 30 + 200
     assert m["max_cantilever_m"] == 0
     assert m["slenderness"] == 3
     assert m["shadow_m2"] >= m["footprint_m2"]
-    assert m["site_coverage"] is None
+    assert m["beyond_plot_m"] is None
 
 
-def test_evaluate_with_brief_checks_constraints_and_plot():
-    brief = {
-        "site": {"plot_width_m": 20, "plot_depth_m": 20},
-        "constraints": [
-            {"metric": "height_m", "op": "<=", "value": 30, "source": "card"},
-            {"metric": "beyond_plot_m", "op": "<=", "value": 0, "source": "assumed"},
-        ],
-    }
-    r = evaluate(build({"floors": 12, "floor_height": 3, "width": 20, "depth": 20, "lean": 5}), brief)
-    m = r["metrics"]
-    assert m["site_coverage"] == 1
-    assert m["beyond_plot_m"] == pytest.approx(5, abs=1e-3)
-    assert m["max_cantilever_m"] == pytest.approx(5, abs=1e-3)
-    assert [c["pass"] for c in r["constraints"]] == [False, False]
+def test_evaluate_checks_limits_and_plot():
+    limits = [parse_limit("height_m<=30"), parse_limit("beyond_plot_m<=0"), parse_limit("floors>=12")]
+    r = evaluate(build({"floors": 12, "floor_height": 3, "width": 20, "depth": 20, "lean": 5}), (20, 20), limits)
+    assert r["metrics"]["beyond_plot_m"] == pytest.approx(5, abs=1e-3)
+    assert r["metrics"]["max_cantilever_m"] == pytest.approx(5, abs=1e-3)
+    assert [c["pass"] for c in r["limits"]] == [False, False, True]
 
 
-def test_brief_priorities_decide_what_is_better():
-    plain = evaluate(build({}))
-    assert "slenderness" not in plain["better"]  # a design judgement, not the tool's
-    brief = {"site": {"plot_width_m": 20, "plot_depth_m": 20}, "constraints": [],
-             "priorities": [{"metric": "slenderness", "goal": "max"}, {"metric": "shadow_m2", "goal": "max"}]}
-    r = evaluate(build({}), brief)
-    assert r["better"]["slenderness"] == "higher"
-    assert r["better"]["shadow_m2"] == "higher"  # the brief overrides the default
-    assert r["priorities"] == ["slenderness", "shadow_m2"]
+def test_parse_limit_and_plot():
+    assert parse_limit(" height_m > 180 ") == {"metric": "height_m", "op": ">", "value": 180}
+    assert parse_plot("30x40") == (30, 40)
+    for bad in ("height_m=180", "beauty>5", "height_m>tall"):
+        with pytest.raises(ValueError):
+            parse_limit(bad)
+    for bad in ("12", "0x10", "ax b"):
+        with pytest.raises(ValueError):
+            parse_plot(bad)
