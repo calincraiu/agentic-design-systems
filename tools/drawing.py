@@ -138,7 +138,7 @@ def render_floors(curves, floor_height, path, plot=None, shadow=None, caption=""
     ax.set_xlim(min(xs), max(xs))
     ax.set_ylim(min(ys), max(ys))
     ax.set_zlim(0, top)
-    ax.set_box_aspect((max(span_x, 1), max(span_y, 1), max(top, 1)), zoom=1.15)
+    ax.set_box_aspect((max(span_x, 1), max(span_y, 1), max(top, 1)), zoom=1)
 
     # North arrow at the north-west corner of the drawing.
     arrow = max(span_x, span_y) * 0.08
