@@ -1,0 +1,64 @@
+{
+  "title": "The Needle",
+  "client": "A private owner-developer who lives in the penthouse",
+  "card": "sessions/01-think-in-systems/clients/the-needle.md",
+  "summary": "The tallest residential tower in town on a 12 x 12 m plot, topped by a penthouse larger than the neighbour's 400 m2. The main contradiction: the top floor must be nearly three times the size of the plot. The student adds an ambition: as grand and modern as possible.",
+  "site": {
+    "plot_width_m": 12,
+    "plot_depth_m": 12,
+    "notes": "On the most expensive street in the city. Whether the tower may overhang the street or neighbours is not stated on the card (see open questions)."
+  },
+  "qualities": [
+    {
+      "phrase": "the tallest residential tower in town",
+      "interpretation": "The roof must rise above today's tallest building, which is 180 m.",
+      "parameters": ["floors", "floor_height"]
+    },
+    {
+      "phrase": "my penthouse must be bigger than my neighbour's",
+      "interpretation": "The top floor plate must exceed 400 m2, so it has to spread well beyond the 144 m2 plot.",
+      "parameters": ["width", "depth", "taper"]
+    },
+    {
+      "phrase": "the smallest plot on the most expensive street",
+      "interpretation": "The ground floor can be no larger than the plot, so the tower grows outward with height or stays extremely slim.",
+      "parameters": ["width", "depth", "taper", "lean"]
+    },
+    {
+      "phrase": "the most grand and modern design (student's ambition, not the client's words)",
+      "interpretation": "A striking silhouette with a clear single gesture. Grandeur is read as height and top-heavy presence; modern is read as twist or a sculptural form. No metric measures either.",
+      "parameters": ["twist", "taper", "lean", "lean_dir"]
+    }
+  ],
+  "constraints": [
+    {"metric": "height_m", "op": ">", "value": 180, "source": "card", "note": "Taller than today's tallest building."},
+    {"metric": "top_floor_m2", "op": ">", "value": 400, "source": "card", "note": "Bigger than the neighbour's penthouse."},
+    {"metric": "height_m", "op": "<=", "value": 190, "source": "client", "note": "'Just enough to win': the 190 m figure is our reading of that answer, not the client's number."},
+    {"metric": "footprint_m2", "op": "<=", "value": 144, "source": "card", "note": "The ground floor must fit on the 12 x 12 m plot."}
+  ],
+  "priorities": [
+    {"metric": "top_floor_m2", "goal": "max", "why": "The penthouse is the client's point of pride."},
+    {"metric": "height_m", "goal": "min", "why": "The client only needs to win, so no extra height beyond that."}
+  ],
+  "assumptions": [
+    "The tower is judged by roof height, not including any spire.",
+    "The default reference sun applies: mid-afternoon, from the south."
+  ],
+  "open_questions": [
+    {
+      "question": "May the upper floors overhang the street and the neighbouring plots, and if so, by how much?",
+      "why_it_matters": "A 400 m2 penthouse cannot fit inside a 12 x 12 m plot. If overhang is forbidden, the brief cannot be satisfied.",
+      "answer": "Yes, as much as you want."
+    },
+    {
+      "question": "How much taller than 180 m do you need to be: just enough to win, or by a clear margin?",
+      "why_it_matters": "It sets the slenderness: at 12 m wide, every extra floor makes the tower more extreme and harder to build.",
+      "answer": "Just enough to win."
+    },
+    {
+      "question": "Does the whole tower need to be usable homes, or can the narrow lower floors be mostly lifts, stairs and structure?",
+      "why_it_matters": "It decides whether the shape can start very thin and flare out only near the top, or needs usable floors throughout.",
+      "answer": "Complete freedom to decide."
+    }
+  ]
+}

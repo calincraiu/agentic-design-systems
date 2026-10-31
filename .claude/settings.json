@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run tower:*)",
+      "Bash(uv run kit:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv --version)",
+      "Bash(uv run pytest:*)"
+    ]
+  }
+}

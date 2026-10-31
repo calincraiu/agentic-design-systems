@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Structured design brief",
+  "description": "A client's brief translated into data an agent and its tools can work with. Facts, interpretations and assumptions are kept apart on purpose.",
+  "type": "object",
+  "required": ["title", "client", "summary", "site", "qualities", "constraints", "priorities", "assumptions", "open_questions"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {"type": "string", "minLength": 1, "description": "Short name for this brief, used to group runs in the gallery."},
+    "client": {"type": "string", "minLength": 1},
+    "card": {"type": "string", "description": "Path to the original client card, if there is one."},
+    "summary": {"type": "string", "minLength": 1, "description": "The brief in two or three plain sentences."},
+    "site": {
+      "type": "object",
+      "required": ["plot_width_m", "plot_depth_m"],
+      "additionalProperties": false,
+      "properties": {
+        "plot_width_m": {"type": "number", "exclusiveMinimum": 0, "description": "East-west size of the plot."},
+        "plot_depth_m": {"type": "number", "exclusiveMinimum": 0, "description": "North-south size of the plot."},
+        "sun": {
+          "type": "object",
+          "required": ["altitude_deg", "azimuth_deg"],
+          "additionalProperties": false,
+          "properties": {
+            "altitude_deg": {"type": "number", "minimum": 5, "maximum": 90},
+            "azimuth_deg": {"type": "number", "minimum": 0, "maximum": 360, "description": "Compass direction of the sun: 0 north, 90 east, 180 south."}
+          }
+        },
+        "notes": {"type": "string"}
+      }
+    },
+    "qualities": {
+      "type": "array",
+      "description": "Qualitative phrases from the client and how they were interpreted.",
+      "items": {
+        "type": "object",
+        "required": ["phrase", "interpretation", "parameters"],
+        "additionalProperties": false,
+        "properties": {
+          "phrase": {"type": "string", "minLength": 1, "description": "The client's words, quoted."},
+          "interpretation": {"type": "string", "minLength": 1, "description": "What we think it means for the design."},
+          "parameters": {"type": "array", "items": {"type": "string"}, "description": "Which parameters it affects."}
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "description": "Hard limits, checked automatically after every run.",
+      "items": {
+        "type": "object",
+        "required": ["metric", "op", "value", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "metric": {"type": "string"},
+          "op": {"enum": ["<=", ">=", "<", ">"]},
+          "value": {"type": "number"},
+          "source": {"enum": ["card", "client", "assumed"], "description": "Where the limit came from: the card, the client's answer, or our own assumption."},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "priorities": {
+      "type": "array",
+      "description": "Soft goals, most important first.",
+      "items": {
+        "type": "object",
+        "required": ["metric", "goal"],
+        "additionalProperties": false,
+        "properties": {
+          "metric": {"type": "string"},
+          "goal": {"enum": ["min", "max"]},
+          "why": {"type": "string"}
+        }
+      }
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "why_it_matters"],
+        "additionalProperties": false,
+        "properties": {
+          "question": {"type": "string"},
+          "why_it_matters": {"type": "string"},
+          "answer": {"type": ["string", "null"]}
+        }
+      }
+    }
+  }
+}
