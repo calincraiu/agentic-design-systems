@@ -6,7 +6,9 @@ runs/<run_id>/
   image.png      a rendered view
 runs/gallery.html  every run, grouped by project. Rebuilt after every run.
 
-Run it directly to rebuild the page: uv run tools/gallery.py --open
+All of this is written in the folder you run the tower from (your project folder).
+
+Run it directly to rebuild the page: uv run tools/tower/gallery.py --open
 """
 import argparse
 import json
@@ -17,19 +19,18 @@ from datetime import datetime
 from html import escape
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-
-
 def runs_dir():
-    """One folder per design run. Overridable (ADS_RUNS_DIR) so tests stay out of runs/."""
-    return Path(os.environ.get("ADS_RUNS_DIR", ROOT / "runs"))
+    """One folder per design run, in the folder the tool is run from.
+
+    Overridable (ADS_RUNS_DIR) so tests and the course app keep their own runs."""
+    return Path(os.environ.get("ADS_RUNS_DIR", Path.cwd() / "runs"))
 
 
 def rel(path):
-    """A path relative to the repo root, with forward slashes, for readable output."""
+    """A path relative to the current folder, with forward slashes, for readable output."""
     path = Path(path).resolve()
     try:
-        return path.relative_to(ROOT).as_posix()
+        return path.relative_to(Path.cwd().resolve()).as_posix()
     except ValueError:
         return path.as_posix()
 

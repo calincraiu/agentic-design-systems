@@ -1,3 +1,7 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = []
+# ///
 """A tool: rolls dice and prints the result. This is the whole thing."""
 import argparse
 import random

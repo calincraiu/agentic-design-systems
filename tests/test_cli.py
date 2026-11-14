@@ -1,12 +1,15 @@
 import subprocess
 import sys
+from pathlib import Path
 
 import gallery
 import tower
 
+KITS = Path(__file__).resolve().parents[1] / "kits"
+
 
 def dice(*args):
-    script = gallery.ROOT / "tools" / "dice.py"
+    script = KITS / "dice" / "tools" / "dice.py"
     return subprocess.run([sys.executable, str(script), *args], capture_output=True, text=True)
 
 

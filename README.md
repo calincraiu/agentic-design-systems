@@ -1,29 +1,28 @@
-# Agentic Design Systems
+# Agentic Design Systems: the course folder
 
-A course workspace for designing with AI agents. You won't just *use* an AI here. You'll build the system it works inside: the briefs it reads, the skills that shape its judgement, the tools it calls and the measures that say what "good" means.
+This folder holds the **course app**: the slides from the lectures, with live widgets that run the real course tools. It also holds the **kits** you copy into your own work.
 
-## Getting started
+> **Don't work in this folder.** You get a fresh copy each session, and it replaces this one. Everything you write goes in **your own folder**, which nobody replaces. The course app shows you how to start it.
 
-1. Put this folder somewhere normal on your computer, such as `Documents/ads-course`. Avoid Downloads, and avoid OneDrive or iCloud folders if you can.
-2. Open the **Claude desktop app**, go to the **Code** tab and choose this folder. (VS Code with the Claude Code extension works the same way, if you prefer it.)
-3. Type **`/setup`**. Claude installs what's needed and checks that everything works. Read what each command does before you approve it.
+## Start the course app
 
-Then start [Session 1](session-1/1-dice.md).
+1. Put this folder somewhere normal, such as `Documents/ads-course`. Avoid Downloads, and avoid OneDrive or iCloud folders if you can. If you already have an older copy, delete it and put this one in its place.
+2. Open the **Claude desktop app**, go to the **Code** tab and choose this folder.
+3. Type **`/setup`** the first time. Claude installs what's needed and checks that it works. Read what each command does before you approve it.
+4. Type **`/start`**. The course app opens in your browser.
+
+**Without Claude:** double-click `Start course.cmd` (Windows) or `Start course.command` (Mac). On a Mac, the first time, right-click it, choose **Open**, then **Open** again. Keep the window that appears open while you use the app.
+
+## Skills in this folder
+
+- `/setup`: get this computer ready, or check it when something breaks
+- `/start`: open the course app
+- `/course-tutor`: explain a concept or some code, or quiz you
 
 ## What's in here
 
 | Folder | What it is |
 |---|---|
-| [session-1/](session-1/) | The walkthroughs, concepts and client cards for Session 1 |
-| [my-work/](my-work/) | **Your workspace**, including your briefs |
-| [tools/](tools/) | The tools Claude can use. Start by reading [dice.py](tools/dice.py) |
-| [.claude/skills/](.claude/skills/) | Skills Claude can use, including the ones you write |
-| `runs/` | Created as you work: one folder per tower, and `runs/gallery.html` to compare them |
-| [CLAUDE.md](CLAUDE.md) | What Claude is told about this project at the start of every session |
-
-## Skills you can call
-
-- `/setup`: get this computer ready, or check it when something breaks
-- `/tie-breaker`: settle a decision with a real die roll
-- `/tower-designer`: design towers for a client card
-- `/course-tutor`: explain a concept or some code, or quiz you
+| `slides/` | What the course app shows, as plain text. `slides/concepts.md` defines the words we use |
+| `kits/` | What you copy into your own folder: the dice, the tower, and the tool-spec kit |
+| `app/` | The course app's code. You don't need to read it |

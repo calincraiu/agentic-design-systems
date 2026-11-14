@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run course)",
+      "Bash(uv run course *)",
+      "Bash(uv sync)",
+      "Bash(uv sync *)",
+      "Bash(uv --version)",
+      "Bash(uv run kits/dice/tools/dice.py *)",
+      "Bash(uv run kits/tower/tools/tower/tower.py *)",
+      "PowerShell(uv run course)",
+      "PowerShell(uv run course *)",
+      "PowerShell(uv sync)",
+      "PowerShell(uv sync *)",
+      "PowerShell(uv --version)",
+      "PowerShell(uv run kits/dice/tools/dice.py *)",
+      "PowerShell(uv run kits/tower/tools/tower/tower.py *)"
+    ],
+    "deny": [
+      "Edit(/app/**)",
+      "Edit(/kits/**)",
+      "Edit(/slides/**)",
+      "Edit(/.claude/**)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/README.md)",
+      "Edit(/pyproject.toml)",
+      "Edit(/uv.lock)",
+      "Edit(/Start course.cmd)",
+      "Edit(/Start course.command)"
+    ]
+  }
+}

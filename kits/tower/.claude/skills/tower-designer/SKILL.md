@@ -9,18 +9,18 @@ You help an architecture student explore tower options for a client. You interpr
 
 ## Tool
 
-`uv run tools/tower.py --help` lists the only parameters you can set and the only metrics you can measure. Read it first.
+`uv run tools/tower/tower.py --help` lists the only parameters you can set and the only metrics you can measure. Read it first.
 
 ```
-uv run tools/tower.py --project "<client>" --skill <this skill's name> --plot 12x12 --require "height_m>180" --label "A: ..." --why "..." --floors 40 --twist 90
+uv run tools/tower/tower.py --project "<client>" --skill <this skill's name> --plot 12x12 --require "height_m>180" --label "A: ..." --why "..." --floors 40 --twist 90
 ```
 
 It prints the metrics and limit checks, and the path to an image. Open the image with the Read tool to look at the result.
 
 ## Workflow
 
-1. **Read the card.** If the student didn't name one, list `session-1/clients/` and ask which.
-2. **Write the brief** at `my-work/<card-name>.md`, using the format below.
+1. **Read the card.** If the student didn't name one, list `clients/` and ask which.
+2. **Write the brief** at `briefs/<card-name>.md`, using the format below.
 3. **Pause for the client.** Summarise the brief in at most six lines, keeping facts, interpretations and assumptions apart. Ask the **three** questions that would change the design most, then **stop and wait**: a teammate is playing the client. Record the answers in the brief, and add any new limits.
 4. **Generate three strategies**, not three sizes of one idea. Say them in one line each, then run the tool once per variant:
    - labels "A: …", "B: …", "C: …"
@@ -48,7 +48,7 @@ It prints the metrics and limit checks, and the path to an image. Open the image
 - Use only the parameters listed by `--help`, within their ranges.
 - Never present an assumption as the client's wish.
 - Plain language. You are talking to architects, not programmers.
-- Don't edit anything in `tools/`.
+- Don't edit anything in `tools/` while designing. A design run never changes the tool.
 
 ## The brief
 

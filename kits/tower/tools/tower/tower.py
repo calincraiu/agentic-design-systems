@@ -1,3 +1,7 @@
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["matplotlib>=3.8"]
+# ///
 """A tool: builds a tower from eight numbers, measures it and saves the result.
 
 Read it in three parts:
