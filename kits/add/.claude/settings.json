@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run tools/*)",
+      "PowerShell(uv run tools/*)",
+      "Bash(uv --version)",
+      "PowerShell(uv --version)"
+    ]
+  }
+}

@@ -16,6 +16,8 @@ def test_kits_work_in_an_empty_folder(tmp_path, monkeypatch):
     for kit in KITS.iterdir():
         shutil.copytree(kit, tmp_path, dirs_exist_ok=True)
     assert run(tmp_path, "tools/dice.py", "--count", "2").returncode == 0
+    added = run(tmp_path, "tools/add.py", "12.4", "18.75", "9.3", "22.05")
+    assert added.returncode == 0 and "Total: 62.50" in added.stdout
     tower = run(tmp_path, "tools/tower/tower.py", "--floors", "6", "--label", "kit test")
     assert tower.returncode == 0, tower.stderr
     assert (tmp_path / "runs" / "gallery.html").exists()

@@ -29,12 +29,17 @@ From the zip, on **Windows and a Mac**, in the desktop app's Code tab, ideally w
 - [ ] `/start` opens the course app. Does it keep running while you carry on talking in the session?
 - [ ] The double-click launchers: `Start course.cmd` on Windows (SmartScreen?), `Start course.command` on a Mac (right-click → Open the first time).
 - [ ] In the course folder, ask Claude to "edit kits/dice/tools/dice.py". It should refuse and point you to your own folder, and the edit should be denied.
-- [ ] Every slide's widgets load: dice, LLM vs tool, tower explorer, skill anatomy, context stepper, take-away, gallery.
-- [ ] **Empty-folder walkthrough:** new folder → Code tab → write `CLAUDE.md` → paste the dice take-away prompt. Is the hidden `.claude` folder copied? Does `/tie-breaker` appear in a new session?
+- [ ] Every slide's widgets load: add (calculator and the in-your-head poll), dice, the fairness poll, tower explorer, skill anatomy, context stepper, take-away, gallery.
+- [ ] The look, on the projector you'll use: the fonts load offline, the contrast is readable in light and dark (`D`), and nothing is cut off at the projector's resolution.
+- [ ] Keys: `→`/`←` step through diagram parts, `N` opens notes, `G` shows all slides, `R` switches to reading mode and back, `?` (or the **Keys** button, top right) lists them all. The tower explorer's preview moves as you drag a slider.
+- [ ] **Empty-folder walkthrough:** new folder → Code tab → write `CLAUDE.md` → paste the add + dice take-away prompt. Is the hidden `.claude` folder copied? Do `/add-up` and `/tie-breaker` appear in a new session?
 - [ ] Permission prompts in the student's folder: `uv run tools/...` shouldn't prompt. On Windows without Git, check the PowerShell rules too.
-- [ ] Tower kit: `/tower-designer` on a card, a stance skill, then `runs/gallery.html` in their folder. Does clicking it in a reply open the Browser pane, with images?
+- [ ] Tower kit: `/tower-designer` with a one-line wish (it should ask, then stop and wait), a stance skill, then `runs/gallery.html` in their folder. Does clicking it in a reply open the Browser pane, with images?
 - [ ] Tool-spec kit: `/tool-builder` on `tools/stair_check.md`. It should build the tool and pass all four test cases.
-- [ ] Number poll: ask Chat "Pick a random number from 1 to 20" several times, in fresh chats. Do the answers cluster? Does it run code?
+- [ ] In-your-head poll (slide 9): ask Chat the long sum on the slide in a few fresh chats, then "How exactly did you work that out?". Does it get it right, or run code? If it is always right, use longer numbers or a column of 25 room areas.
+- [ ] Fairness poll (slide 10): ask Chat the crit-order question in about ten fresh chats. Does it lean? If it barely does, add names or use a list in a meaningful order (most famous first).
+- [ ] Add tool (slide 12): ask Chat "what is 1,5 + 2?" and note what it says.
+- [ ] Dice tool (slide 14): ask Chat for 20 rolls of a die a few times and count back-to-back repeats (a fair die averages about 3). Note whether it runs code.
 - [ ] `/course-tutor quiz me on session 1` asks sensible questions.
 
 On your own machine, before releasing: `uv sync`, then `uv run pytest`.

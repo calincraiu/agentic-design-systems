@@ -4,20 +4,20 @@ These words get used loosely. In this course they mean specific things, and each
 
 ## The parts
 
-**LLM.** A large language model: the AI itself. It reads and writes text. On its own it can't roll a die or measure a floor plate; it can only write something that fits.
+**LLM.** A large language model: the AI itself. It continues text with what is likely to come next. That's how it knows 2 + 2, and why it can't reliably add two long numbers, roll a fair die or measure a floor plate: it can only write something that fits.
 > Here: what you get in the Chat tab.
 
 **Tool.** A capability with defined inputs and outputs that an agent can use. A tool really does what it says, and it doesn't get creative about it.
-> Here: `tools/dice.py` takes a number of sides and a count, and returns rolls. `tools/tower/tower.py` takes eight numbers and returns geometry, metrics and an image. `tools/stair_check.py` was built from a contract someone wrote in plain language. Claude also has built-in tools, for reading files, writing files and running commands.
+> Here: `tools/add.py` takes numbers and returns their exact total. `tools/dice.py` takes a number of sides and a count, and returns rolls. `tools/tower/tower.py` takes eight numbers and returns geometry, metrics and an image. `tools/stair_check.py` was built from a contract someone wrote in plain language. Claude also has built-in tools, for reading files, writing files and running commands.
 
 **Agent.** An LLM that can use tools and decide what to do next: read files, run tools, look at results and try again, within limits you set.
 > Here: Claude, in the Code tab. Rolling until a double, it decides by itself when to stop.
 
 **Skill.** Reusable know-how: instructions (and any supporting files) that tell the agent *how to approach* a kind of task. A skill doesn't *do* anything by itself; it shapes how the agent uses its tools.
-> Here: `.claude/skills/tie-breaker/SKILL.md`. It is plain text, and you can write one.
+> Here: `.claude/skills/add-up/SKILL.md` (never add in your head) and `.claude/skills/tie-breaker/SKILL.md` (roll exactly once). They are plain text, and you can write one.
 
 **Workflow.** The sequence of steps, decisions and checkpoints that connects everything. It can live inside a skill, in code or in your head.
-> Here: the steps in the tower-designer skill: read → write the brief → *ask the client* → generate → check → report.
+> Here: the steps in the tower-designer skill: you describe → the agent asks → *you answer* → the tool builds and checks three → report, and you choose.
 
 **Context.** Everything the agent knows when it starts working: the conversation, the files it reads and the project instructions.
 > Here: the `CLAUDE.md` in your folder, loaded at the start of every session, and your brief.
@@ -40,9 +40,9 @@ An image or a confident paragraph is not evidence. The metrics are, as far as th
 ## The loop
 
 ```
- client card ──► INTERPRET ──► brief ──► you + client answer questions
-                                                 │
-          ┌──────────────────────────────────────┘
+ you describe ──► the agent asks ──► you answer ──► brief
+                                                      │
+          ┌───────────────────────────────────────────┘
           ▼
       GENERATE (tool) ──► MEASURE (tool) ──► COMPARE (agent) ──► DECIDE (you)
           ▲                                                         │
@@ -63,9 +63,10 @@ Over the four sessions you move from *using* an agent to *designing the system i
 ## Checkpoint questions
 
 - What is the difference between a tool and a skill? Give an example of each from your folder.
-- Why can't an LLM on its own roll a die? What did it do when you asked it to pick a random number?
+- You know 2 + 2 without calculating. Why is that a good picture of how an LLM answers, and why does it go wrong for long numbers?
+- Why can't an LLM on its own pick fairly? What happened when the room asked it for a crit order?
 - Why does the tower designer stop and ask questions before generating anything?
 - Claude says a variant is "elegant and grounded". What would you check before believing it?
 - Why does each limit in the brief record where it came from?
-- If the client wants "lots of terraces", which part of the system would have to change to measure that?
+- If you want "lots of terraces", which part of the system would have to change to measure that?
 - What happens to the design if you change the skill, and what happens if you change the tool?

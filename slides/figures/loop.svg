@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 590" role="img" aria-label="The design loop: you describe, the agent asks, you answer, the tool builds and measures three, you choose, then round again">
+  <defs><marker id="loop-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker></defs>
+  <g data-step="1"><rect class="ink-fill" x="220.0" y="48.0" width="200" height="54"/><text class="paper-text" x="320.0" y="82.0" text-anchor="middle">You describe</text></g>
+  <line class="ink" data-step="2" x1="363.6" y1="106.7" x2="480.8" y2="191.9" marker-end="url(#loop-ink)"/>
+  <g data-step="2"><rect class="box-accent" x="424.5" y="196.6" width="200" height="54"/><text class="" x="524.5" y="230.6" text-anchor="middle">Agent asks</text></g>
+  <line class="ink" data-step="3" x1="513.2" y1="258.2" x2="457.6" y2="429.3" marker-end="url(#loop-ink)"/>
+  <g data-step="3"><rect class="ink-fill" x="346.4" y="436.9" width="200" height="54"/><text class="paper-text" x="446.4" y="470.9" text-anchor="middle">You answer</text></g>
+  <line class="ink" data-step="4" x1="338.4" y1="463.9" x2="301.6" y2="463.9" marker-end="url(#loop-ink)"/>
+  <g data-step="4"><rect class="box-blue" x="93.6" y="436.9" width="200" height="54"/><text class="" x="193.6" y="470.9" text-anchor="middle">Tool builds three</text></g>
+  <line class="ink" data-step="5" x1="182.4" y1="429.3" x2="126.8" y2="258.2" marker-end="url(#loop-ink)"/>
+  <g data-step="5"><rect class="ink-fill" x="15.5" y="196.6" width="200" height="54"/><text class="paper-text" x="115.5" y="230.6" text-anchor="middle">Report; you choose</text></g>
+  <line class="accent" data-step="6" x1="159.2" y1="191.9" x2="276.4" y2="106.7" marker-end="url(#loop-ink)" style="stroke-dasharray:8 6"/>
+  <g data-step="6"><text class="small" x="320" y="282" text-anchor="middle">Not happy?</text><text class="small" x="320" y="306" text-anchor="middle">Change the brief,</text><text class="small" x="320" y="330" text-anchor="middle">the skill or the tool.</text></g>
+  <rect class="box-accent" x="70" y="560" width="22" height="16"/><text class="label" x="102" y="573">agent</text>
+  <rect class="box-blue" x="230" y="560" width="22" height="16"/><text class="label" x="262" y="573">tool</text>
+  <rect class="ink-fill" x="390" y="560" width="22" height="16"/><text class="label" x="422" y="573">you</text>
+</svg>

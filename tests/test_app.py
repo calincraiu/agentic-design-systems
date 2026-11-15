@@ -36,6 +36,15 @@ def test_widgets_on_slides_point_at_real_files_and_kits(client):
                 assert client.get(f"/api/kits/{kit}").status_code == 200, (s["file"], kit)
 
 
+def test_add_widget_runs_the_real_tool_exactly(client):
+    r = client.get("/api/add", params={"numbers": "8437209516384.27 6958173402659.86"}).json()
+    assert r["code"] == 0 and r["total"] == "15395382919044.13"
+    assert r["command"] == "uv run tools/add.py 8437209516384.27 6958173402659.86"
+    assert client.get("/api/add", params={"numbers": "0.1 0.2"}).json()["total"] == "0.3"
+    bad = client.get("/api/add", params={"numbers": "1,000 2"}).json()
+    assert bad["code"] == 2 and bad["total"] is None
+
+
 def test_dice_widget_runs_the_real_tool(client):
     r = client.get("/api/dice", params={"sides": 20, "count": 30}).json()
     assert r["code"] == 0 and len(r["rolls"]) == 30 and all(1 <= n <= 20 for n in r["rolls"])
@@ -68,3 +77,125 @@ def test_kit_zip_unpacks_into_a_project_layout(client):
     assert "tools/dice.py" in names and ".claude/skills/tie-breaker/SKILL.md" in names
     k = client.get("/api/kits/tower").json()
     assert "tools/tower/tower.py" in k["files"] and str(main.KITS / "tower") in k["prompt"]
+    assert "ask me where I unzipped the course folder" in k["prompt"]
+
+
+def test_two_kits_share_one_prompt_and_one_zip(client):
+    k = client.get("/api/kits/add,dice").json()
+    assert str(main.KITS / "add") in k["prompt"] and str(main.KITS / "dice") in k["prompt"]
+    assert "tools/add.py" in k["files"] and "tools/dice.py" in k["files"]
+    assert k["files"].count(".claude/settings.json") == 1
+    names = zipfile.ZipFile(io.BytesIO(client.get("/kits/add,dice.zip").content)).namelist()
+    assert "tools/add.py" in names and "tools/dice.py" in names and names.count(".claude/settings.json") == 1
+    assert client.get("/api/kits/add,nope").status_code == 404
+
+
+# The look of the deck: layouts, notes, figures and the live preview ---------------------------------------
+
+
+def test_slide_header_and_notes_are_split_out():
+    s = main.split_slide("<!-- layout: task | where: code-yours | time: 25 min | pairs -->\n# Hi\n\nbody\n\n<!-- notes -->\nsay this\n")
+    assert (s["layout"], s["where"], s["time"], s["pairs"]) == ("task", "code-yours", "25 min", True)
+    assert s["body"] == "# Hi\n\nbody" and s["notes"] == "say this" and s["title"] == "Hi"
+    plain = main.split_slide("# Plain\n\ntext")
+    assert plain["layout"] == "stage" and plain["where"] is None and plain["notes"] == ""
+    odd = main.split_slide("<!-- layout: spinning | where: the-moon -->\n# X")
+    assert odd["layout"] == "stage" and odd["where"] is None
+
+
+def test_every_slide_declares_a_known_layout_and_place():
+    for s in main.deck_slides("session-1"):
+        assert s["text"].lstrip().startswith("<!-- layout:"), s["file"]
+        assert s["where"] in main.WHERE, s["file"]
+        assert s["title"], s["file"]
+
+
+def test_notes_are_hidden_on_the_slide_and_shown_when_reading(client):
+    slides = main.deck_slides("session-1")
+    n, s = next((i, s) for i, s in enumerate(slides, 1) if s["notes"])
+    marker = main.render(s["notes"])[:60]
+    before, aside, after = client.get(f"/d/session-1/{n}").text.partition('<aside id="notes" class="notes" hidden>')
+    assert aside and marker in after and marker not in before  # only inside the hidden drawer
+    assert marker in client.get("/d/session-1/read").text
+    assert "notes-inline" in client.get("/d/session-1/read").text
+
+
+def test_figures_and_images_the_slides_ask_for_exist():
+    import re
+    from xml.dom import minidom
+    for deck in main.decks():
+        for s in main.deck_slides(deck):
+            for name in re.findall(r'data-name="([\w-]+)"', s["text"]):
+                svg = main.SLIDES / "figures" / f"{name}.svg"
+                assert svg.is_file(), (s["file"], name)
+                minidom.parse(str(svg))
+            for image in re.findall(r'data-images="([^"]+)"', s["text"]):
+                for name in image.split(","):
+                    assert (main.ROOT / "app" / "static" / "img" / f"{name.strip()}.png").is_file(), name
+
+
+def test_figure_steps_are_whole_numbers_counting_up_from_one():
+    import re
+    for svg in (main.SLIDES / "figures").glob("*.svg"):
+        steps = sorted({int(n) for n in re.findall(r'data-step="(\d+)"', svg.read_text(encoding="utf-8"))})
+        assert steps == list(range(1, len(steps) + 1)) or not steps, svg.name
+
+
+def test_deck_outline_lists_every_slide(client):
+    outline = client.get("/api/deck/session-1").json()
+    assert [o["n"] for o in outline] == list(range(1, len(main.deck_slides("session-1")) + 1))
+    assert all(o["title"] for o in outline)
+    assert client.get("/api/deck/nope").status_code == 404
+    assert client.get("/api/figure/loop").status_code == 200 and client.get("/api/figure/..").status_code in (404, 422)
+
+
+def test_live_preview_is_the_towers_own_geometry(client):
+    params = {"floors": 12, "twist": 90, "taper": 0.7, "lean": 5, "lean_dir": 90}
+    got = client.get("/api/tower/preview", params=params).json()
+    want = tower.build(params)
+    assert got["curves"] == [[[x, y] for x, y, _ in floor] for floor in want["curves"]]
+    assert client.get("/api/tower/preview", params={"taper": 5}).status_code == 400
+    assert client.get("/api/tower/preview", params={"floors": "abc"}).status_code == 400
+    assert client.get("/api/tower/preview", params={"colour": 1}).status_code == 400
+
+
+def test_lists_without_a_blank_line_still_render_as_lists(client):
+    text = "**On the plot**\n- Plot: 12\n- Tall\n- Top"
+    assert main.blank_line_before_lists(text) == "**On the plot**\n\n- Plot: 12\n- Tall\n- Top"
+    html = client.get("/api/file", params={"path": "kits/tool-spec/tools/stair_check.md", "render_md": True}).json()["html"]
+    assert "<li>" in html and "<p>" in html
+
+
+def test_slides_never_name_a_path_on_one_particular_computer():
+    import re
+    for deck in main.decks():
+        for s in main.deck_slides(deck):
+            assert not re.search(r"[A-Za-z]:[\\/]|/Users/|/home/", s["text"]), s["file"]
+
+
+def test_every_page_has_the_keys_button(client):
+    for url in ("/", "/d/session-1/1", "/d/session-1/read", "/p/concepts"):
+        assert "data-keys" in client.get(url).text, url
+
+
+def test_section_slides_open_each_part_of_the_session(client):
+    slides = main.deck_slides("session-1")
+    sections = [(i, s) for i, s in enumerate(slides, 1) if s["layout"] == "section"]
+    assert len(sections) >= 5 and all(s["title"] for _, s in sections)
+    n = sections[0][0]
+    assert 'class="slide layout-section"' in client.get(f"/d/session-1/{n}").text
+    assert "doc layout-section" in client.get("/d/session-1/read").text
+
+
+def test_task_slides_show_time_and_pairs_badges_but_not_the_chip_twice(client):
+    n = next(i for i, s in enumerate(main.deck_slides("session-1"), 1) if s["layout"] == "task" and s["pairs"])
+    html = client.get(f"/d/session-1/{n}").text
+    assert 'class="badge">in pairs' in html and html.count('class="chip where-') == 1   # only in the title block
+    assert html.count("badge") >= 2
+
+
+def test_reading_mode_lists_every_slide_with_its_place(client):
+    html = client.get("/d/session-1/read").text
+    for n in range(1, len(main.deck_slides("session-1")) + 1):
+        assert f'id="s{n}"' in html
+    assert "where-code-yours" in html and "where-chat" in html

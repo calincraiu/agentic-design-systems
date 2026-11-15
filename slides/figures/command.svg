@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="A command taken apart: uv run means run a tool, tools/add.py is the file, the numbers are the inputs, and the tool prints the total">
+  <rect class="ink-fill" x="70" y="50" width="1060" height="96"/>
+  <text class="paper-text" x="96" y="111" style="font-size:40px;opacity:0.55">$</text>
+  <text class="paper-text" x="136" y="111" style="font-size:40px">uv run</text>
+  <text class="paper-text" x="316" y="111" style="font-size:40px">tools/add.py</text>
+  <text class="paper-text" x="640" y="111" style="font-size:40px">48213.5 99127.25</text>
+
+  <g data-step="1">
+    <path class="accent" d="M136 166 V182 H280 V166"/>
+    <text class="label accent-text" x="136" y="216">1 · run it</text>
+    <text class="body" x="136" y="248">"Start a tool."</text>
+  </g>
+
+  <g data-step="2">
+    <path class="accent" d="M316 166 V182 H604 V166"/>
+    <text class="label accent-text" x="316" y="216">2 · this file</text>
+    <text class="body" x="316" y="248">Which tool: a file</text>
+    <text class="body" x="316" y="276">in your folder.</text>
+  </g>
+
+  <g data-step="3">
+    <path class="accent" d="M640 166 V182 H1024 V166"/>
+    <text class="label accent-text" x="640" y="216">3 · these inputs</text>
+    <text class="body" x="640" y="248">What you hand it. Change these,</text>
+    <text class="body" x="640" y="276">and only these, to get a different answer.</text>
+  </g>
+
+  <g data-step="4">
+    <rect class="hair" x="70" y="318" width="1060" height="64"/>
+    <text x="96" y="360" style="font-size:30px">Total: 147340.75</text>
+    <text class="label" x="640" y="346">4 · what comes back</text>
+    <text class="small" x="640" y="370">The same inputs give the same answer, every time.</text>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="The parts of an agentic system, built up one at a time: LLM, tool, agent, skill, context, and you">
+  <defs>
+    <marker id="parts-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+    <marker id="parts-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · LLM -->
+  <g data-step="1">
+    <rect class="paper" x="100" y="190" width="260" height="140"/>
+    <text class="label" x="120" y="222">1</text>
+    <text class="big" x="120" y="266">LLM</text>
+    <text x="120" y="302">writes text that fits</text>
+  </g>
+
+  <!-- 2 · TOOL -->
+  <g data-step="2">
+    <rect class="paper" x="780" y="190" width="260" height="140"/>
+    <text class="label" x="800" y="222">2</text>
+    <text class="big" x="800" y="266">TOOL</text>
+    <text x="800" y="302">does one exact thing</text>
+  </g>
+
+  <!-- 3 · AGENT: the LLM, able to reach out to tools, deciding what to do next -->
+  <g data-step="3">
+    <rect class="accent dash" x="60" y="110" width="680" height="250" rx="22"/>
+    <text class="label accent-text" x="84" y="142">3 · Agent</text>
+    <text class="small" x="84" y="168">LLM + tools + deciding what's next</text>
+    <line class="accent" x1="372" y1="232" x2="768" y2="232" marker-end="url(#parts-acc)"/>
+    <text class="label" x="650" y="218">asks</text>
+    <line class="accent" x1="768" y1="288" x2="372" y2="288" marker-end="url(#parts-acc)"/>
+    <text class="label" x="560" y="316">reads the result</text>
+  </g>
+
+  <!-- 4 · SKILL: know-how as a page of text -->
+  <g data-step="4">
+    <path class="paper" d="M400 20 H608 L640 52 V92 H400 Z"/>
+    <path class="thin" d="M608 20 V52 H640"/>
+    <text class="label" x="416" y="42">4</text>
+    <text class="big" x="416" y="76">SKILL</text>
+    <line class="accent" x1="520" y1="92" x2="520" y2="222" marker-end="url(#parts-acc)"/>
+    <text class="small" x="534" y="170">how to approach it</text>
+  </g>
+
+  <!-- 5 · CONTEXT: what is already on the desk -->
+  <g data-step="5">
+    <path class="paper" d="M400 410 H640 V484 H400 Z"/>
+    <text class="label" x="416" y="432">5</text>
+    <text class="big" x="416" y="462">CONTEXT</text>
+    <line class="accent" x1="520" y1="410" x2="520" y2="302" marker-end="url(#parts-acc)"/>
+    <text class="small" x="534" y="386">known before you ask</text>
+  </g>
+
+  <!-- 6 · YOU decide -->
+  <g data-step="6">
+    <rect class="ink-fill" x="780" y="410" width="260" height="74"/>
+    <text class="label paper-text" x="800" y="432">6</text>
+    <text class="big paper-text" x="800" y="466">YOU DECIDE</text>
+    <line class="ink" x1="690" y1="362" x2="780" y2="426" marker-end="url(#parts-ink)"/>
+    <text class="small" x="708" y="406">options</text>
+  </g>
+</svg>
