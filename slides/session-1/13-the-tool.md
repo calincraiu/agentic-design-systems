@@ -5,7 +5,7 @@
 
 <p class="lead">Something that really does the thing.</p>
 
-<div data-widget="figure" data-name="parts" data-ghost data-start="1" class="map"></div>
+<div data-widget="figure" data-name="parts" data-ghost data-start="0" data-focus="2" class="map"></div>
 
 <!-- notes -->
 **In this section.** The LLM can't be relied on to calculate or to be fair. A **tool** can: it's a small program that does one exact thing. You'll read two whole tools, one that adds and one that rolls dice, and learn to read the one-line **command** that runs them.

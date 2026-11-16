@@ -3,9 +3,9 @@
 
 # Can an LLM be fair?
 
-> In the Chat tab, start a **new conversation** and ask: **"Six of us need a presentation order. Pick who goes first, fairly: Aalto, Bo Bardi, Hadid, Kahn, Mies, Siza. Just the name."** Call out the name.
+> In the Chat tab, start a **new conversation** and ask: **"Six of us need a presentation order. Pick who goes first, fairly: Aalto, Bo Bardi, Mies, Pei, Siza, Wang Shu. Just the name."** Call out the name.
 
-<div data-widget="llm-vs-tool" data-options="Aalto,Bo Bardi,Hadid,Kahn,Mies,Siza"></div>
+<div data-widget="llm-vs-tool" data-options="Aalto,Bo Bardi,Mies,Pei,Siza,Wang Shu"></div>
 
 <!-- notes -->
 **The idea.** "Fair" here means each of the six has the same chance of going first. Each of you asked in a separate conversation, so the room's answers are like asking the LLM over and over. If it were fair, every bar would sit near the dashed line.

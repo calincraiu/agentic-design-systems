@@ -20,15 +20,15 @@ ads-yourname/                  your folder
 <div markdown="1">
 
 ```markdown
-# About me
-I'm an architecture student.
-Explain things with buildings, not code.
+# Project notes
+Keep answers short and in plain language.
+Say which file you changed.
 
 ## Rules
 - Never make up a number: use the tools.
 ```
 
-<p class="muted">CLAUDE.md, the first file you'll write</p>
+<p class="muted">CLAUDE.md: standing instructions, an example only</p>
 
 </div>
 </div>
@@ -39,6 +39,8 @@ Explain things with buildings, not code.
 - A **folder** holds files and other folders, like a project folder with drawings, specs and correspondence.
 - The **extension** at the end of a file's name says what kind of file it is. `.md` is **Markdown**, notes written by people: `#` starts a heading, `-` starts a list item, `**bold**` is bold. `.py` is **Python**, a small program, which in this course means a tool.
 - A name starting with a dot, like `.claude`, makes a **hidden folder**. Your file browser doesn't show it unless you ask. On a Mac, press Cmd + Shift + . in Finder. On Windows, choose View › Show › Hidden items in File Explorer.
+
+The `CLAUDE.md` on the slide is only an example of the *shape*: a heading, a few standing instructions, a rule. What goes in yours is up to you, and you'll write it later today.
 
 **Why it matters.** Because it's all text, you can read every part of the system, change it, and see what changed. Nothing is locked inside an app. Your design approach becomes a document you can share, compare and improve, like a practice's design guide.
 

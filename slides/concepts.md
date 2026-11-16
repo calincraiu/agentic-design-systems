@@ -10,7 +10,7 @@ These words get used loosely. In this course they mean specific things, and each
 **Tool.** A capability with defined inputs and outputs that an agent can use. A tool really does what it says, and it doesn't get creative about it.
 > Here: `tools/add.py` takes numbers and returns their exact total. `tools/dice.py` takes a number of sides and a count, and returns rolls. `tools/tower/tower.py` takes eight numbers and returns geometry, metrics and an image. `tools/stair_check.py` was built from a contract someone wrote in plain language. Claude also has built-in tools, for reading files, writing files and running commands.
 
-**Agent.** An LLM that can use tools and decide what to do next: read files, run tools, look at results and try again, within limits you set.
+**Agent.** An LLM that can use tools and decide what to do next: read files, run tools, look at results and try again, within limits you set. It works in a loop (act, look, decide), so the number of steps isn't fixed in advance, and it stops when *it* judges the job done: you choose the goal and how much it may do unasked.
 > Here: Claude, in the Code tab. Rolling until a double, it decides by itself when to stop.
 
 **Skill.** Reusable know-how: instructions (and any supporting files) that tell the agent *how to approach* a kind of task. A skill doesn't *do* anything by itself; it shapes how the agent uses its tools.
@@ -29,7 +29,7 @@ These words get used loosely. In this course they mean specific things, and each
 
 | Job | Best done by | Why |
 |---|---|---|
-| Reading a vague, emotional brief | the **agent** | good with ambiguity and language |
+| Reading a plain-language brief | the **agent** | good with ambiguity and language |
 | Making exact geometry | a **tool** | the same input always gives the same output |
 | Measuring and checking limits | a **tool** | numbers must be right, not plausible |
 | Proposing and comparing options | the **agent**, using the tools | it can explore quickly and explain trade-offs |

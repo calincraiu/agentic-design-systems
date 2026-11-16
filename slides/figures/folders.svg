@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-label="The course folder is replaced every session; your own folder is yours">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-label="The course folder is the tutorial you follow; your own folder is your project">
   <defs>
     <marker id="folders-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
   </defs>
@@ -6,24 +6,24 @@
   <g data-step="1">
     <path class="paper dash" d="M60 40 H260 L290 70 H480 V340 H60 Z" style="stroke:var(--muted)"/>
     <text class="label" x="84" y="104">The course folder</text>
-    <text class="big" x="84" y="160">RUN IT. READ IT.</text>
-    <text class="body" x="84" y="212">This app, the kits, the examples.</text>
-    <text class="body muted-text" x="84" y="248">Replaced with a fresh copy</text>
-    <text class="body muted-text" x="84" y="278">every session.</text>
+    <text class="big" x="84" y="160">THE TUTORIAL.</text>
+    <text class="body" x="84" y="212">The slides, the examples,</text>
+    <text class="body" x="84" y="242">and the kits to copy from.</text>
+    <text class="body muted-text" x="84" y="288">You follow it. You don't build in it.</text>
   </g>
 
   <g data-step="2">
     <path class="soft" d="M720 40 H920 L950 70 H1140 V340 H720 Z" style="stroke-width:3"/>
     <text class="label accent-text" x="744" y="104">Your folder</text>
-    <text class="big" x="744" y="160">YOU AUTHOR HERE.</text>
-    <text class="body" x="744" y="212">CLAUDE.md, skills, tools,</text>
-    <text class="body" x="744" y="242">briefs, the tool you design.</text>
-    <text class="body accent-text" x="744" y="288" style="font-weight:600">Nobody replaces it.</text>
+    <text class="big" x="744" y="160">YOUR PROJECT.</text>
+    <text class="body" x="744" y="212">Your CLAUDE.md, your skills,</text>
+    <text class="body" x="744" y="242">your tools, your designs.</text>
+    <text class="body accent-text" x="744" y="288" style="font-weight:600">Everything you make lives here.</text>
   </g>
 
   <g data-step="3">
     <line class="accent" x1="500" y1="205" x2="708" y2="205" marker-end="url(#folders-acc)"/>
     <text class="label" x="540" y="186">copy a kit</text>
-    <text class="small" x="530" y="236">never the other way</text>
+    <text class="small" x="530" y="236">to get started</text>
   </g>
 </svg>

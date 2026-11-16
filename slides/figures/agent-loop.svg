@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="Chat answers once. An agent takes a goal, acts with a tool, looks at the result, decides whether to go round again or stop, and then reports back">
+  <defs>
+    <marker id="ag-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+    <marker id="ag-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+  </defs>
+
+  <g data-step="1">
+    <text class="label" x="30" y="44">Chat</text>
+    <rect class="ink-fill" x="30" y="58" width="190" height="56"/><text class="paper-text" x="125" y="92" text-anchor="middle">You ask</text>
+    <line class="ink" x1="226" y1="86" x2="264" y2="86" marker-end="url(#ag-ink)"/>
+    <rect class="box-accent" x="270" y="58" width="190" height="56"/><text x="365" y="92" text-anchor="middle">It answers</text>
+    <text class="small" x="490" y="92">One question, one answer. Then it waits for you.</text>
+  </g>
+
+  <g data-step="2">
+    <text class="label" x="30" y="186">Agent</text>
+    <rect class="ink-fill" x="30" y="200" width="190" height="76"/><text class="paper-text" x="125" y="234" text-anchor="middle">Your goal</text>
+    <text class="paper-text" x="125" y="259" text-anchor="middle" style="font-size:16px;opacity:0.7">no steps given</text>
+    <line class="ink" x1="226" y1="238" x2="264" y2="238" marker-end="url(#ag-ink)"/>
+    <rect class="box-blue" x="270" y="200" width="190" height="76"/><text x="365" y="234" text-anchor="middle">Act</text>
+    <text class="small" x="365" y="259" text-anchor="middle">runs a tool</text>
+  </g>
+
+  <g data-step="3">
+    <line class="ink" x1="466" y1="238" x2="504" y2="238" marker-end="url(#ag-ink)"/>
+    <rect class="box-accent" x="510" y="200" width="190" height="76"/><text x="605" y="234" text-anchor="middle">Look</text>
+    <text class="small" x="605" y="259" text-anchor="middle">reads the result</text>
+  </g>
+
+  <g data-step="4">
+    <line class="ink" x1="706" y1="238" x2="744" y2="238" marker-end="url(#ag-ink)"/>
+    <rect class="box-accent" x="750" y="200" width="190" height="76"/><text x="845" y="234" text-anchor="middle">Decide</text>
+    <text class="small" x="845" y="259" text-anchor="middle">again, or stop?</text>
+  </g>
+
+  <g data-step="5">
+    <path class="accent" d="M845 284 V332 H365 V288" marker-end="url(#ag-accent)" style="stroke-dasharray:8 6"/>
+    <text class="small" x="605" y="362" text-anchor="middle">Not there yet: go round again. How many times? Nobody said.</text>
+  </g>
+
+  <g data-step="6">
+    <line class="ink" x1="946" y1="238" x2="984" y2="238" marker-end="url(#ag-ink)"/>
+    <rect class="box-accent" x="990" y="200" width="170" height="76"/><text x="1075" y="234" text-anchor="middle">Report</text>
+    <text class="small" x="1075" y="259" text-anchor="middle">tells you</text>
+  </g>
+
+  <rect class="ink-fill" x="30" y="398" width="22" height="16"/><text class="label" x="62" y="411">you</text>
+  <rect class="box-accent" x="170" y="398" width="22" height="16"/><text class="label" x="202" y="411">LLM</text>
+  <rect class="box-blue" x="310" y="398" width="22" height="16"/><text class="label" x="342" y="411">tool</text>
+</svg>

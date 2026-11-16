@@ -127,6 +127,9 @@ body.slides { font-size: clamp(18px, 1.45vw, 26px); line-height: 1.5; overflow: 
 .layout-statement h1 { font-size: clamp(2.2em, 4.6vw, 4.4em); max-width: 14em; letter-spacing: -0.025em; }
 .layout-statement p, .layout-statement blockquote { font-size: 1.15em; max-width: 30em; }
 .layout-statement blockquote { font-size: 1.5em; background: none; padding-left: 0.8em; }
+.layout-statement .cols { align-items: center; }
+.layout-statement .cols blockquote { font-size: 1.25em; }
+.layout-statement .fig svg { width: 100%; height: auto; max-height: 50vh; }
 
 /* stage: the widget gets the room */
 .layout-stage h1 { font-size: 1.5em; margin-bottom: 0.3em; }
@@ -305,7 +308,7 @@ details.behind pre { margin: 6px 0 0; font-size: 0.8em; max-height: 320px; }
 .gallery iframe { width: 100%; height: 56vh; border: 1px solid var(--line); background: var(--bg); }
 .contact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .contact figure { margin: 0; background: #fff; overflow: hidden; }
-.contact img { display: block; width: 100%; aspect-ratio: 1.6; object-fit: cover; object-position: 42% 46%; transform: scale(1.5); transform-origin: 42% 46%; }
+.contact img { display: block; width: 100%; aspect-ratio: 1.28; object-fit: cover; object-position: 54% 55%; transform: scale(1.3); transform-origin: 54% 55%; }
 .contact figcaption { position: relative; z-index: 1; padding: 4px 8px; background: var(--paper); font-family: var(--mono); font-size: 0.7em; color: var(--muted); }
 
 /* Figure helpers (used by slides/figures/*.svg) */
@@ -330,7 +333,10 @@ details.behind pre { margin: 6px 0 0; font-size: 0.8em; max-height: 320px; }
 
 /* A ghosted figure shows its structure faintly before each step is revealed, like construction lines */
 .fig[data-ghost] [data-step]:not(.shown) { opacity: 0.13; }
+.fig [data-faint] { opacity: 0.13; }
+.fig [data-lit] { opacity: 1; }
 .layout-split .fig svg { width: 100%; height: auto; max-height: 56vh; }
+.layout-split > .fig svg { max-height: 36vh; }  /* a figure under the columns, not inside one */
 .layout-task > ol > li { font-size: 0.86em; padding: 0.7em 0.9em 0.6em; }
 .layout-task > ol > li::before { font-size: 1.7em; }
 /* In reading mode the skyline is just a picture above the text */

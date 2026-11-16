@@ -5,7 +5,7 @@
 
 <p class="lead">Know-how you write down once.</p>
 
-<div data-widget="figure" data-name="parts" data-ghost data-start="3" class="map"></div>
+<div data-widget="figure" data-name="parts" data-ghost data-start="0" data-focus="4" class="map"></div>
 
 <!-- notes -->
 **In this section.** An agent left to itself decides *how* to work, and it may not decide the way you would. A **skill** is a short text file that tells it how to approach one kind of task: when to use which tool, in what order, and what it must never do.

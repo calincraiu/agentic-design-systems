@@ -5,9 +5,9 @@
 
 <p class="lead">An LLM that acts, looks, and decides again.</p>
 
-<div data-widget="figure" data-name="parts" data-ghost data-start="2" class="map"></div>
+<div data-widget="figure" data-name="parts" data-ghost data-start="0" data-focus="3" class="map"></div>
 
 <!-- notes -->
 **In this section.** Put the LLM and the tools together and let the LLM decide when to use them, and you have an **agent**. The dashed line in the diagram is that combination: an LLM that can ask a tool for something, read the result, and decide what to do next.
 
-One demo, with the dice: a task where nobody says in advance how many steps it will take.
+Four short slides: what makes an agent different from a chat, a dice demo where nobody says in advance how many steps it will take, how an agent knows when to stop, and how much freedom you give it.

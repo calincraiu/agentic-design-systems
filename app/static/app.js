@@ -351,8 +351,19 @@ async function contextWidget(root) {
 
 // ---------------------------------------------------------------- take-away
 // data-kit="dice", or several kits in one prompt: data-kit="add,dice"
+// data-mode="manual": no prompt. A zip to download and unzip, and the kit folders to copy from, for copying by hand.
 async function takeaway(root) {
   const k = await getJSON(`/api/kits/${root.dataset.kit}`);
+  if (root.dataset.mode === "manual") {
+    const s = k.folder.length > 1 ? "s" : "";
+    root.classList.add("takeaway");
+    root.append(el("h4", {}, `Take-away: the ${k.name} kit${s}`),
+      el("p", {}, el("a", { href: k.zip }, `Download the kit${s} as a zip`), ", unzip it, and copy what's inside into ", el("strong", {}, "your own folder"), "."),
+      el("details", {}, el("summary", {}, `What's in it (${k.files.length} files)`), el("ul", {}, ...k.files.map(f => el("li", {}, f)))),
+      el("p", { class: "muted" }, "Or copy straight from the course folder. The contents of:"),
+      el("ul", { class: "muted" }, ...k.folder.map(f => el("li", {}, f))));
+    return;
+  }
   const pre = el("pre", {}, k.prompt);
   const copy = el("button", { onclick: async () => {
     await navigator.clipboard.writeText(k.prompt).catch(() => {});
@@ -403,6 +414,15 @@ async function figure(root) {
   const r = await fetch(`/api/figure/${root.dataset.name}`);
   if (!r.ok) throw new Error(`No figure called ${root.dataset.name}`);
   root.innerHTML = await r.text();
+  // data-focus="n": a "you are here" map. Parts before n stay lit, part n is highlighted by one key press (the next press
+  // moves on), and parts after n stay faint.
+  if (root.dataset.focus) root.querySelectorAll("[data-step]").forEach(e => {
+    const n = +e.dataset.step, focus = +root.dataset.focus;
+    if (n === focus) return;
+    e.removeAttribute("data-step");
+    e.setAttribute(n < focus ? "data-lit" : "data-faint", "");
+  });
+
 }
 // Called once every widget and figure is in the page: find the steps and show the starting ones.
 function initSteps() {

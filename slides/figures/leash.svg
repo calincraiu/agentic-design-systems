@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 460" role="img" aria-label="Four levels of freedom for an agent, from suggesting only to acting on its own. The course kits sit on the third: pre-approved tools run, anything else asks first">
+  <g data-step="1">
+    <rect class="hair" x="20" y="20" width="560" height="84"/>
+    <text x="42" y="56">1 · Suggests</text>
+    <text class="small" x="42" y="84">Says what it would do. You do it.</text>
+  </g>
+  <g data-step="2">
+    <rect class="hair" x="20" y="124" width="560" height="84"/>
+    <text x="42" y="160">2 · Asks before every action</text>
+    <text class="small" x="42" y="188">Each step waits for your yes.</text>
+  </g>
+  <g data-step="3">
+    <rect class="box-accent" x="20" y="228" width="560" height="84"/>
+    <text x="42" y="264">3 · Acts inside what you allowed</text>
+    <text class="small" x="42" y="292">Approved commands just run. Anything else asks.</text>
+    <text class="label accent-text" x="560" y="264" text-anchor="end">course kits</text>
+  </g>
+  <g data-step="4">
+    <rect class="hair" x="20" y="332" width="560" height="84"/>
+    <text x="42" y="368">4 · Acts on its own</text>
+    <text class="small" x="42" y="396">Nothing asks. Only for a folder you can afford to lose.</text>
+  </g>
+  <text class="label" x="20" y="446">More freedom: faster, and more for you to check</text>
+</svg>

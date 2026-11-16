@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-label="Chat and Code compared. In the Chat tab, Claude works in its own space: a file it makes stays there, or comes to you as a download, and your folder does not change. In the Code tab, Claude works inside your folder: it writes files there and runs tools, and asks you first before anything it has not been allowed to do">
+  <defs>
+    <marker id="tabs-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · Chat: Claude's own space, your folder untouched -->
+  <g data-step="1">
+    <text class="label" x="40" y="50">The Chat tab</text>
+    <rect class="box-accent" x="40" y="70" width="440" height="210" rx="18"/>
+    <text class="label accent-text" x="64" y="104">Claude's own space</text>
+    <rect class="paper" x="64" y="122" width="300" height="50" rx="12"/>
+    <text x="84" y="154">Here is hello.md:</text>
+    <path class="paper" d="M64 196 H224 L244 216 V258 H64 Z"/>
+    <path class="thin" d="M224 196 V216 H244"/>
+    <text x="84" y="236">hello.md</text>
+    <text class="small" x="264" y="226">stays here,</text>
+    <text class="small" x="264" y="250">or a download</text>
+
+    <path class="hair" d="M40 316 H160 L180 336 H480 V400 H40 Z"/>
+    <text class="label" x="64" y="362">Your folder</text>
+    <text class="small" x="64" y="388">nothing changes</text>
+  </g>
+
+  <!-- 2 · Code: Claude inside your folder, writing files and running tools -->
+  <g data-step="2">
+    <text class="label" x="640" y="50">The Code tab</text>
+    <path class="paper" d="M640 70 H820 L850 100 H1160 V400 H640 Z"/>
+    <text class="label" x="664" y="132">Your folder</text>
+    <rect class="box-accent" x="680" y="176" width="180" height="64"/>
+    <text x="770" y="214" text-anchor="middle">Claude</text>
+    <line class="ink" x1="866" y1="196" x2="956" y2="164" marker-end="url(#tabs-ink)"/>
+    <text class="small" x="880" y="166">writes</text>
+    <path class="paper" d="M964 128 H1104 L1124 148 V186 H964 Z"/>
+    <path class="thin" d="M1104 128 V148 H1124"/>
+    <text x="984" y="166">hello.md</text>
+    <line class="ink" x1="866" y1="222" x2="956" y2="262" marker-end="url(#tabs-ink)"/>
+    <text class="small" x="880" y="272">runs</text>
+    <rect class="box-blue" x="964" y="244" width="160" height="56"/>
+    <text x="1044" y="278" text-anchor="middle">a tool</text>
+  </g>
+
+  <!-- 3 · the gate: anything not yet allowed asks you first -->
+  <g data-step="3">
+    <line class="ink dash" x1="770" y1="246" x2="770" y2="372" marker-end="url(#tabs-ink)"/>
+    <rect class="ink-fill" x="690" y="378" width="160" height="44"/>
+    <text class="paper-text" x="770" y="407" text-anchor="middle">Allow?</text>
+    <text class="small" x="870" y="396">anything new:</text>
+    <text class="small" x="870" y="420">it asks you first</text>
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" role="img" aria-label="Spec first. You write the contract (what goes in, the rule, what comes out) and three test cases worked out by hand. Claude writes the code from the contract, and the tests run against it. When a test fails, ask whether the code is wrong, or the contract">
+  <defs>
+    <marker id="ct-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+    <marker id="ct-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+  </defs>
+
+  <!-- You write: the contract -->
+  <path class="ink-fill" d="M20 20 H272 L300 48 V230 H20 Z"/>
+  <text class="label paper-text" x="40" y="52">you write</text>
+  <text class="big paper-text" x="40" y="88">CONTRACT</text>
+  <text class="paper-text" x="40" y="134">what goes in</text>
+  <text class="paper-text" x="40" y="166">the rule it applies</text>
+  <text class="paper-text" x="40" y="198">what comes out</text>
+
+  <!-- You work out: three tests by hand -->
+  <path class="paper" d="M380 20 H652 L680 48 V230 H380 Z"/>
+  <text class="label" x="400" y="52">you work out, by hand</text>
+  <text class="big" x="400" y="88">3 TESTS</text>
+  <text x="400" y="134">in → expected</text>
+  <text x="400" y="166">in → expected</text>
+  <text x="400" y="198">in → expected</text>
+
+  <!-- Claude writes the code; the tests run against it -->
+  <line class="ink" x1="160" y1="236" x2="196" y2="312" marker-end="url(#ct-ink)"/>
+  <rect class="box-accent" x="80" y="320" width="240" height="80"/>
+  <text x="200" y="354" text-anchor="middle">Claude writes</text>
+  <text class="small" x="200" y="380" text-anchor="middle">the code</text>
+
+  <line class="ink" x1="530" y1="236" x2="530" y2="312" marker-end="url(#ct-ink)"/>
+  <line class="ink" x1="326" y1="360" x2="392" y2="360" marker-end="url(#ct-ink)"/>
+  <rect class="box-blue" x="400" y="320" width="260" height="80"/>
+  <text x="530" y="354" text-anchor="middle">Tests run</text>
+  <text class="small" x="530" y="380" text-anchor="middle">pass, or fail</text>
+
+  <!-- A test fails: which one is wrong? -->
+  <path class="accent dash" d="M530 406 V456 H200 V412" marker-end="url(#ct-acc)"/>
+  <path class="accent dash" d="M200 456 H44 V242" marker-end="url(#ct-acc)"/>
+  <text class="body" x="350" y="510" text-anchor="middle">A test fails: is the code wrong, or the contract?</text>
+</svg>

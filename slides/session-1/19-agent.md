@@ -1,12 +1,16 @@
 <!-- layout: statement | where: code-yours -->
 <p class="kicker">Part 1 · The agent</p>
 
-# An agent acts, looks, and decides what to do next.
+# Nobody wrote the plan.
 
-> Demo, in the Code tab: **"Roll two dice until you get a double. Tell me how many tries it took."** Then ask it again.
+> **Guess first:** how many rolls will it take to get a double (the same number on both dice)? Write your number down.
+
+> Then, in the Code tab: **"Roll two dice until you get a double. Tell me how many tries it took."** Ask it again.
 
 <!-- notes -->
-**The idea.** An **agent** is an LLM that can use tools and decide what to do next. It reads files, runs tools, looks at the results and tries again, within the limits you set.
+**The idea.** This is the loop from the last slide, running. An **agent** is an LLM that can use tools and decide what to do next. It reads files, runs tools, looks at the results and tries again, within the limits you set.
+
+**Your guess.** A double turns up on one roll in six, so the *average* is six rolls. But an average hides a lot: one run might take 1 roll, the next 20. Most people guess 2 or 3. If yours was low, that is normal: we expect chance to even out faster than it does.
 
 In the demo, nobody said how many times to roll, or when to stop. Claude worked that out by itself, reading each result as it came back: roll, check for a double, roll again, stop. **Run it a second time and it takes a different number of steps.** The plan wasn't written in advance; each step depended on the last result. A recipe always has the same steps. An agent's steps depend on what it sees. That loop of acting, looking and deciding is what makes it an agent rather than a chat.
 

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 1200 330" role="img" aria-label="Two ways to say when to stop rolling. A: the running total of the rolls climbs until it passes a solid line at 30, so anyone can check where it stopped. B: the agent stops after a six because it decided a six is good; the line it used was never written down">
+  <!-- A · "done" is a line anyone can check: running total of 4 2 6 3 5 1 6 4, passing 30 on the 8th roll -->
+  <g data-step="1">
+    <text class="label" x="40" y="66">A · running total</text>
+    <line class="thin" x1="40" y1="320" x2="580" y2="320"/>
+    <rect class="box-blue" x="60"  y="292" width="48" height="28"/>
+    <rect class="box-blue" x="122" y="278" width="48" height="42"/>
+    <rect class="box-blue" x="184" y="236" width="48" height="84"/>
+    <rect class="box-blue" x="246" y="215" width="48" height="105"/>
+    <rect class="box-blue" x="308" y="180" width="48" height="140"/>
+    <rect class="box-blue" x="370" y="173" width="48" height="147"/>
+    <rect class="box-blue" x="432" y="131" width="48" height="189"/>
+    <rect class="box-blue" x="494" y="103" width="48" height="217"/>
+    <g class="small" text-anchor="middle">
+      <text class="small" x="84"  y="284">+4</text>
+      <text class="small" x="146" y="270">+2</text>
+      <text class="small" x="208" y="228">+6</text>
+      <text class="small" x="270" y="207">+3</text>
+      <text class="small" x="332" y="172">+5</text>
+      <text class="small" x="394" y="165">+1</text>
+      <text class="small" x="456" y="123">+6</text>
+      <text class="small" x="518" y="95">+4</text>
+    </g>
+  </g>
+  <g data-step="2">
+    <line class="accent" x1="40" y1="110" x2="580" y2="110"/>
+    <text class="label accent-text" x="44" y="100">30</text>
+    <text class="label accent-text" x="580" y="66" text-anchor="end">31: past the line. Stop.</text>
+    <text class="body" x="40" y="360">Anyone can check: add up the rolls.</text>
+  </g>
+
+  <!-- B · "done" is a feeling: single rolls 4 2 6, then it stops on its own idea of "good" -->
+  <g data-step="1">
+    <text class="label" x="640" y="66">B · each roll</text>
+    <line class="thin" x1="640" y1="320" x2="1180" y2="320"/>
+    <rect class="box-blue" x="660" y="200" width="48" height="120"/>
+    <rect class="box-blue" x="722" y="260" width="48" height="60"/>
+    <rect class="box-blue" x="784" y="140" width="48" height="180"/>
+    <text class="small" x="684" y="192" text-anchor="middle">4</text>
+    <text class="small" x="746" y="252" text-anchor="middle">2</text>
+    <text class="small" x="808" y="132" text-anchor="middle">6</text>
+  </g>
+  <g data-step="3">
+    <line class="accent dash" x1="640" y1="150" x2="1180" y2="150"/>
+    <text class="big accent-text" x="1170" y="136" text-anchor="end">?</text>
+    <text class="label accent-text" x="852" y="200">Stopped: "a 6 is good".</text>
+    <text class="small" x="852" y="228">Who decided that?</text>
+    <text class="body" x="640" y="360">Only the agent knows where its line was.</text>
+  </g>
+</svg>

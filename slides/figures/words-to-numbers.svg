@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" role="img" aria-label="From words to numbers and back. A brief, 'a slender, twisting tower that feels welcoming', is turned into the tower tool's eight numbers: slender becomes width, twisting becomes twist, and welcoming has no slider at all. The tool builds a measured tower, and the result comes back to you as a report in words">
+  <defs>
+    <marker id="w2n-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+    <marker id="w2n-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- Your words -->
+  <text class="label" x="20" y="30">Your words</text>
+  <text class="small" x="20" y="58">"a slender, twisting tower that feels welcoming"</text>
+  <rect class="ink-fill" x="20" y="76" width="150" height="44"/>
+  <text class="paper-text" x="95" y="105" text-anchor="middle">slender</text>
+  <rect class="ink-fill" x="200" y="76" width="160" height="44"/>
+  <text class="paper-text" x="280" y="105" text-anchor="middle">twisting</text>
+  <rect class="ink-fill" x="390" y="76" width="180" height="44"/>
+  <text class="paper-text" x="480" y="105" text-anchor="middle">welcoming</text>
+
+  <!-- The agent translates: some words find a slider, one does not -->
+  <line class="accent" x1="90" y1="124" x2="64" y2="194" marker-end="url(#w2n-acc)"/>
+  <line class="accent" x1="300" y1="124" x2="386" y2="194" marker-end="url(#w2n-acc)"/>
+  <text class="label accent-text" x="480" y="150" text-anchor="middle">✕ no slider</text>
+
+  <!-- The tool's eight numbers (the real parameters of tools/tower/tower.py) -->
+  <text class="label" x="660" y="186" text-anchor="end">the tool's 8 numbers</text>
+  <g class="small">
+    <text class="small" x="20" y="218">width</text>
+    <text class="small" x="20" y="252">depth</text>
+    <text class="small" x="20" y="286">floors</text>
+    <text class="small" x="20" y="320">floor_height</text>
+    <text class="small" x="360" y="218">twist</text>
+    <text class="small" x="360" y="252">taper</text>
+    <text class="small" x="360" y="286">lean</text>
+    <text class="small" x="360" y="320">lean_dir</text>
+  </g>
+  <g>
+    <line class="thin" x1="160" y1="212" x2="320" y2="212"/><circle class="ink-fill" cx="190" cy="212" r="6"/>
+    <line class="thin" x1="160" y1="246" x2="320" y2="246"/><circle class="ink-fill" cx="200" cy="246" r="6"/>
+    <line class="thin" x1="160" y1="280" x2="320" y2="280"/><circle class="ink-fill" cx="270" cy="280" r="6"/>
+    <line class="thin" x1="160" y1="314" x2="320" y2="314"/><circle class="ink-fill" cx="220" cy="314" r="6"/>
+    <line class="thin" x1="500" y1="212" x2="660" y2="212"/><circle class="ink-fill" cx="630" cy="212" r="6"/>
+    <line class="thin" x1="500" y1="246" x2="660" y2="246"/><circle class="ink-fill" cx="560" cy="246" r="6"/>
+    <line class="thin" x1="500" y1="280" x2="660" y2="280"/><circle class="ink-fill" cx="500" cy="280" r="6"/>
+    <line class="thin" x1="500" y1="314" x2="660" y2="314"/><circle class="ink-fill" cx="500" cy="314" r="6"/>
+  </g>
+
+  <!-- The tool builds and measures -->
+  <line class="ink" x1="130" y1="334" x2="130" y2="384" marker-end="url(#w2n-ink)"/>
+  <path class="box-blue" d="M80 572 L180 572 L166 396 L100 396 Z"/>
+  <g class="thin">
+    <line class="thin" x1="82" y1="540" x2="178" y2="540"/>
+    <line class="thin" x1="85" y1="508" x2="175" y2="508"/>
+    <line class="thin" x1="87" y1="476" x2="173" y2="476"/>
+    <line class="thin" x1="90" y1="444" x2="171" y2="444"/>
+    <line class="thin" x1="93" y1="420" x2="169" y2="420"/>
+  </g>
+  <path class="thin" d="M206 396 V572 M198 396 H214 M198 572 H214"/>
+  <text class="label" x="250" y="420">A measured tower</text>
+  <text class="small" x="250" y="452">height_m</text>
+  <text class="small" x="250" y="480">slenderness</text>
+  <text class="small" x="250" y="508">gfa_m2</text>
+  <text class="small" x="250" y="536">max_cantilever_m</text>
+
+  <!-- And back to you, in words -->
+  <path class="accent dash" d="M600 486 H676 V98 H584" marker-end="url(#w2n-acc)"/>
+  <text class="small" x="592" y="510" text-anchor="end">report, in words</text>
+</svg>
