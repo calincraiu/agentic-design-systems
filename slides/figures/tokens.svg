@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-label="An LLM works in tokens, small pieces of text. The sentence 'A house has walls, a floor, and a' is cut into ten pieces, whole words and punctuation marks. A long word such as fenestration is cut into three pieces. The only thing the LLM ever produces is the next piece">
+  <g data-step="1">
+    <text class="label" x="40" y="48">Your text, cut into pieces</text>
+    <rect class="paper" x="40.0" y="70" width="42.4" height="52"/><text x="61.2" y="104" text-anchor="middle" style="font-size:24px">A</text>
+    <rect class="paper" x="90.4" y="70" width="100.0" height="52"/><text x="140.4" y="104" text-anchor="middle" style="font-size:24px">house</text>
+    <rect class="paper" x="198.4" y="70" width="71.2" height="52"/><text x="234.0" y="104" text-anchor="middle" style="font-size:24px">has</text>
+    <rect class="paper" x="277.6" y="70" width="100.0" height="52"/><text x="327.6" y="104" text-anchor="middle" style="font-size:24px">walls</text>
+    <rect class="paper" x="385.6" y="70" width="42.4" height="52"/><text x="406.8" y="104" text-anchor="middle" style="font-size:24px">,</text>
+    <rect class="paper" x="436.0" y="70" width="42.4" height="52"/><text x="457.2" y="104" text-anchor="middle" style="font-size:24px">a</text>
+    <rect class="paper" x="486.4" y="70" width="100.0" height="52"/><text x="536.4" y="104" text-anchor="middle" style="font-size:24px">floor</text>
+    <rect class="paper" x="594.4" y="70" width="42.4" height="52"/><text x="615.6" y="104" text-anchor="middle" style="font-size:24px">,</text>
+    <rect class="paper" x="644.8" y="70" width="71.2" height="52"/><text x="680.4" y="104" text-anchor="middle" style="font-size:24px">and</text>
+    <rect class="paper" x="724.0" y="70" width="42.4" height="52"/><text x="745.2" y="104" text-anchor="middle" style="font-size:24px">a</text>
+  </g>
+  <g data-step="2">
+    <text class="label" x="40" y="228">A long or rare word is cut into several</text>
+    <rect class="paper" x="40.0" y="250" width="71.2" height="52"/><text x="75.6" y="284" text-anchor="middle" style="font-size:24px">fen</text>
+    <rect class="paper" x="119.2" y="250" width="71.2" height="52"/><text x="154.8" y="284" text-anchor="middle" style="font-size:24px">est</text>
+    <rect class="paper" x="198.4" y="250" width="114.4" height="52"/><text x="255.6" y="284" text-anchor="middle" style="font-size:24px">ration</text>
+    <text class="small" x="370" y="283">= one word: fenestration</text>
+  </g>
+  <g data-step="3">
+    <rect class="box-accent dash" x="774.4" y="70" width="42.4" height="52"/>
+    <text class="accent-text" x="795.6" y="104" text-anchor="middle" style="font-size:24px">?</text>
+    <text class="label accent-text" x="817" y="146" text-anchor="end">The next piece:</text>
+    <text class="small" x="817" y="170" text-anchor="end">all an LLM ever writes</text>
+  </g>
+  <text class="label" x="40" y="380">Illustrative: every model cuts text its own way</text>
+</svg>
