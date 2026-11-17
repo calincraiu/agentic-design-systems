@@ -22,7 +22,7 @@ Three threads run through the whole session:
 |---|---|---|---|
 | 0:00–0:15 | 1–3 | Title; the hook (eight towers, "How would you know?", then "next to a park?"); everyone asks Chat for the tower | App ↔ Chat |
 | 0:15–0:30 | 4–7 | **What answered you?** AI is a family (where render tools sit); one model, many apps; where it runs (what leaves the laptop) | App |
-| 0:30–1:00 | 8–13 | **Groundwork.** Chat vs Code (the `hello.md` demo), text files, two folders. Students make their own folder, write a short `CLAUDE.md`, copy in the add + dice kits. Anyone without the app: `/setup`, `/start` in the course folder | App + both tabs + their folder |
+| 0:30–1:00 | 8–13 | **Groundwork.** Chat vs Code (the `hello.md` demo), text files, two folders. Students make their own folder, write a short `CLAUDE.md`, copy in the add + dice kits. Anyone without the app: `/setup-course`, `/start-course` in the course folder | App + both tabs + their folder |
 | 1:00–1:25 | 14–19 | **The LLM.** The room finishes the sentences (Sullivan); one piece at a time; learned once (Pritzker and today's date); in-your-head poll, three questions; fairness poll. Stragglers can finish copying kits: this block only needs Chat | App ↔ Chat |
 | 1:25–1:35 | 20–23 | **The tool.** `add.py` and `1,5 2`; a command taken apart; `dice.py` | App |
 | 1:35–2:00 | 24–29 | **The agent.** One answer vs the loop; the model asks, the app acts; guesses, then everyone rolls until a double (the `tries` tally); "good result" vs "total over 30", and the receipt; the leash poll | App ↔ their folder |
@@ -110,7 +110,7 @@ Whatever wish students bring, these come up. Collect them in the crit: they're w
 - **The take-away prompt has the wrong path.** They copied it from the projector. Copy it from the app on their own computer; the prompt also tells Claude to ask if the folder doesn't exist.
 - **A new skill doesn't show up.** Start a new session. If it still doesn't, check the folder is directly in `.claude/skills/<name>/` and the file is called `SKILL.md`.
 - **Students can't find `.claude/`.** Dot-folders are hidden in Finder and some file windows. Use the app's file pane, or ask Claude to open or copy the file.
-- **The course app stops.** Started with `/start`, it lives as long as that Claude session. Run `/start` again, or use the double-click launcher.
+- **The course app stops.** Started with `/start-course`, it lives as long as that Claude session. Run `/start-course` again, or use the double-click launcher.
 - **Synced folders (OneDrive, iCloud).** These usually work, but can be slow or lock files. Prefer a local folder.
 - **Permission prompts.** Each kit's `.claude/settings.json` pre-approves `uv run tools/...`. Anything else prompts, and that's worth a sentence: *the agent asks before acting outside its lane*.
 - **Two skills with similar descriptions.** Call them explicitly (`/tower-good-neighbour`) rather than relying on the agent to pick one.

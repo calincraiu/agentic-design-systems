@@ -5,7 +5,7 @@
 - [ ] Install the **Claude desktop app** and sign in with your course account.
 - [ ] Unzip the course folder somewhere normal, such as `Documents/ads-course`. Avoid Downloads, and avoid OneDrive or iCloud folders if you can.
 - [ ] In the app, go to the **Code** tab and choose that folder.
-- [ ] Type `/setup` and let it run. Read each command before you approve it. Then type `/start`: the course app should open in your browser. If anything fails, bring the error message to the session.
+- [ ] Type `/setup-course` and let it run. Read each command before you approve it. Then type `/start-course`: the course app should open in your browser. If anything fails, bring the error message to the session.
 
 Don't make your own folder yet: we do that together. Session 1 doesn't need Rhino.
 
@@ -25,8 +25,8 @@ For later sessions, make a new zip. Students delete their old course folder and 
 
 From the zip, on **Windows and a Mac**, in the desktop app's Code tab, ideally with no VS Code or Git installed:
 
-- [ ] `/setup` installs uv and runs both tools. Does the app need a restart to find uv?
-- [ ] `/start` opens the course app. Does it keep running while you carry on talking in the session?
+- [ ] `/setup-course` installs uv and runs both tools. Does the app need a restart to find uv?
+- [ ] `/start-course` opens the course app. Does it keep running while you carry on talking in the session?
 - [ ] The double-click launchers: `Start course.cmd` on Windows (SmartScreen?), `Start course.command` on a Mac (right-click → Open the first time).
 - [ ] In the course folder, ask Claude to "edit kits/dice/tools/dice.py". It should refuse and point you to your own folder, and the edit should be denied.
 - [ ] Every slide's widgets load: add (calculator and the in-your-head poll), dice, the fairness poll, the `tries` tally (slide 21), tower explorer, skill anatomy, context stepper, take-away, gallery.

@@ -8,15 +8,15 @@ This folder holds the **course app**: the slides from the lectures, with live wi
 
 1. Put this folder somewhere normal, such as `Documents/ads-course`. Avoid Downloads, and avoid OneDrive or iCloud folders if you can. If you already have an older copy, delete it and put this one in its place.
 2. Open the **Claude desktop app**, go to the **Code** tab and choose this folder.
-3. Type **`/setup`** the first time. Claude installs what's needed and checks that it works. Read what each command does before you approve it.
-4. Type **`/start`**. The course app opens in your browser.
+3. Type **`/setup-course`** the first time. Claude installs what's needed and checks that it works. Read what each command does before you approve it.
+4. Type **`/start-course`**. The course app opens in your browser.
 
 **Without Claude:** double-click `Start course.cmd` (Windows) or `Start course.command` (Mac). On a Mac, the first time, right-click it, choose **Open**, then **Open** again. Keep the window that appears open while you use the app.
 
 ## Skills in this folder
 
-- `/setup`: get this computer ready, or check it when something breaks
-- `/start`: open the course app
+- `/setup-course`: get this computer ready, or check it when something breaks
+- `/start-course`: open the course app
 - `/course-tutor`: explain a concept or some code, or quiz you
 
 ## What's in here

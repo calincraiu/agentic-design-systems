@@ -26,6 +26,6 @@ This is the **course folder**. It holds the course app (slides with live widgets
 
 ## Skills here
 
-- `/setup`: get this computer ready, or check it when something breaks
-- `/start`: start the course app and open it in the browser
+- `/setup-course`: get this computer ready, or check it when something breaks
+- `/start-course`: start the course app and open it in the browser
 - `/course-tutor`: explain a concept or some code, or quiz the student
