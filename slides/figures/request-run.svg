@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="The model asks, the app acts. Far away, the model writes a request as text: dice.py, sides 6. On your laptop, the app checks the leash, or asks you. Then it runs the tool, dice.py, in your folder. The output is pasted back to the model as text, and the app keeps the record: the receipt. If the model writes a sentence instead, such as I rolled a 4, it is not a request: nothing runs, and there is no receipt">
+  <defs>
+    <marker id="rr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+    <marker id="rr-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+  </defs>
+
+  <text class="label" x="40" y="68">Far away</text>
+  <rect class="hair dash" x="440" y="36" width="740" height="290" rx="16" style="stroke:var(--muted)"/>
+  <text class="label" x="464" y="68">On your laptop</text>
+
+  <!-- 1 · the model writes a request -->
+  <g data-step="1">
+    <rect class="box-accent" x="40" y="110" width="210" height="90"/>
+    <text x="145" y="150" text-anchor="middle">The model</text>
+    <text class="small" x="145" y="178" text-anchor="middle">writes text</text>
+    <line class="ink" x1="256" y1="155" x2="474" y2="155" marker-end="url(#rr-ink)"/>
+    <text class="small" x="262" y="138">a request:</text>
+    <text x="262" y="184" style="font-size:15px">dice.py --sides 6</text>
+  </g>
+
+  <!-- 2 · the app checks the leash -->
+  <g data-step="2">
+    <rect class="ink-fill" x="480" y="110" width="210" height="90"/>
+    <text class="paper-text" x="585" y="150" text-anchor="middle">The app</text>
+    <text class="paper-text" x="585" y="180" text-anchor="middle" style="font-size:16px">Allowed?</text>
+    <text class="small" x="480" y="230">checks the leash,</text>
+    <text class="small" x="480" y="252">or asks you</text>
+  </g>
+
+  <!-- 3 · the app runs the tool -->
+  <g data-step="3">
+    <line class="ink" x1="696" y1="155" x2="834" y2="155" marker-end="url(#rr-ink)"/>
+    <text class="small" x="704" y="138">runs it</text>
+    <rect class="box-blue" x="840" y="110" width="210" height="90"/>
+    <text x="945" y="150" text-anchor="middle">dice.py</text>
+    <text class="small" x="945" y="178" text-anchor="middle">your tool</text>
+  </g>
+
+  <!-- 4 · the output goes back as text, and the app keeps the receipt -->
+  <g data-step="4">
+    <path class="accent dash" d="M945 206 V280 H145 V206" marker-end="url(#rr-acc)"/>
+    <text class="small" x="464" y="308">output pasted back as text: "4". The app keeps the receipt.</text>
+  </g>
+
+  <!-- 5 · a sentence is not a request -->
+  <g data-step="5">
+    <line class="thin" x1="40" y1="352" x2="1160" y2="352"/>
+    <rect class="box-accent" x="40" y="378" width="210" height="70"/>
+    <text x="145" y="420" text-anchor="middle">The model</text>
+    <line class="ink" x1="256" y1="413" x2="294" y2="413" marker-end="url(#rr-ink)"/>
+    <rect class="paper" x="300" y="383" width="330" height="60"/>
+    <text x="320" y="420">"I rolled a 4."</text>
+    <text class="accent-text" x="660" y="408">Not a request: nothing runs,</text>
+    <text class="accent-text" x="660" y="436">and there is no receipt.</text>
+  </g>
+</svg>

@@ -2,8 +2,9 @@
 
 Nothing here is planned in detail yet.
 
-- **Session 2:** students create a tool and write their own measures. The structured JSON brief may come back here, once it has a reason to exist.
+- **Session 2:** students create a tool and write their own measures. It opens with the own-tool slides parked in `instructor/parked/` (a section slide and the contract task with `/tool-builder`): see the README there. The structured JSON brief may come back here, once it has a reason to exist.
 - **Session 3:** Grasshopper. The tower becomes "same tool, new engine".
+- **Open Session 2 with the context window.** Session 1 only mentions it (in the notes on the context slide): the app re-sends the whole conversation each turn, and only so much fits, so long agent runs get compacted and blur. Session 2's longer runs are where it starts to matter. Show it, and teach "start a new session with a good `CLAUDE.md`" as a design move.
 - Each session adds a slide deck (`slides/session-2/`) and, if needed, a new kit. Students get a fresh course-folder zip, and their own folder is never touched. A new kit must never contain a file with the same path as something students have written.
 - Session 2 builds on the own-tool contract from Session 1: add a measure to the tower, or write a tool that measures something the tower can't (terraces, for example: the first thing students usually ask for that no metric measures).
 

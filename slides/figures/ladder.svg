@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-label="The ladder of authorship as a staircase of six steps: Prompt, Context, Skill, Tool, Measure, Workflow. In Session 1 you climbed from prompting to writing the context, a skill and a first tool contract. Session 2 takes the tool further and adds measures, and Sessions 3 and 4 connect it all into a workflow">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-label="The ladder of authorship as a staircase of six steps: Prompt, Context, Skill, Tool, Measure, Workflow. In Session 1 you climbed from prompting to writing the context and a skill. Session 2 starts on tools and adds measures, and Sessions 3 and 4 connect it all into a workflow">
   <rect class="paper" x="60" y="345" width="185" height="55"/>
     <rect class="paper" x="245" y="290" width="185" height="110"/>
     <rect class="paper" x="430" y="235" width="185" height="165"/>
@@ -10,7 +10,6 @@
   <g data-step="1">
     <rect class="soft" x="245" y="290" width="185" height="110"/>
     <rect class="soft" x="430" y="235" width="185" height="165"/>
-    <rect class="soft" x="615" y="180" width="185" height="220"/>
   </g>
   <g data-step="2">
     <rect class="box-blue dash" x="622" y="187" width="171" height="206"/>
@@ -28,10 +27,9 @@
   <g data-step="1">
     <text class="small accent-text" x="259" y="352">Session 1</text>
     <text class="small accent-text" x="444" y="297">Session 1</text>
-    <text class="small accent-text" x="629" y="242">Session 1</text>
   </g>
   <g data-step="2">
-    <text class="small" x="629" y="264" style="fill:var(--blue)">Session 2</text>
+    <text class="small" x="629" y="242" style="fill:var(--blue)">Session 2</text>
     <text class="small" x="814" y="187" style="fill:var(--blue)">Session 2</text>
   </g>
   <g data-step="3">

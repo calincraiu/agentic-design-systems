@@ -1,0 +1,21 @@
+<!-- layout: diagram | where: app -->
+<p class="kicker">Groundwork</p>
+
+# Same model. Chat talks, Code acts.
+
+<div data-widget="figure" data-name="tabs"></div>
+
+> Demo, the same sentence in both tabs: **"Make a file called hello.md that says hello."** Where does the file end up?
+
+<!-- notes -->
+**The idea.** The Claude desktop app has two tabs that matter for this course. Behind both is the same model. What differs is what each tab gives it: what it has to work with, and what it can reach.
+
+In **Chat**, Claude writes back to you. It can also run small calculations or make a file for you to download, but always in its own space, away from your computer. It's like talking a design through with a colleague across a table: useful, but nothing on your desk changes.
+
+In **Code**, you first open a *folder* on your computer. Claude can then read the files in it, create and change files, and run small programs (tools). Don't let the name put you off: "Code" doesn't mean *you* write code. It means Claude can act in your folder, not just talk.
+
+In the drawing, the Chat side is a closed room: what Claude makes stays in it, or comes to you as a download. On the Code side, Claude stands *inside* your folder, next to your files and tools, and the only way past the edge is through you.
+
+**Why it matters.** In the demo, the same sentence, read by the same model, gave two different results. Chat showed you the file's text, or a download. Code asked permission, and then the file was simply *there*, in your folder. The folder is the boundary: it's like handing a contractor the keys to one room. Those "Allow?" questions are called **permission prompts**. Read them: they tell you exactly what Claude is about to do.
+
+**Try it yourself.** Once you have your own folder, ask the Code tab for a file, then open the folder in your file browser and find it.

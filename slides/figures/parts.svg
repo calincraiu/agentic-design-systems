@@ -1,8 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="The parts of an agentic system, built up one at a time: LLM, tool, agent, skill, context, and you">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="The parts of an agentic system, built up one at a time: LLM, tool, agent, skill, context, and you. All of them sit inside the app, which runs the loop and holds the leash">
   <defs>
     <marker id="parts-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
     <marker id="parts-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
   </defs>
+
+  <!-- the app: the frame everything sits in (not a step: it was met on slide 6) -->
+  <g style="opacity:0.55">
+    <rect class="hair dash" x="30" y="6" width="1150" height="504" rx="24" style="stroke:var(--muted);fill:none"/>
+    <text class="label" x="1156" y="40" text-anchor="end">The app</text>
+    <text class="small" x="1156" y="64" text-anchor="end">runs the loop,</text>
+    <text class="small" x="1156" y="86" text-anchor="end">holds the leash</text>
+  </g>
 
   <!-- 1 · LLM -->
   <g data-step="1">
@@ -24,7 +32,7 @@
   <g data-step="3">
     <rect class="accent dash" x="60" y="110" width="680" height="250" rx="22"/>
     <text class="label accent-text" x="84" y="142">3 · Agent</text>
-    <text class="small" x="84" y="168">LLM + tools + deciding what's next</text>
+    <text class="small" x="84" y="168">the LLM, using tools, in the app's loop</text>
     <line class="accent" x1="372" y1="232" x2="768" y2="232" marker-end="url(#parts-acc)"/>
     <text class="label" x="650" y="218">asks</text>
     <line class="accent" x1="768" y1="288" x2="372" y2="288" marker-end="url(#parts-acc)"/>
@@ -47,7 +55,7 @@
     <text class="label" x="416" y="432">5</text>
     <text class="big" x="416" y="462">CONTEXT</text>
     <line class="accent" x1="520" y1="410" x2="520" y2="302" marker-end="url(#parts-acc)"/>
-    <text class="small" x="534" y="386">known before you ask</text>
+    <text class="small" x="506" y="386" text-anchor="end">in front of it as it works</text>
   </g>
 
   <!-- 6 · YOU decide -->
@@ -56,6 +64,6 @@
     <text class="label paper-text" x="800" y="432">6</text>
     <text class="big paper-text" x="800" y="466">YOU DECIDE</text>
     <line class="ink" x1="690" y1="362" x2="780" y2="426" marker-end="url(#parts-ink)"/>
-    <text class="small" x="708" y="406">options</text>
+    <text class="small" x="742" y="380">options</text>
   </g>
 </svg>

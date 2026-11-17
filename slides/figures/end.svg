@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-label="Five simple icons for today's ideas: LLM as a row of words ending in a guessed next word, tool as a box with an input and an output, agent as a loop, skill as a page of instructions, context as a frame holding everything the agent can see">
+  <!-- LLM: words, then a guessed next word -->
+  <rect class="paper" x="60" y="135" width="62" height="42"/>
+  <rect class="paper" x="130" y="135" width="62" height="42"/>
+  <rect class="paper" x="95" y="205" width="62" height="42"/>
+  <rect class="box-blue dash" x="165" y="205" width="62" height="42"/>
+  <text class="label" x="196" y="233" text-anchor="middle">?</text>
+  <!-- Tool: input, box, output -->
+  <line class="thin" x1="280" y1="190" x2="320" y2="190"/>
+  <polyline class="thin" fill="none" points="312,182 320,190 312,198"/>
+  <rect class="paper" x="325" y="140" width="100" height="100"/>
+  <text class="label" x="375" y="205" text-anchor="middle" style="font-size:52px">+</text>
+  <line class="thin" x1="430" y1="190" x2="470" y2="190"/>
+  <polyline class="thin" fill="none" points="462,182 470,190 462,198"/>
+  <!-- Agent: loop -->
+  <path class="thin" fill="none" d="M650 140 A60 60 0 1 1 590 130"/>
+  <polyline class="thin" fill="none" points="600,112 588,131 610,138"/>
+  <circle class="paper" cx="600" cy="190" r="14"/>
+  <!-- Skill: page of instructions -->
+  <path class="paper" d="M770 105 H850 L880 135 V275 H770 Z"/>
+  <polyline class="thin" fill="none" points="850,105 850,135 880,135"/>
+  <line class="thin" x1="790" y1="165" x2="860" y2="165"/>
+  <line class="thin" x1="790" y1="195" x2="860" y2="195"/>
+  <line class="thin" x1="790" y1="225" x2="840" y2="225"/>
+  <!-- Context: frame holding everything -->
+  <rect class="box-blue dash" x="985" y="105" width="130" height="170"/>
+  <rect class="paper" x="1003" y="125" width="40" height="30"/>
+  <rect class="paper" x="1057" y="125" width="40" height="30"/>
+  <rect class="paper" x="1003" y="175" width="94" height="30"/>
+  <rect class="paper" x="1003" y="225" width="60" height="30"/>
+  <line class="thin" x1="40" y1="300" x2="1160" y2="300"/>
+  <text class="label" x="145" y="335" text-anchor="middle">LLM</text>
+  <text class="label" x="375" y="335" text-anchor="middle">tool</text>
+  <text class="label" x="600" y="335" text-anchor="middle">agent</text>
+  <text class="label" x="825" y="335" text-anchor="middle">skill</text>
+  <text class="label" x="1050" y="335" text-anchor="middle">context</text>
+</svg>

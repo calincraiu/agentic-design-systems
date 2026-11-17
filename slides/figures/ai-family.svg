@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" role="img" aria-label="AI is a family of nested ideas. Artificial intelligence is any program that does something we would call clever. Inside it, machine learning learns patterns from examples instead of rules someone wrote. Inside that, generative AI learns from a huge collection and makes new things that fit it. Generative AI includes LLMs, which write text, such as Claude, GPT and Gemini, and image models, which make pictures, such as Midjourney, Stable Diffusion and render plugins">
+
+  <!-- 1 · AI: the widest word -->
+  <g data-step="1">
+    <rect class="hair" x="20" y="20" width="1160" height="410" rx="18"/>
+    <text class="label" x="44" y="54">Artificial intelligence</text>
+    <text class="small" x="44" y="78">any program that does something we'd call clever: a chess engine, route planning</text>
+  </g>
+
+  <!-- 2 · machine learning: learned from examples -->
+  <g data-step="2">
+    <rect class="hair" x="50" y="96" width="1100" height="318" rx="16"/>
+    <text class="label" x="74" y="128">Machine learning</text>
+    <text class="small" x="74" y="152">learns patterns from examples, not from rules someone wrote: a spam filter, face unlock</text>
+  </g>
+
+  <!-- 3 · generative: makes new things -->
+  <g data-step="3">
+    <rect class="paper" x="80" y="172" width="1040" height="226" rx="14"/>
+    <text class="label accent-text" x="104" y="204">Generative AI</text>
+    <text class="small" x="104" y="228">learns from a huge collection, then makes new things that fit it. Some newer models do both kinds.</text>
+  </g>
+
+  <!-- 4 · the LLM: text -->
+  <g data-step="4">
+    <rect class="box-accent" x="110" y="248" width="480" height="130"/>
+    <text class="big" x="134" y="290">LLM: writes text</text>
+    <text class="small" x="134" y="322">text in, text out (it can also read images)</text>
+    <text class="small" x="134" y="350">Claude, GPT, Gemini</text>
+  </g>
+
+  <!-- 5 · image models: pictures -->
+  <g data-step="5">
+    <rect class="box-blue" x="620" y="248" width="480" height="130"/>
+    <text class="big" x="644" y="290">Image model: pictures</text>
+    <text class="small" x="644" y="322">words (or a sketch) in, a picture out</text>
+    <text class="small" x="644" y="350">Midjourney, Stable Diffusion, render plugins</text>
+  </g>
+</svg>

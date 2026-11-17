@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" role="img" aria-label="The word Claude names three things. A company, drawn as a building, which makes the product. A model, drawn as a block of numbers, which reads text and writes text. An app, drawn as a window, which is the program around the model that you type into">
+
+  <!-- 1 · the company -->
+  <g data-step="1">
+    <rect class="paper" x="40" y="40" width="150" height="150" rx="14"/>
+    <!-- a small office block: facade, window grid, door -->
+    <rect class="paper" x="80" y="68" width="70" height="104"/>
+    <g class="thin">
+      <line x1="80" y1="92" x2="150" y2="92"/><line x1="80" y1="116" x2="150" y2="116"/><line x1="80" y1="140" x2="150" y2="140"/>
+      <line x1="103" y1="68" x2="103" y2="140"/><line x1="127" y1="68" x2="127" y2="140"/>
+    </g>
+    <rect class="ink-fill" x="105" y="146" width="20" height="26"/>
+    <text class="label" x="230" y="96">A company</text>
+    <text class="body" x="230" y="132">makes the product</text>
+    <text class="small" x="230" y="160">and gives it a name</text>
+  </g>
+
+  <!-- 2 · the model -->
+  <g data-step="2">
+    <rect class="box-accent" x="40" y="224" width="150" height="150" rx="14"/>
+    <!-- a block of numbers, getting fainter: what training leaves behind -->
+    <g class="muted-text" style="font-size:15px">
+      <text x="62" y="262" class="accent-text">0.12 −0.7</text>
+      <text x="62" y="288" class="accent-text">0.91 0.05</text>
+      <text x="62" y="314" class="accent-text" style="opacity:0.75">−0.2 0.64</text>
+      <text x="62" y="340" class="accent-text" style="opacity:0.5">0.77 −0.1</text>
+      <text x="64" y="364" class="accent-text" style="opacity:0.3">…</text>
+    </g>
+    <text class="label accent-text" x="230" y="280">A model</text>
+    <text class="body" x="230" y="316">reads text, writes text</text>
+    <text class="small" x="230" y="344">a huge file of numbers</text>
+  </g>
+
+  <!-- 3 · the app -->
+  <g data-step="3">
+    <rect class="box-blue" x="40" y="408" width="150" height="150" rx="14"/>
+    <!-- a window: title bar with three dots, a message, a reply, and an input line -->
+    <rect class="paper" x="62" y="432" width="106" height="102" rx="6"/>
+    <line class="thin" x1="62" y1="450" x2="168" y2="450"/>
+    <circle cx="73" cy="441" r="2.5" class="ink-fill"/><circle cx="83" cy="441" r="2.5" class="ink-fill"/><circle cx="93" cy="441" r="2.5" class="ink-fill"/>
+    <rect class="ink-fill" x="112" y="458" width="46" height="12" rx="6"/>
+    <rect class="soft" x="72" y="476" width="62" height="12" rx="6"/>
+    <rect class="hair" x="70" y="506" width="90" height="16" rx="8"/>
+    <text class="label" x="230" y="464" style="fill:var(--blue)">An app</text>
+    <text class="body" x="230" y="500">the window you type in</text>
+    <text class="small" x="230" y="528">it acts for the model</text>
+  </g>
+
+  <!-- the three are all called "Claude" -->
+  <g data-step="4">
+    <path class="accent" d="M470 70 H500 V528 H470" style="stroke-width:3"/>
+    <line class="accent" x1="500" y1="300" x2="530" y2="300"/>
+    <text class="big accent-text" x="540" y="310">"Claude"</text>
+  </g>
+</svg>

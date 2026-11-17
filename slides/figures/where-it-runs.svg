@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-label="Where each part runs. On your laptop: the app, the window you type in, and your folder with your tools and files. Tools run there. Far away, in a data centre run by the company that makes it: the model. What the model reads, your words, files and tool results, travels up to it. What it writes comes back as text, and only text">
+  <defs>
+    <marker id="where-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+    <marker id="where-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+  </defs>
+
+  <!-- 1 · your laptop: the app, your folder, the tools -->
+  <g data-step="1">
+    <rect class="paper" x="30" y="30" width="520" height="340" rx="16"/>
+    <text class="label" x="54" y="66">On your laptop</text>
+    <rect class="ink-fill" x="60" y="90" width="460" height="60"/>
+    <text class="paper-text" x="80" y="127">the app: the window you type in</text>
+    <path class="hair" d="M60 176 H200 L220 196 H520 V346 H60 Z"/>
+    <text class="label" x="84" y="226">Your folder</text>
+    <rect class="box-blue" x="84" y="244" width="180" height="50"/>
+    <text x="174" y="275" text-anchor="middle">tools</text>
+    <rect class="paper" x="290" y="244" width="200" height="50"/>
+    <text x="390" y="275" text-anchor="middle">your files</text>
+    <text class="small" x="84" y="326">in the Code tab, tools run here</text>
+  </g>
+
+  <!-- 2 · far away: the model -->
+  <g data-step="2">
+    <rect class="paper dash" x="760" y="30" width="410" height="340" rx="16" style="stroke:var(--muted)"/>
+    <text class="label" x="784" y="66">Far away, in a data centre</text>
+    <rect class="accent-fill" x="800" y="150" width="330" height="90"/>
+    <text class="on-accent big" x="965" y="204" text-anchor="middle">the model</text>
+    <text class="small" x="784" y="300">big computers, run by</text>
+    <text class="small" x="784" y="324">the company that makes it</text>
+  </g>
+
+  <!-- 3 · what it reads goes up -->
+  <g data-step="3">
+    <line class="ink" x1="556" y1="150" x2="754" y2="150" marker-end="url(#where-ink)"/>
+    <text class="small" x="655" y="136" text-anchor="middle">what it reads</text>
+    <text class="small" x="655" y="176" text-anchor="middle">your words, files,</text>
+    <text class="small" x="655" y="198" text-anchor="middle">tool results</text>
+  </g>
+
+  <!-- 4 · only text comes back -->
+  <g data-step="4">
+    <line class="accent" x1="754" y1="270" x2="556" y2="270" marker-end="url(#where-acc)"/>
+    <text class="small" x="655" y="256" text-anchor="middle">what it writes</text>
+    <text class="small accent-text" x="655" y="296" text-anchor="middle">only text</text>
+  </g>
+</svg>

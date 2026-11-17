@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="Chat answers once. An agent takes a goal, acts with a tool, looks at the result, decides whether to go round again or stop, and then reports back">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-label="A single answer stops and waits for you. An agent takes a goal, acts with a tool, looks at the result, decides whether to go round again or stop, and then reports back">
   <defs>
     <marker id="ag-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
     <marker id="ag-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
   </defs>
 
   <g data-step="1">
-    <text class="label" x="30" y="44">Chat</text>
+    <text class="label" x="30" y="44">One answer</text>
     <rect class="ink-fill" x="30" y="58" width="190" height="56"/><text class="paper-text" x="125" y="92" text-anchor="middle">You ask</text>
     <line class="ink" x1="226" y1="86" x2="264" y2="86" marker-end="url(#ag-ink)"/>
     <rect class="box-accent" x="270" y="58" width="190" height="56"/><text x="365" y="92" text-anchor="middle">It answers</text>
-    <text class="small" x="490" y="92">One question, one answer. Then it waits for you.</text>
+    <text class="small" x="490" y="92">You ask, it answers. Then it stops and waits for you.</text>
   </g>
 
   <g data-step="2">

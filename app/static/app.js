@@ -100,6 +100,23 @@ function addWidget(root) {
   }
 }
 
+// ---------------------------------------------------------------- bar chart, shared by the room polls
+// One bar per label, with its count on top. fair: a dashed line at that height. tool: blue bars.
+// onClick: the labels become "+ name" buttons, and clicking one calls onClick(i).
+function bars(labels, counts, { fair = null, tool = false, onClick = null } = {}) {
+  const max = Math.max(1, fair || 0, ...counts);
+  const cols = `grid-template-columns:repeat(${labels.length},1fr)`;
+  const scale = f => `calc((100% - 1.5em) * ${f})`;  // leave room above the tallest bar for its count
+  return el("div", { class: `tally${tool ? " tool" : ""}` },
+    el("div", { class: "bars", style: cols },
+      ...counts.map(v => el("div", { class: "col" }, el("span", {}, String(v)), el("div", { class: "fill", style: `height:${scale(v / max)}` }))),
+      fair ? el("div", { class: "fair", style: `bottom:${scale(fair / max)}` }, el("span", {}, `fair ${Math.round(fair * 10) / 10}`)) : null),
+    el("div", { class: "names", style: cols },
+      ...labels.map((name, i) => onClick
+        ? el("button", { class: "ghost", title: `One more answer: ${name}`, onclick: () => onClick(i) }, `+ ${name}`)
+        : el("span", {}, name))));
+}
+
 // ---------------------------------------------------------------- llm vs tool: is it fair?
 // The room asks Chat to pick one option "fairly", and the instructor clicks each answer called out.
 // Then the dice tool rolls the same number of times, so both tallies are the same size.
@@ -113,17 +130,9 @@ function llmVsTool(root) {
     "Where fairness matters (crit order, a lottery, a random sample of sites), use a tool.");
   const counts = picks => options.map((_, i) => picks.filter(p => p === i).length);
   const chart = (target, picks, who, clickable) => {
-    const c = counts(picks), n = picks.length, fair = n / options.length, max = Math.max(1, fair, ...c);
-    const cols = `grid-template-columns:repeat(${options.length},1fr)`;
-    const scale = f => `calc((100% - 1.5em) * ${f})`;  // leave room above the tallest bar for its count
-    target.replaceChildren(el("div", { class: `tally${clickable ? "" : " tool"}` },
-      el("div", { class: "bars", style: cols },
-        ...c.map(v => el("div", { class: "col" }, el("span", {}, String(v)), el("div", { class: "fill", style: `height:${scale(v / max)}` }))),
-        n ? el("div", { class: "fair", style: `bottom:${scale(fair / max)}` }, el("span", {}, `fair ${Math.round(fair * 10) / 10}`)) : null),
-      el("div", { class: "names", style: cols },
-        ...options.map((name, i) => clickable
-          ? el("button", { class: "ghost", title: `One more answer: ${name}`, onclick: () => { room.push(i); redraw(); } }, `+ ${name}`)
-          : el("span", {}, name)))));
+    const c = counts(picks), n = picks.length, fair = n / options.length;
+    target.replaceChildren(bars(options, c, { fair: n ? fair : null, tool: !clickable,
+      onClick: clickable ? i => { room.push(i); redraw(); } : null }));
     if (!n) return "";
     const top = c.indexOf(Math.max(...c));
     return `${who}: ${n} picks. Fair would be about ${Math.round(fair * 10) / 10} each. Most picked: ${options[top]}, ${c[top]} times (${Math.round(100 * c[top] / n)}%).`;
@@ -159,6 +168,45 @@ function llmVsTool(root) {
     el("div", { class: "vs" }, el("div", {}, roomChart, roomNote), el("div", {}, toolChart, toolNote)),
     el("div", { class: "row" }, rollBtn, undo, clear), point, extra,
     el("details", {}, el("summary", { class: "muted" }, "Change the options"), el("div", { class: "row" }, edit)));
+  redraw();
+}
+
+// ---------------------------------------------------------------- tries: guesses against real runs
+// "Roll two dice until you get a double." The room calls out guesses first, then how many tries each run took.
+// The instructor types each number in. Two tallies side by side, with the averages; the true average is 6.
+function tries(root) {
+  const labels = [...Array(12)].map((_, i) => String(i + 1)).concat("13+");
+  const sides = { guess: [], real: [] }, history = [];
+  const tally = values => labels.map((_, i) => values.filter(v => Math.min(v, 13) - 1 === i).length);
+  const average = values => Math.round(10 * values.reduce((a, b) => a + b, 0) / values.length) / 10;
+  const point = el("p", { class: "point", hidden: "" },
+    "A double comes up once in six rolls, so the average is 6. But single runs spread a long way, from 1 roll to 20 or more. " +
+    "Most guesses are lower: we expect chance to even out faster than it does.");
+  const side = (key, title, tool) => {
+    const chart = el("div"), note = el("p", { class: "muted" });
+    const input = el("input", { type: "number", min: 1, max: 999 });
+    const add = () => {
+      const n = Math.round(+input.value);
+      if (n >= 1) { sides[key].push(n); history.push(key); input.value = ""; redraw(); }
+      input.focus();
+    };
+    input.addEventListener("keydown", e => { if (e.key === "Enter") add(); });
+    const draw = () => {
+      const v = sides[key];
+      chart.replaceChildren(bars(labels, tally(v), { tool }));
+      note.textContent = v.length
+        ? `${v.length} ${key === "guess" ? "guesses" : "runs"}, average ${average(v)}.${key === "real" ? " The true average is 6." : ""}`
+        : key === "guess" ? "Type each guess the room calls out." : "Type how many tries each run took.";
+    };
+    return { box: el("div", {}, el("h4", {}, title), chart, note,
+      el("div", { class: "row" }, el("label", {}, key === "guess" ? "guess" : "tries", input), el("button", { onclick: add }, "Add"))), draw };
+  };
+  const guess = side("guess", "Your guesses", false), real = side("real", "Real runs", true);
+  const redraw = () => { guess.draw(); real.draw(); point.hidden = !sides.real.length; };
+  const undo = el("button", { class: "ghost", onclick: () => { const k = history.pop(); if (k) { sides[k].pop(); redraw(); } } }, "Undo");
+  const clear = el("button", { class: "ghost", onclick: () => { sides.guess = []; sides.real = []; history.length = 0; redraw(); } }, "Clear");
+  root.append(el("h4", {}, "How many rolls until a double?"),
+    el("div", { class: "vs" }, guess.box, real.box), el("div", { class: "row" }, undo, clear), point);
   redraw();
 }
 
@@ -312,6 +360,7 @@ async function contextWidget(root) {
   const desc = (skill.match(/^---\n([\s\S]*?)\n---/) || [, ""])[1];
   const claudeMd = "# About me\nI'm an architecture student. Explain things with buildings, not code.\nNever make up a roll or a measurement: use the tools.";
   const C = {
+    app: { label: "The app's own instructions", when: "start", text: "Written by the app's makers. How to behave, and the tools the model can ask for:\nread a file, write a file, run a command…", note: "always there; you never see it" },
     claude: { label: "CLAUDE.md", when: "start", text: claudeMd, note: "example: a student's own" },
     skills: { label: "Skill names and descriptions", when: "start", text: desc, note: "every skill, short" },
     ask: { label: "Your message", when: "added", text: "/tie-breaker pizza or noodles?" },
@@ -320,11 +369,11 @@ async function contextWidget(root) {
     reply: { label: "Claude's reply", when: "added", text: "1. pizza  2. noodles\nRolled a 2: noodles." },
   };
   const STEPS = [
-    ["1. You open a new session", ["claude", "skills"]],
-    ["2. You type /tie-breaker", ["claude", "skills", "ask", "body"]],
-    ["3. Claude runs the dice tool", ["claude", "skills", "ask", "body", "roll"]],
-    ["4. Claude answers", ["claude", "skills", "ask", "body", "roll", "reply"]],
-    ["5. You start a new session", ["claude", "skills"]],
+    ["1. You open a new session", ["app", "claude", "skills"]],
+    ["2. You type /tie-breaker", ["app", "claude", "skills", "ask", "body"]],
+    ["3. Claude runs the dice tool", ["app", "claude", "skills", "ask", "body", "roll"]],
+    ["4. Claude answers", ["app", "claude", "skills", "ask", "body", "roll", "reply"]],
+    ["5. You start a new session", ["app", "claude", "skills"]],
   ];
   const WHEN = { start: "loaded at the start of every session", demand: "loaded when needed", added: "added as you work" };
   const win = el("div", { class: "window" });
@@ -340,7 +389,7 @@ async function contextWidget(root) {
     }
     win.replaceChildren(...ids.map(id => el("details", { class: `chipbox ${C[id].when}${shown.has(id) ? "" : " new"}` },
       el("summary", {}, C[id].label, el("small", {}, C[id].note || WHEN[C[id].when])), el("pre", {}, C[id].text))));
-    caption.textContent = i === 4 ? "The conversation, the skill's full text and the tool's answer are gone. Only CLAUDE.md and the skill descriptions come back, every time." : "";
+    caption.textContent = i === 4 ? "The conversation, the skill's full text and the tool's answer are gone. Only the app's instructions, CLAUDE.md and the skill descriptions come back, every time." : "";
     shown = new Set(ids);
   };
   const buttons = STEPS.map((s, i) => el("button", { class: "ghost", onclick: () => go(i, buttons) }, s[0]));
@@ -440,7 +489,7 @@ function contact(root) {
 }
 
 // ---------------------------------------------------------------- wiring
-const WIDGETS = { add: addWidget, dice, "llm-vs-tool": llmVsTool, tower: towerWidget, file: fileWidget, skill: skillWidget,
+const WIDGETS = { add: addWidget, dice, "llm-vs-tool": llmVsTool, tries, tower: towerWidget, file: fileWidget, skill: skillWidget,
   context: contextWidget, takeaway, gallery: galleryWidget, figure, contact };
 const UNBOXED = new Set(["figure", "contact"]);
 const loading = [...document.querySelectorAll("[data-widget]")].map(root => {

@@ -36,6 +36,17 @@ def test_widgets_on_slides_point_at_real_files_and_kits(client):
                 assert client.get(f"/api/kits/{kit}").status_code == 200, (s["file"], kit)
 
 
+def test_every_widget_on_a_slide_is_one_the_app_knows():
+    import re
+    js = (main.ROOT / "app" / "static" / "app.js").read_text(encoding="utf-8")
+    registry = re.search(r"const WIDGETS = \{(.*?)\};", js, re.S).group(1)
+    known = set(re.findall(r'(?:^|,)\s*"?([\w-]+)"?', registry))  # the keys: each follows a comma
+    for deck in main.decks():
+        for s in main.deck_slides(deck):
+            for name in re.findall(r'data-widget="([^"]+)"', s["text"]):
+                assert name in known, (s["file"], name)
+
+
 def test_add_widget_runs_the_real_tool_exactly(client):
     r = client.get("/api/add", params={"numbers": "8437209516384.27 6958173402659.86"}).json()
     assert r["code"] == 0 and r["total"] == "15395382919044.13"

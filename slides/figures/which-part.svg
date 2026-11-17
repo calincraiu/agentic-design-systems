@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 552" role="img" aria-label="Which part was responsible? It said it rolled a 7 on a six-sided die: the LLM wrote it, and no tool ran. A new session forgot that you work in square metres: context, because it wasn't in CLAUDE.md. It re-rolled until it got a name it liked: the skill, because no rule said roll once. The skill said roll once, but it rolled twice: the LLM, because a rule is read, not a lock. It stopped after one roll and called it good: you, because nobody said what good means. The add tool refused to add 1,5 and 2: the tool, working as it should, because a tool can say no">
+  <text class="label" x="40" y="34">What happened</text>
+  <text class="label" x="760" y="34">Which part?</text>
+
+  <text class="body" x="40" y="94">It said it rolled a 7 on a six-sided die.</text>
+  <g data-step="1">
+    <rect class="accent-fill" x="760" y="62" width="400" height="50"/>
+    <text class="on-accent" x="780" y="93">LLM · it wrote it, no tool ran</text>
+  </g>
+  <line class="thin" x1="40" y1="128" x2="1160" y2="128"/>
+
+  <text class="body" x="40" y="176">A new session forgot that you work in m².</text>
+  <g data-step="2">
+    <rect class="box-blue" x="760" y="144" width="400" height="50"/>
+    <text x="780" y="175">CONTEXT · not in your CLAUDE.md</text>
+  </g>
+  <line class="thin" x1="40" y1="210" x2="1160" y2="210"/>
+
+  <text class="body" x="40" y="258">It re-rolled until it got a name it liked.</text>
+  <g data-step="3">
+    <rect class="box-accent" x="760" y="226" width="400" height="50"/>
+    <text x="780" y="257">SKILL · no rule said roll once</text>
+  </g>
+  <line class="thin" x1="40" y1="292" x2="1160" y2="292"/>
+
+  <text class="body" x="40" y="340">The skill said "roll once", but it rolled twice.</text>
+  <g data-step="4">
+    <rect class="accent-fill" x="760" y="308" width="400" height="50"/>
+    <text class="on-accent" x="780" y="339">LLM · a rule is read, not a lock</text>
+  </g>
+  <line class="thin" x1="40" y1="374" x2="1160" y2="374"/>
+
+  <text class="body" x="40" y="422">It stopped after one roll: "that's a good one".</text>
+  <g data-step="5">
+    <rect class="ink-fill" x="760" y="390" width="400" height="50"/>
+    <text class="paper-text" x="780" y="421">YOU · nobody said what good is</text>
+  </g>
+  <line class="thin" x1="40" y1="456" x2="1160" y2="456"/>
+
+  <text class="body" x="40" y="504">The add tool refused to add 1,5 and 2.</text>
+  <g data-step="6">
+    <rect class="blue-fill" x="760" y="472" width="400" height="50"/>
+    <text class="on-accent" x="780" y="503">TOOL · working: it can say no</text>
+  </g>
+</svg>

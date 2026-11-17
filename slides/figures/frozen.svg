@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" role="img" aria-label="It learned once, then stopped. First, training: a huge library of text, books, websites and code, and months of computing. Then the model: fixed numbers, with a cutoff date, and nothing after it. Then you use it, in one chat after another. Nothing you say changes it. New facts reach it only as text in front of it: a file, a search, your CLAUDE.md">
+  <defs>
+    <marker id="frozen-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · training -->
+  <g data-step="1">
+    <rect class="hair" x="30" y="40" width="330" height="190" rx="14"/>
+    <text class="label" x="54" y="76">1 · Training</text>
+    <text x="54" y="122">a huge library of text:</text>
+    <text x="54" y="152">books, websites, code</text>
+    <text class="small" x="54" y="196">months of computing</text>
+  </g>
+
+  <!-- 2 · the model, fixed -->
+  <g data-step="2">
+    <line class="ink" x1="366" y1="135" x2="414" y2="135" marker-end="url(#frozen-ink)"/>
+    <rect class="accent-fill" x="420" y="40" width="330" height="190"/>
+    <text class="on-accent big" x="444" y="88">2 · The model</text>
+    <text class="on-accent" x="444" y="132">fixed numbers</text>
+    <text class="on-accent" x="444" y="166">a cutoff date:</text>
+    <text class="on-accent" x="444" y="194">nothing after it</text>
+  </g>
+
+  <!-- 3 · you use it, many times -->
+  <g data-step="3">
+    <line class="ink" x1="756" y1="135" x2="804" y2="135" marker-end="url(#frozen-ink)"/>
+    <text class="label" x="810" y="56">3 · You use it</text>
+    <rect class="paper" x="810" y="72" width="360" height="44"/>
+    <text x="830" y="100">a chat</text>
+    <rect class="paper" x="810" y="126" width="360" height="44"/>
+    <text x="830" y="154">another chat</text>
+    <rect class="paper" x="810" y="180" width="360" height="44"/>
+    <text x="830" y="208">a session in Code</text>
+  </g>
+
+  <!-- 4 · nothing flows back -->
+  <g data-step="4">
+    <path class="accent dash" d="M990 230 V272 H585 V236"/>
+    <text class="accent-text big" x="787" y="282" text-anchor="middle">×</text>
+    <text class="body accent-text" x="600" y="322" text-anchor="middle">Nothing you say changes it.</text>
+    <text class="small" x="600" y="356" text-anchor="middle">New facts reach it only as text in front of it: a file, a search, your CLAUDE.md.</text>
+  </g>
+</svg>
