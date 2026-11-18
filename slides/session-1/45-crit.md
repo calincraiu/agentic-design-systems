@@ -10,14 +10,10 @@
 > 2. What could it **not** change, however you wrote it?
 
 <!-- notes -->
-**The idea.** Each pair shows their two galleries side by side and answers both questions.
+The first question is about what you authored. The wish, your answers, the tool and the workflow stayed the same, so the difference between your gallery and your partner's came from your stance.
 
-The first answer is about authorship. Same wish, same tool, same workflow: your stance changed which towers came out.
+The second is about the limits of the system. However you word a skill, it can't make the tower tool measure views, cost, terraces or how memorable a building is. A skill can only use what the tools can do. For the system to take something new into account it needs a new **measure**, and someone has to decide what that measure is and how to check that it's right.
 
-The second answer is about the edges of the system. However you word a skill, it can't make the tower tool measure views, cost, terraces or how memorable a building is. A skill can only use the abilities that the tool has. To notice something new, the system needs a new **measure**, and someone has to decide what that measure is.
+The diagram shows the division of labour. The agent handles vague language and explores options quickly. The tool produces exact geometry and measures it. You decide what is good. An image or a confident paragraph isn't evidence. The metrics are, within what they cover.
 
-**Who does what.** The agent is good with vague language and quick at exploring options. The tool makes exact geometry and measures it. You decide what is good. An image or a confident paragraph is not evidence. The metrics are, as far as they go.
-
-**Next session** starts from your second answer. You'll design a tool of your own by writing down what it promises, and then a measure: what would it have to capture, and how would you know it was right?
-
-**Try it yourself.** Write down one thing you cared about in today's towers that no metric captured. Bring it to Session 2.
+Session 2 starts from the second question. You design a tool of your own by writing down what it should do, and then a measure.
