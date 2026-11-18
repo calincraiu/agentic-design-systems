@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="A file's name has two parts: the name, then the extension after the dot, which says what kind of file it is. A PDF and a Rhino file opened in Notepad show unreadable codes. CLAUDE.md, a text file, shows plain words">
+  <!-- 1 · a file name, taken apart -->
+  <g data-step="1">
+    <text x="420" y="70" style="font-size:40px">tower-plan</text>
+    <text class="accent-text" x="660" y="70" style="font-size:40px">.dwg</text>
+    <path class="ink" d="M420 90 V104 H652 V90"/>
+    <text class="label" x="420" y="132">the name</text>
+    <path class="accent" d="M662 90 V104 H756 V90"/>
+    <text class="label accent-text" x="662" y="132">the extension</text>
+    <text class="small" x="662" y="156">what kind of file it is</text>
+  </g>
+
+  <!-- 2 · two files that only their own program can read -->
+  <g data-step="2">
+    <rect class="hair" x="50" y="200" width="340" height="200"/>
+    <rect class="ink-fill" x="50" y="200" width="340" height="44"/>
+    <text class="paper-text" x="70" y="229">plan.pdf in Notepad</text>
+    <text class="muted-text" x="70" y="284">%PDF-1.7 %âãÏÓ</text>
+    <text class="muted-text" x="70" y="314">4 0 obj /Filter</text>
+    <text class="muted-text" x="70" y="344">xœ•Y]o·}÷¯ð¼ÿ</text>
+    <text class="muted-text" x="70" y="374">ÂÖ±Ð¿ ¤ž†Ë€</text>
+
+    <rect class="hair" x="430" y="200" width="340" height="200"/>
+    <rect class="ink-fill" x="430" y="200" width="340" height="44"/>
+    <text class="paper-text" x="450" y="229">tower.3dm in Notepad</text>
+    <text class="muted-text" x="450" y="284">3D Geometry File</text>
+    <text class="muted-text" x="450" y="314">Format ÿÿ ¤ Ð</text>
+    <text class="muted-text" x="450" y="344">€¿ÂÖ±ž†Ë ÿØ</text>
+    <text class="muted-text" x="450" y="374">¼ÿÐ¤ €Âž ±</text>
+
+    <text class="small" x="50" y="440">Codes that only their own program can read.</text>
+  </g>
+
+  <!-- 3 · a text file: only words -->
+  <g data-step="3">
+    <rect class="box-accent" x="810" y="200" width="340" height="200"/>
+    <rect class="accent-fill" x="810" y="200" width="340" height="44"/>
+    <text class="on-accent" x="830" y="229">CLAUDE.md in Notepad</text>
+    <text x="830" y="284"># Project notes</text>
+    <text x="830" y="314">Keep answers short.</text>
+    <text x="830" y="344">- Never make up a</text>
+    <text x="830" y="374">  number: use tools.</text>
+    <text class="small accent-text" x="810" y="440">A text file: only words.</text>
+  </g>
+</svg>

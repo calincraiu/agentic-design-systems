@@ -21,7 +21,6 @@ def test_every_slide_and_page_opens(client):
         assert slides, deck
         for n in range(1, len(slides) + 1):
             assert client.get(f"/d/{deck}/{n}").status_code == 200, (deck, n)
-        assert client.get(f"/d/{deck}/read").status_code == 200
         assert client.get(f"/d/{deck}/{len(slides) + 1}").status_code == 404
     assert client.get("/p/concepts").status_code == 200
 
@@ -121,14 +120,20 @@ def test_every_slide_declares_a_known_layout_and_place():
         assert s["title"], s["file"]
 
 
-def test_notes_are_hidden_on_the_slide_and_shown_when_reading(client):
+def test_notes_are_hidden_on_the_slide(client):
     slides = main.deck_slides("session-1")
     n, s = next((i, s) for i, s in enumerate(slides, 1) if s["notes"])
     marker = main.render(s["notes"])[:60]
     before, aside, after = client.get(f"/d/session-1/{n}").text.partition('<aside id="notes" class="notes" hidden>')
     assert aside and marker in after and marker not in before  # only inside the hidden drawer
-    assert marker in client.get("/d/session-1/read").text
-    assert "notes-inline" in client.get("/d/session-1/read").text
+
+
+def test_slides_with_notes_show_a_notes_button_and_others_do_not(client):
+    slides = main.deck_slides("session-1")
+    outline = client.get("/api/deck/session-1").json()
+    for i, s in enumerate(slides, 1):
+        assert outline[i - 1]["notes"] == bool(s["notes"])
+        assert ("data-notes" in client.get(f"/d/session-1/{i}").text) == bool(s["notes"]), s["file"]
 
 
 def test_figures_and_images_the_slides_ask_for_exist():
@@ -185,7 +190,7 @@ def test_slides_never_name_a_path_on_one_particular_computer():
 
 
 def test_every_page_has_the_keys_button(client):
-    for url in ("/", "/d/session-1/1", "/d/session-1/read", "/p/concepts"):
+    for url in ("/", "/d/session-1/1", "/p/concepts"):
         assert "data-keys" in client.get(url).text, url
 
 
@@ -195,7 +200,6 @@ def test_section_slides_open_each_part_of_the_session(client):
     assert len(sections) >= 5 and all(s["title"] for _, s in sections)
     n = sections[0][0]
     assert 'class="slide layout-section"' in client.get(f"/d/session-1/{n}").text
-    assert "doc layout-section" in client.get("/d/session-1/read").text
 
 
 def test_task_slides_show_time_and_pairs_badges_but_not_the_chip_twice(client):
@@ -204,9 +208,3 @@ def test_task_slides_show_time_and_pairs_badges_but_not_the_chip_twice(client):
     assert 'class="badge">in pairs' in html and html.count('class="chip where-') == 1   # only in the title block
     assert html.count("badge") >= 2
 
-
-def test_reading_mode_lists_every_slide_with_its_place(client):
-    html = client.get("/d/session-1/read").text
-    for n in range(1, len(main.deck_slides("session-1")) + 1):
-        assert f'id="s{n}"' in html
-    assert "where-code-yours" in html and "where-chat" in html

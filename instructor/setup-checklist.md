@@ -31,7 +31,7 @@ From the zip, on **Windows and a Mac**, in the desktop app's Code tab, ideally w
 - [ ] In the course folder, ask Claude to "edit kits/dice/tools/dice.py". It should refuse and point you to your own folder, and the edit should be denied.
 - [ ] Every slide's widgets load: add (calculator and the in-your-head poll), dice, the fairness poll, the `tries` tally (slide 21), tower explorer, skill anatomy, context stepper, take-away, gallery.
 - [ ] The look, on the projector you'll use: the fonts load offline, the contrast is readable in light and dark (`D`), and nothing is cut off at the projector's resolution.
-- [ ] Keys: `→`/`←` step through diagram parts, `N` opens notes, `G` shows all slides, `R` switches to reading mode and back, `?` (or the **Keys** button, top right) lists them all. The tower explorer's preview moves as you drag a slider.
+- [ ] Keys: `→`/`←` step through diagram parts, `N` opens notes, `G` shows all slides, `?` (or the **Keys** button, top right) lists them all. The tower explorer's preview moves as you drag a slider.
 - [ ] **Empty-folder walkthrough:** new folder → Code tab → write `CLAUDE.md` → copy in the add + dice kits by hand (slide 9: download the zip, unzip, drag `tools` and `.claude` across). Is the hidden `.claude` folder copied? Do `/add-up` and `/tie-breaker` appear in a new session?
 - [ ] In that folder: "Roll two dice until you get a double" (slide 21), and the commentator line in `CLAUDE.md` (slide 29) in a new session.
 - [ ] Permission prompts in the student's folder: `uv run tools/...` shouldn't prompt. On Windows without Git, check the PowerShell rules too.

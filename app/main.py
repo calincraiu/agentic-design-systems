@@ -40,6 +40,17 @@ sys.path.insert(0, str(TOWER.parent))
 import tower  # noqa: E402  (only to read its parameter and metric lists)
 
 app = FastAPI(title="Agentic Design Systems")
+
+
+@app.middleware("http")
+async def no_stale_assets(request, call_next):
+    """The course files change while the course is built: make the browser re-check app.js and app.css every time."""
+    response = await call_next(request)
+    if request.url.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 app.mount("/static", StaticFiles(directory=ROOT / "app" / "static"), name="static")
 RUNS.mkdir(exist_ok=True)
 app.mount("/runs", StaticFiles(directory=RUNS), name="runs")
@@ -54,7 +65,7 @@ WHERE = {
     "code-course": "Code tab · course folder",
     "app": "This app",
 }
-LAYOUTS = {"title", "section", "statement", "stage", "split", "diagram", "task"}
+LAYOUTS = {"title", "section", "statement", "stage", "split", "diagram", "task", "outline"}
 
 
 def title_of(text, fallback):
@@ -74,7 +85,7 @@ def split_slide(text):
     Line 1 may be a comment with settings, separated by bars:
         <!-- layout: task | where: code-yours | time: 25 min | pairs -->
     Everything after a line that says  <!-- notes -->  is speaker notes: hidden on the
-    projector (press N), and shown under the slide in reading mode.
+    projector until the student presses N.
     """
     meta = {"layout": "stage", "where": None, "time": None, "pairs": False}
     first = re.match(r"\s*<!--(.*?)-->[ \t]*\n?", text, re.DOTALL)
@@ -137,17 +148,37 @@ def page(title, body, mode="read", nav=""):
 
 @app.get("/", response_class=HTMLResponse)
 def index():
-    items = "".join(f'<li><a href="/d/{d}/1">{escape(pretty(d))}</a> · <a href="/d/{d}/read">read as a page</a></li>'
-                    for d in decks())
-    refs = "".join(f'<li><a href="/p/{p.stem}">{escape(title_of(p.read_text(encoding="utf-8"), pretty(p.stem)))}</a></li>'
-                   for p in sorted(SLIDES.glob("*.md")))
-    keys = ("<kbd>←</kbd> <kbd>→</kbd> move · <kbd>N</kbd> more on this slide · <kbd>G</kbd> all slides · "
-            "<kbd>R</kbd> reading mode · <kbd>D</kbd> dark · <kbd>F</kbd> full screen · <kbd>?</kbd> all keys")
-    body = (f'<section class="doc"><h1>Agentic Design Systems</h1>'
-            f'<p class="lede">The course app. {keys}</p>'
-            f'<h2>Sessions</h2><ul class="links">{items}</ul>'
-            f'<h2>Reference</h2><ul class="links">{refs}</ul></section>')
-    return page("Agentic Design Systems", body)
+    cards = []
+    for d in decks():
+        slides = deck_slides(d)
+        number = re.search(r"\d+", d)
+        chapters = "".join(f"<li>{escape(s['title'])}</li>" for s in slides if s["layout"] == "section")
+        chapters = f'<ul class="chapters">{chapters}</ul>' if chapters else ""
+        cards.append(
+            f'<article class="session"><p class="kicker">Session {number[0] if number else ""}</p>'
+            f'<h3>{escape(pretty(d))}</h3>'
+            f'<p class="muted">{len(slides)} slides</p>{chapters}'
+            f'<p class="actions"><a class="btn primary" href="/d/{d}/1">Open slides →</a>'
+            '</p></article>')
+    refs = "".join(f'<a class="ref" href="/p/{p.stem}"><span>{escape(title_of(p.read_text(encoding="utf-8"), pretty(p.stem)))}</span>'
+                   f'<span class="arrow">→</span></a>' for p in sorted(SLIDES.glob("*.md")))
+    keys = [("← →", "Move between slides"), ("N", "More on this slide"), ("G", "See all slides"),
+            ("D", "Dark mode"), ("F", "Full screen"), ("?", "All shortcuts")]
+    keys = "".join(f"<div><kbd>{k}</kbd><span>{escape(v)}</span></div>" for k, v in keys)
+    body = (
+        '<div class="home">'
+        '<header class="hero-band"><div class="hero-text">'
+        '<p class="rc5"><span>RC5</span> Research Cluster 5</p>'
+        '<h1>Agentic Design Systems</h1>'
+        '<p class="tagline">From asking an AI for a design to building the system it works inside.</p>'
+                '<p class="facts"><span>Masters module · 12 hours</span></p>'
+        '</div><div class="hero-art"><div data-widget="figure" data-name="skyline" class="hero"></div></div></header>'
+        f'<section id="sessions"><h2 class="band">Sessions</h2><div class="session-grid">{"".join(cards)}</div></section>'
+        '<section><h2 class="band">Reference</h2>'
+        f'<p class="muted">Short pages to come back to between sessions.</p><div class="ref-grid">{refs}</div></section>'
+        f'<section><h2 class="band">Find your way around</h2><div class="keys-grid">{keys}</div></section>'
+        '<footer class="home-foot">RC5 · Agentic Design Systems</footer></div>')
+    return page("Agentic Design Systems · RC5", body)
 
 
 @app.get("/d/{deck}")
@@ -157,20 +188,8 @@ def deck_start(deck: str):
 
 @app.get("/api/deck/{deck}")
 def deck_outline(deck: str):
-    return [{"n": i, "title": s["title"] or pretty(s["file"].removesuffix(".md")), "layout": s["layout"], "where": s["where"]}
+    return [{"n": i, "title": s["title"] or pretty(s["file"].removesuffix(".md")), "layout": s["layout"], "where": s["where"], "notes": bool(s["notes"])}
             for i, s in enumerate(deck_slides(deck), 1)]
-
-
-@app.get("/d/{deck}/read", response_class=HTMLResponse)
-def deck_read(deck: str):
-    slides = deck_slides(deck)
-    parts = []
-    for i, s in enumerate(slides, 1):
-        notes = f'<div class="notes-inline">{render(s["notes"])}</div>' if s["notes"] else ""
-        parts.append(f'<section class="doc layout-{s["layout"]}" id="s{i}"><div class="doc-meta">'
-                     f'<span>{i:02d} / {len(slides):02d}</span>{badges(s)}</div>{render(s["body"])}{notes}</section>')
-    nav = f'<a href="/">Index</a><span>{escape(pretty(deck))}</span><a href="/d/{deck}/1" data-key="r">Slides</a>'
-    return page(pretty(deck), "".join(parts), "read", nav)
 
 
 @app.get("/d/{deck}/{n}", response_class=HTMLResponse)
@@ -179,16 +198,18 @@ def deck_slide(deck: str, n: int):
     if not 1 <= n <= len(slides):
         raise HTTPException(404, f"There is no slide {n}")
     s = slides[n - 1]
-    prev_link = f'<a href="/d/{deck}/{n - 1}" data-key="prev">←</a>' if n > 1 else "<span></span>"
-    next_link = f'<a href="/d/{deck}/{n + 1}" data-key="next">→</a>' if n < len(slides) else "<span></span>"
+    prev_link = f'<a href="/d/{deck}/{n - 1}" data-key="prev" title="Previous slide (←)">← Back</a>' if n > 1 else "<span></span>"
+    next_link = f'<a href="/d/{deck}/{n + 1}" data-key="next" title="Next slide (→)">Next →</a>' if n < len(slides) else "<span></span>"
     nav = (f'<a href="/">Index</a><span>{escape(pretty(deck))}</span>'
-           f'{prev_link}{next_link}<a href="/d/{deck}/read#s{n}" data-key="r">Read</a>')
+           f'{prev_link}{next_link}')
     progress = f'<div class="progress" style="--p:{n / len(slides):.3f}"></div>'
     extra = f'<div class="badges">{badges(s, with_chip=False)}</div>' if s["layout"] == "task" else ""
-    notes = (f'<aside id="notes" class="notes" hidden><h4>More on this slide</h4>{render(s["notes"])}</aside>'
+    notes = (f'<aside id="notes" class="notes" hidden><div class="notes-head"><h4>More on this slide</h4><button type="button" class="notes-close" data-notes-close>Close ✕</button></div>{render(s["notes"])}</aside>'
              if s["notes"] else "")
+    notes_btn = ('<button type="button" class="notes-btn" data-notes aria-controls="notes" aria-expanded="false" '
+                 'title="Study notes (N)">✎ Notes <kbd>N</kbd></button>' if s["notes"] else "")
     block = (f'<footer class="titleblock"><span>ADS · {escape(pretty(deck))}</span>'
-             f'<strong>{escape(s["title"])}</strong><span>{n:02d} / {len(slides):02d}</span>{chip(s["where"])}</footer>')
+             f'<strong>{escape(s["title"])}</strong><span>{n:02d} / {len(slides):02d}</span>{notes_btn}{chip(s["where"])}</footer>')
     body = (f'{progress}<div class="sheet"><section class="slide layout-{s["layout"]}">{extra}{render(s["body"])}</section>'
             f'{block}</div>{notes}<div id="deck" data-deck="{escape(deck)}" data-n="{n}"></div>')
     return page(s["title"] or pretty(deck), body, "slides", nav)

@@ -401,14 +401,19 @@ async function contextWidget(root) {
 // ---------------------------------------------------------------- take-away
 // data-kit="dice", or several kits in one prompt: data-kit="add,dice"
 // data-mode="manual": no prompt. A zip to download and unzip, and the kit folders to copy from, for copying by hand.
+// data-mode="zip": the zip only, with no prompt and no course-folder paths.
 async function takeaway(root) {
   const k = await getJSON(`/api/kits/${root.dataset.kit}`);
-  if (root.dataset.mode === "manual") {
+  const mode = root.dataset.mode;
+  if (mode === "manual" || mode === "zip") {
     const s = k.folder.length > 1 ? "s" : "";
     root.classList.add("takeaway");
     root.append(el("h4", {}, `Take-away: the ${k.name} kit${s}`),
-      el("p", {}, el("a", { href: k.zip }, `Download the kit${s} as a zip`), ", unzip it, and copy what's inside into ", el("strong", {}, "your own folder"), "."),
-      el("details", {}, el("summary", {}, `What's in it (${k.files.length} files)`), el("ul", {}, ...k.files.map(f => el("li", {}, f)))),
+      mode === "zip"
+        ? el("p", {}, el("a", { href: k.zip }, `Download the kit${s} as a zip`))
+        : el("p", {}, el("a", { href: k.zip }, `Download the kit${s} as a zip`), ", unzip it, and copy what's inside into ", el("strong", {}, "your own folder"), "."),
+      el("details", {}, el("summary", {}, `What's in it (${k.files.length} files)`), el("ul", {}, ...k.files.map(f => el("li", {}, f)))));
+    if (mode === "manual") root.append(
       el("p", { class: "muted" }, "Or copy straight from the course folder. The contents of:"),
       el("ul", { class: "muted" }, ...k.folder.map(f => el("li", {}, f))));
     return;
@@ -475,7 +480,7 @@ async function figure(root) {
 }
 // Called once every widget and figure is in the page: find the steps and show the starting ones.
 function initSteps() {
-  if (!document.body.classList.contains("slides")) { showSteps(Infinity); return; }  // reading mode shows everything
+  if (!document.body.classList.contains("slides")) { showSteps(Infinity); return; }  // reference pages show everything
   steps.levels = [...new Set([...document.querySelectorAll("[data-step]")].map(e => +e.dataset.step))].sort((a, b) => a - b);
   steps.start = Math.max(0, ...[...document.querySelectorAll("[data-start]")].map(e => +e.dataset.start));
   showSteps(steps.start);
@@ -501,7 +506,16 @@ const loading = [...document.querySelectorAll("[data-widget]")].map(root => {
 Promise.all(loading).then(initSteps);
 
 // ---------------------------------------------------------------- notes (N), overview (G), theme (D), keys (?)
-const toggleNotes = () => { const n = document.getElementById("notes"); if (n) n.hidden = !n.hidden; };
+const syncNotesBtn = () => {
+  const n = document.getElementById("notes");
+  document.querySelectorAll("[data-notes]").forEach(b => { b.setAttribute("aria-expanded", String(!!n && !n.hidden)); b.classList.remove("nudge"); });
+};
+const toggleNotes = () => { const n = document.getElementById("notes"); if (n) { n.hidden = !n.hidden; syncNotesBtn(); } };
+// One gentle pulse, the first time a browser session meets a slide with notes
+try {
+  const btn = document.querySelector("[data-notes]");
+  if (btn && !sessionStorage.getItem("ads-notes-seen")) { btn.classList.add("nudge"); sessionStorage.setItem("ads-notes-seen", "1"); }
+} catch (e) { /* storage blocked: no pulse */ }
 async function toggleOverview() {
   const open = document.querySelector(".overview");
   if (open) { open.remove(); return; }
@@ -511,7 +525,7 @@ async function toggleOverview() {
   const WHERE = { chat: "Chat tab", "code-yours": "Your folder", "code-course": "Course folder", app: "This app" };
   document.body.append(el("div", { class: "overview" }, el("h2", {}, "All slides · press G or Esc to close"),
     el("div", { class: "grid" }, ...outline.map(s =>
-      el("a", { href: `/d/${deck.dataset.deck}/${s.n}`, class: s.n === +deck.dataset.n ? "here" : "" },
+      el("a", { href: `/d/${deck.dataset.deck}/${s.n}`, class: [s.n === +deck.dataset.n ? "here" : "", s.notes ? "has-notes" : ""].join(" ").trim() },
         el("span", { class: "n" }, String(s.n).padStart(2, "0")), el("span", { class: "t" }, s.title),
         s.where ? el("span", { class: `chip where-${s.where}` }, WHERE[s.where]) : null)))));
 }
@@ -528,7 +542,7 @@ const inSlides = () => document.body.classList.contains("slides");
 const closeAll = () => {
   document.querySelector(".overview")?.remove();
   document.querySelector(".keys-panel")?.remove();
-  const n = document.getElementById("notes"); if (n) n.hidden = true;
+  const n = document.getElementById("notes"); if (n) { n.hidden = true; syncNotesBtn(); }
 };
 // One list of keys, used by the keyboard and by the "? Keys" button: [keys, what it does, action, when it applies]
 const KEYS = [
@@ -536,7 +550,6 @@ const KEYS = [
   ["←", "Back", () => { if (!hideLast()) follow("prev"); }, inSlides],
   ["N", "More on this slide: notes to read now, or after class", () => toggleNotes(), () => !!document.getElementById("notes")],
   ["G", "All slides", () => toggleOverview(), () => !!document.getElementById("deck")],
-  ["R", "Reading mode: the whole session as one page, notes included. Press again to go back", () => follow("r"), () => !!document.querySelector('[data-key="r"]')],
   ["D", "Dark or light", () => toggleTheme(), () => true],
   ["F", "Full screen", fullScreen, () => true],
   ["Esc", "Close whatever is open", closeAll, () => true],
@@ -554,6 +567,10 @@ function toggleKeys() {
 }
 document.addEventListener("click", e => {
   if (e.target.closest("[data-keys]")) { toggleKeys(); return; }
+  if (e.target.closest("[data-notes], [data-notes-close]")) { toggleNotes(); return; }
+  // a click anywhere outside the open notes panel closes it, like the keys panel
+  const notes = document.getElementById("notes");
+  if (notes && !notes.hidden && !e.target.closest("#notes")) toggleNotes();
   const panel = document.querySelector(".keys-panel");
   if (panel && !e.target.closest(".keys-panel")) panel.remove();
 });

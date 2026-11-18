@@ -52,6 +52,18 @@ When a rule really matters, make it a hard one, and check the receipt.
 
 ## More words
 
+**File and extension.** A file's name ends with an **extension** after the last dot, which says what kind of file it is: `.dwg`, `.3dm`, `.pdf`, `.md`, `.py`. Computers often hide extensions; switch them on in your file browser's settings.
+> Here: `CLAUDE.md` is a Markdown note; `tools/add.py` is a Python program.
+
+**Text file.** A file that holds only letters, so any editor can open it, and so can Claude. **Markdown** (`.md`) is a text file with a few marks: `#` for a heading, `-` for a list.
+> Here: your `CLAUDE.md` and every `SKILL.md`.
+
+**Program, Python.** A **program** is a list of exact instructions a computer follows, the same way every time. **Python** is the programming language the course's tools are written in. Its files end in `.py`.
+> Here: `tools/add.py`, which fits on a postcard.
+
+**Path.** Where a file is, one folder at a time, separated by `/`.
+> Here: `.claude/skills/add-up/SKILL.md` is the file `SKILL.md`, in the folder `add-up`, in `skills`, in the hidden folder `.claude`.
+
 **Brief.** What you want, written down so it can be questioned: your words, how they were read, what was assumed, and the limits, each marked as yours or assumed.
 > Here: the file the tower-designer skill writes in `briefs/`.
 
