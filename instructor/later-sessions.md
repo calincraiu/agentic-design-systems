@@ -2,11 +2,11 @@
 
 Nothing here is planned in detail yet.
 
-- **Session 2:** students create a tool and write their own measures. It opens with the own-tool slides parked in `instructor/parked/` (a section slide and the contract task with `/tool-builder`): see the README there. The structured JSON brief may come back here, once it has a reason to exist.
-- **Session 3:** Grasshopper. The tower becomes "same tool, new engine".
-- **Open Session 2 with the context window.** Session 1 only mentions it (in the notes on the context slide): the app re-sends the whole conversation each turn, and only so much fits, so long agent runs get compacted and blur. Session 2's longer runs are where it starts to matter. Show it, and teach "start a new session with a good `CLAUDE.md`" as a design move.
-- Each session adds a slide deck (`slides/session-2/`) and, if needed, a new kit. Students get a fresh course-folder zip, and their own folder is never touched. A new kit must never contain a file with the same path as something students have written.
-- Session 2 builds on the own-tool contract from Session 1: add a measure to the tower, or write a tool that measures something the tower can't (terraces, for example: the first thing students usually ask for that no metric measures).
+- **Session 2 is built** (`slides/session-2/`, `instructor/session-2.md`): Grasshopper definitions as tools through one runner, the tower on a real site, a challenge on one measure (`park_sun`), Goodhart, and students choosing a second measure with their own limit. Kits: `gh`, `site`, `measures`. The Grasshopper bridge at `gh-bridge-v0` was not used: the runner replaced it.
+- **Session 3 seeds from Session 2:** the take-home is a *contract* for a measure that isn't on the menu (structure, cost, street-level feel, terrace depth). Building some of those is a natural start: students know the convention (`in:`/`out:`, contract beside the `.gh`) and have built `floor_area`. `terraces` has a known blind side worth fixing: it doesn't measure depth, so a 17 cm ring counts as terrace.
+- **Tool Exchange** (parked idea): pairs swap measures, and the other pair's agent must use one from its contract alone.
+- **The tower tool's linear taper** can't make stepped setbacks, so real terraces only come from leaning. Wanting setbacks is a reason to change the *tool* (a new `tower.gh` parameter), which suits a "change the engine" exercise.
+- Each session adds a slide deck and, if needed, a new kit. Students get a fresh course-folder zip, and their own folder is never touched. A new kit must never contain a file with the same path as something students have written.
 
 ## Getting the Grasshopper bridge back
 

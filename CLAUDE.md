@@ -16,8 +16,9 @@ Students never work in this repo. They get a zip of it (the "course folder"), ma
 | `.claude/skills/` | Course-folder skills: `setup-course`, `start-course`, `course-tutor` |
 | `packaging/student/` | Files that replace their repo versions in the student zip |
 | `scripts/package.py` | Builds `dist/ads-course.zip` |
+| `scripts/make_gh.py` | Builds the kits' Grasshopper definitions (`.gh`) from code. Runs **inside Rhino** (through the Rhino MCP's `run_python`), not with uv |
 | `scripts/make_images.py` | Regenerates `app/static/img/*.png` (the hook's contact sheet) and `slides/figures/skyline.svg` from the real tower tool |
-| `instructor/` | Run-sheets and notes (left out of the zip) |
+| `instructor/` | Run-sheets and notes (left out of the zip): `session-1.md`, `session-2.md`, `setup-checklist.md` |
 | `tests/` | `uv run pytest` (left out of the zip) |
 
 ## Writing slides
@@ -29,7 +30,7 @@ A slide is one Markdown file. Line 1 is a comment with its settings, separated b
 ```
 
 - `layout`: `title`, `section` (a chapter title before each part of the session: kicker, h1 and a `<p class="lead">`; concept sections add the `parts` figure with `class="map"` as a "you are here" map), `statement`, `stage` (a widget fills the slide), `split`, `diagram` (a figure on a grid), `outline` (a title and a numbered list stacked down the page) or `task` ("your turn": a numbered list becomes step cards).
-- `where`: `chat`, `code-yours`, `code-course` or `app`. It shows as a chip in the title block, so students always know which window and folder to be in.
+- `where`: `chat`, `code-yours`, `code-course`, `rhino` (working in Rhino or Grasshopper) or `app`. It shows as a chip in the title block, so students always know which window and folder to be in.
 - Below a line `<!-- notes -->` go **study notes for students**: they read them after class (a "✎ Notes" cell appears in the slide's title block automatically, or press `N`), so write to the student ("you"). **Keep slides to one claim and one visual**, and put the explanation in the notes. Write the notes like a TA's handout, not a textbook or a pep talk:
   - Plain paragraphs, with no section labels ("The idea.", "Why it matters." and so on). A list only where the content really is a list. An exercise, if there is one, is the last paragraph and starts with a verb.
   - Length follows content. A section slide needs 2–4 sentences. Most notes stay under 250 words, and setup or task slides can run longer.
@@ -39,15 +40,24 @@ A slide is one Markdown file. Line 1 is a comment with its settings, separated b
   - Don't describe what happened in class ("most people guess…"). Students read the notes afterwards, and their room may have gone differently. Expected room behaviour goes in `instructor/session-1.md`.
   - Use at most one analogy per note, and only if it explains something. Use bold only for a term where it is first defined.
 - Cues meant only for the instructor (what to press, what to ask the room, what to watch for) go in the **Slide by slide** table in `instructor/session-1.md`, never in the notes. Students can see the notes.
-- Widgets (`add`, `dice`, `llm-vs-tool`, `tries`, `tower`, `file`, `skill`, `context`, `takeaway`, `gallery`, `contact`, `figure`) are `<div data-widget="...">` tags. `add` takes `data-numbers` and, with `data-poll`, checks the room's answers against the tool. `llm-vs-tool` is the fairness poll and takes `data-options`. `tries` tallies the room's guesses against their real "rolls until a double". `takeaway` takes one kit or several (`data-kit="add,dice"`). By default it shows a prompt to paste into the Code tab; `data-mode="manual"` shows the zip and the course-folder paths instead, and `data-mode="zip"` shows only the zip. `figure` takes `data-name`, `data-start="n"` (parts already showing when the slide opens) and `data-ghost` (show unrevealed parts faintly).
+- Widgets (`add`, `dice`, `llm-vs-tool`, `tries`, `tower`, `file`, `skill`, `context`, `takeaway`, `gallery`, `contact`, `figure`, `scoreboard`) are `<div data-widget="...">` tags. `add` takes `data-numbers` and, with `data-poll`, checks the room's answers against the tool. `llm-vs-tool` is the fairness poll and takes `data-options`. `tries` tallies the room's guesses against their real "rolls until a double". `takeaway` takes one kit or several (`data-kit="add,dice"`). By default it shows a prompt to paste into the Code tab; `data-mode="manual"` shows the zip and the course-folder paths instead, and `data-mode="zip"` shows only the zip. `scoreboard` is Session 2's challenge board: the instructor types each pair's floor area, sun lost and beyond-plot; it takes `data-limit` (the sun-lost limit, %) and `data-store` (remembered in the browser under that name, so a later slide can show the same board). `figure` takes `data-name`, `data-start="n"` (parts already showing when the slide opens) and `data-ghost` (show unrevealed parts faintly).
 - In a figure, any element with `data-step="n"` appears on the n-th key press. Steps count up from 1 with no gaps (`tests/test_app.py` checks).
-- Every slide in `session-1` must declare a layout and a `where`. The tests check that, that every widget's file, kit, figure and image exists, and that no slide names a path on one particular computer (the take-away prompts find the course folder at runtime).
+- Every slide in every deck must declare a layout and a `where`. The tests check that, that every widget's file, kit, figure and image exists, and that no slide names a path on one particular computer (the take-away prompts find the course folder at runtime).
 
 ## Rules for the kits
 
 - Each tool must run in an **empty folder** with `uv run tools/...`: a `# /// script` header lists its dependencies, and output goes to the current folder (`runs/`).
 - Each kit's `.claude/settings.json` must be **identical**, so copying a second kit is harmless. `tests/test_kits.py` checks this.
 - `add.py`, `dice.py`, `tower.py` and `stair_check.py` are meant to be read by students. Keep them short and plain. `drawing.py` and `gallery.py` are plumbing.
+
+## Grasshopper tools (Session 2 on)
+
+- A Grasshopper tool is a folder `tools/<name>/` holding `<name>.gh` and its contract `<name>.md` (from `kits/gh/tools/grasshopper/TEMPLATE.md`). Inputs are canvas objects nicknamed `in:<name>` (a slider's min and max are the allowed range; a Value List's item names are the allowed choices), outputs `out:<name>`. `tests/test_kits.py` checks the layout and that each contract has test cases.
+- Claude runs every tool through **one** runner, `kits/gh/tools/grasshopper/runner.py`, sent to Rhino by the `grasshopper` skill as a fixed three-line `run_python` script. The runner refuses values a slider would silently clamp or round, bakes geometry to `runs::<tool>::<run>` and writes a receipt to `runs/`. Claude never edits a `.gh` or a canvas.
+- `kits/site/site/site.3dm` is in metres. Students **open** it (File › Open): importing it into a new millimetre file scales it to millimetres. Measures read geometry by layer, so a tower run's `runs::tower::<run>::mass` layer is what goes into a measure.
+- Measures (`kits/measures/`) are Grasshopper tools that take a tower run's layers and return numbers. The `tower-in-rhino` skill runs whatever is in its **Measures** table; students fill that table by pasting the row at the end of each measure's contract ("Use it in a skill"), with their own limit. `tests/test_kits.py` checks each row names a real tool and a real output.
+- GH1 only, with components Rhino 8 also has. Students use Rhino 8 and 9 on Windows and Mac. Build the kits' `.gh` files with `scripts/make_gh.py`, and test them in Rhino through the MCP: the test suite can't run Rhino.
+- Ladybug's installer only sets up Rhino 6 to 8. On Rhino 9 its components fail with "No module named ladybug…" until its search path is added for Rhino 9 (see `instructor/setup-checklist.md`).
 
 ## Tools and app
 

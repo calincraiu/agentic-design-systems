@@ -114,10 +114,13 @@ def test_slide_header_and_notes_are_split_out():
 
 
 def test_every_slide_declares_a_known_layout_and_place():
-    for s in main.deck_slides("session-1"):
-        assert s["text"].lstrip().startswith("<!-- layout:"), s["file"]
-        assert s["where"] in main.WHERE, s["file"]
-        assert s["title"], s["file"]
+    assert {"session-1", "session-2"} <= set(main.decks())
+    for deck in main.decks():
+        for s in main.deck_slides(deck):
+            assert s["text"].lstrip().startswith("<!-- layout:"), (deck, s["file"])
+            assert s["layout"] in main.LAYOUTS, (deck, s["file"])
+            assert s["where"] in main.WHERE, (deck, s["file"])
+            assert s["title"], (deck, s["file"])
 
 
 def test_notes_are_hidden_on_the_slide(client):
@@ -129,11 +132,13 @@ def test_notes_are_hidden_on_the_slide(client):
 
 
 def test_slides_with_notes_show_a_notes_button_and_others_do_not(client):
-    slides = main.deck_slides("session-1")
-    outline = client.get("/api/deck/session-1").json()
-    for i, s in enumerate(slides, 1):
-        assert outline[i - 1]["notes"] == bool(s["notes"])
-        assert ("data-notes" in client.get(f"/d/session-1/{i}").text) == bool(s["notes"]), s["file"]
+    for deck in main.decks():
+        slides = main.deck_slides(deck)
+        outline = client.get(f"/api/deck/{deck}").json()
+        for i, s in enumerate(slides, 1):
+            assert outline[i - 1]["notes"] == bool(s["notes"])
+            assert ("data-notes" in client.get(f"/d/{deck}/{i}").text) == bool(s["notes"]), (deck, s["file"])
+
 
 
 def test_figures_and_images_the_slides_ask_for_exist():

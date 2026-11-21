@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run tools/*)",
+      "PowerShell(uv run tools/*)",
+      "Bash(uv --version)",
+      "PowerShell(uv --version)",
+      "mcp__rhino__get_context",
+      "mcp__rhino__list_slots",
+      "mcp__rhino__get_viewport_image"
+    ]
+  }
+}

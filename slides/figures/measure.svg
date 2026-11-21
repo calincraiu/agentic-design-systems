@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" role="img" aria-label="A measure. A tower run's layer goes into a measure, park_sun.gh, which returns a number: 18.8 percent of the park's sun lost. Your skill holds a limit, under 20 percent, so this tower passes. The measure sees sun hours. It does not see calm, or whether anyone sits in that sun">
+  <defs>
+    <marker id="ms-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · the tower goes in -->
+  <g data-step="1">
+    <rect class="hair" x="40" y="100" width="230" height="100"/>
+    <text x="155" y="142" text-anchor="middle">a tower run</text>
+    <text class="small" x="155" y="170" text-anchor="middle">runs::tower::A::mass</text>
+    <line class="ink" x1="276" y1="150" x2="334" y2="150" marker-end="url(#ms-ink)"/>
+  </g>
+
+  <!-- 2 · the measure -->
+  <g data-step="2">
+    <rect class="box-blue" x="340" y="100" width="230" height="100"/>
+    <text x="455" y="142" text-anchor="middle">park_sun.gh</text>
+    <text class="small" x="455" y="170" text-anchor="middle">a measure (Ladybug)</text>
+    <line class="ink" x1="576" y1="150" x2="634" y2="150" marker-end="url(#ms-ink)"/>
+  </g>
+
+  <!-- 3 · a number -->
+  <g data-step="3">
+    <rect class="box-accent" x="640" y="100" width="230" height="100"/>
+    <text x="755" y="142" text-anchor="middle">18.8 %</text>
+    <text class="small" x="755" y="170" text-anchor="middle">of the park's sun lost</text>
+  </g>
+
+  <!-- 4 · your limit decides -->
+  <g data-step="4">
+    <line class="ink" x1="876" y1="150" x2="934" y2="150" marker-end="url(#ms-ink)"/>
+    <rect class="ink-fill" x="940" y="100" width="220" height="100"/>
+    <text class="paper-text" x="1050" y="142" text-anchor="middle">limit: &lt; 20 %</text>
+    <text class="paper-text" x="1050" y="172" text-anchor="middle" style="font-size:16px">in your skill · PASS</text>
+  </g>
+
+  <!-- 5 · what it doesn't see -->
+  <g data-step="5">
+    <line class="thin" x1="40" y1="260" x2="1160" y2="260"/>
+    <text class="accent-text" x="40" y="310">It sees sun hours on 21 March.</text>
+    <text class="accent-text" x="40" y="344">It doesn't see "calm", or whether anyone sits in that sun.</text>
+  </g>
+</svg>
