@@ -23,7 +23,7 @@ Get this computer ready for the course, explaining each step in one plain senten
      ```python
      import runpy
      runner = runpy.run_path(r"<this folder>/kits/gh/tools/grasshopper/runner.py")
-     runner["run"](r"<this folder>/kits/gh/tools/sum/sum.gh", {"a": 1, "b": 2}, __rhino_doc__, receipt=False)
+     runner["run"](r"<this folder>/kits/sum/tools/sum/sum.gh", {"a": 1, "b": 2}, __rhino_doc__, receipt=False)
      ```
    - **Ladybug.** Send the same script with the last line changed to `runner["run"](r"<this folder>/kits/measures/tools/park_sun/park_sun.gh", {"city": "London"}, __rhino_doc__, bake=False, receipt=False)`. A `location` line starting `London, lat:51.51` means Ladybug works (warnings about missing geometry are expected). An error saying "No module named ladybug" on **Rhino 9** is the known Ladybug installer gap: point the student to the Ladybug section of the setup checklist.
 6. **Summary.** Give a short checklist of what works and anything still to fix. If everything works, tell the student to type `/start-course` to open the course app.

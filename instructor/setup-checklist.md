@@ -69,12 +69,13 @@ On **Windows and a Mac**, and on **Rhino 8 and Rhino 9** (the kits are built in 
 
 - [ ] `/setup-course` in the course folder: the Rhino step prints `sum = 3`, and a `location` line for London from `park_sun`.
 - [ ] The Rhino MCP in the **desktop app's Code tab** (not only in VS Code): how a student connects it on each OS, and whether it uses the Rhino they opened or starts its own.
-- [ ] `kits/gh/tools/sum/sum.gh`, `kits/site/tools/tower/tower.gh` and the four measures open in Grasshopper on Rhino 8, with no missing components.
+- [ ] `kits/sum/tools/sum/sum.gh`, `kits/site/tools/tower/tower.gh`, the four measures and `instructor/solutions/daylit/daylit.gh` open in Grasshopper on Rhino 8, with no missing components.
 - [ ] `site/site.3dm` opens in Rhino 8, in metres.
-- [ ] In an empty folder with the `gh`, `site` and `measures` kits: every test case in each contract (`sum.md`, `tower.md`, `park_sun.md`, `neighbours_sun.md`, `river_view.md`, `terraces.md`) gives its expected output. Ask Claude: "run each tool's test cases from its contract".
-- [ ] `floor_area.gh` built by hand following slide 11, then run by Claude from a new session.
-- [ ] `/tower-in-rhino` with the wish, then with the `park_sun` row and the challenge rules: three variants, measured, revised at most once, report with a "judged by eye" line.
-- [ ] The scoreboard (slide 16): add, replace a pair's entry, strike-through over the limit or past the plot, undo, and it survives moving to slide 17 and back.
+- [ ] In an empty folder with the `gh` kit: `sum.gh` built by hand following slide 7, then run by Claude from a new session (slide 9): a receipt for 12.5 + 30, a refusal for 2000 + 1.
+- [ ] Add the `site` and `measures` kits: every test case in each contract (`tower.md`, `park_sun.md`, `neighbours_sun.md`, `river_view.md`, `terraces.md`) gives its expected output. Ask Claude: "run each tool's test cases from its contract".
+- [ ] `daylit.gh` built by hand following slide 13's recipe on **Rhino 8**, then its test cases (`instructor/solutions/daylit/daylit.md`) run by Claude. Especially the 12 × 12 m tower: 100%, with "Curve offset failed". The recipe's "Number parameter, Set Number 0" into Merge: does it work as written on Rhino 8 and on a Mac?
+- [ ] `tower-check` filled with the `park_sun` and `daylit` rows: `/tower-check` on a tower run gives a table of value, limit and PASS/FAIL, with receipts.
+- [ ] `/tower-in-rhino` with the wish: three variants, each checked by `tower-check`, revised at most once, a report with a "judged by eye" line, and `tower-check` never edited.
 - [ ] Ladybug on a Mac with Rhino 9: does the installer gap exist there too, and what fixes it?
 
 On your own machine, before releasing: `uv sync`, then `uv run pytest`. Rebuild the `.gh` files and the site after changing `scripts/make_gh.py`: in Rhino, through the MCP, `runpy.run_path(r"<repo>/scripts/make_gh.py")["main"]()`.

@@ -1,74 +1,75 @@
 # Session 2: instructor notes
 
-**Aim.** Students can turn a Grasshopper definition into a tool that Claude runs (named inputs, named outputs, a contract), and can say what a measure does and doesn't see. By the end, their own folder has a Grasshopper tool they built (`floor_area`), the tower running on the real site, and a `tower-in-rhino` skill with two measures and limits they chose and can justify.
+**Aim.** Students can turn a Grasshopper definition into a tool that Claude runs (named inputs, named outputs, a contract), chain tools through layers, and write a skill that runs their tools with limits they can defend. By the end, their own folder holds two tools they built (`sum`, `daylit`), the tower on the real site, and a `tower-check` skill that `tower-in-rhino` uses to judge its variants.
 
-**The thread.** Session 1's wish, *"a tower on a 30 × 30 m plot next to a park: calm, but noticed from the river"*, now on a real site. Part 1 puts the tower there. Part 2 measures it, lets the room optimise one number, and then asks what the winner traded away.
+**The thread.** One chain, built link by link: each thing students make is used by the next step.
+
+> site → tower (given) → park_sun (given) / daylit (theirs) → tower-check (theirs) → tower-in-rhino → they decide
+
+Part 1 builds the smallest possible tool by hand, which also checks every student's setup. Part 2 uses the same runner at the scale of a building, and students build a measure. Part 3 is the skill that wires the measures together with their limits. The lens throughout is scale: a definition wires components; a skill wires tools, in words. The `chain` figure is the map (slides 10, 14, 18). Session 1's wish, *"a tower on a 30 × 30 m plot next to a park: calm, but noticed from the river"*, comes back on slide 11 and in the design run on slide 16.
 
 **The slide notes are for students.** Everything meant only for you is below.
 
 ## Before the session
 
 - [ ] Students received the **before Session 2** list in `setup-checklist.md` a week ahead: Rhino 8 or 9, RhinoAI's MCP connected to the desktop app, Ladybug (with the Rhino 9 fix). Ask them to run `/setup-course` in the new course folder: its Rhino step checks all three.
-- [ ] **Your demo folder:** your Session 1 demo folder, plus the `gh`, `site` and `measures` kits. Build `floor_area.gh` yourself once (slide 11) so you know where beginners get stuck. Run `/tower-in-rhino` once with the wish, and once with the `park_sun` row and the challenge rules, so you know what to expect (see "What to expect in the challenge": height is free, and the winner is likely a 280 m tower widening upward).
-- [ ] Rhino open with `site/site.3dm` from your demo folder (**File › Open**, not Import).
-- [ ] Clear the scoreboard on slide 16 if you rehearsed with it (it remembers entries in the browser).
+- [ ] **Your demo folder:** your Session 1 demo folder. Build `sum.gh` by hand from slide 7 and `daylit.gh` from slide 13's recipe, so you know where beginners get stuck. Fill in `tower-check` with `park_sun` and `daylit`, and run `/tower-in-rhino` once with the wish.
+- [ ] The reference `daylit` (`instructor/solutions/daylit/`) on a USB stick or shared drive, for a pair that can't finish it. It is not in the course zip.
+- [ ] Rhino open, Grasshopper started, the canvas zoomed so the back row can read component names.
 
 ## Run-sheet (about 4 h)
 
 | Time | Slides | Activity | Where |
 |---|---|---|---|
-| 0:00–0:15 | 1–5 | Title; outline; the wish on the site plan; the room calls out their take-home; the context window | App |
-| 0:15–0:35 | 6–9 | **Part 1 · Tool.** Connect Claude to Rhino, take the `gh` kit; the runner diagram; everyone runs `sum.gh`, reads a receipt, gets a refusal | App ↔ their folder + Rhino |
-| 0:35–1:10 | 10–11 | Anatomy of a Grasshopper tool; **pairs build `floor_area.gh`** and its contract | Rhino + their folder |
-| 1:10–1:40 | 12 | Take the `site` kit, open the site, paste the stance, `/tower-in-rhino` with the wish | Their folder + Rhino |
-| 1:40–1:55 | | Break | |
-| 1:55–2:05 | 13–14 | **Part 2 · Measure.** Take the `measures` kit, paste the `park_sun` row | Their folder |
-| 2:05–2:35 | 15–16 | **The challenge**, pairs, 25 min; scoreboard | Their folder ↔ App |
-| 2:35–2:50 | 17 | Look at the winner: Goodhart | App |
-| 2:50–3:30 | 18–19 | The menu; **choose what counts**, pairs, 35 min | App ↔ their folder |
-| 3:30–3:50 | 20 | Crit | App + their folders |
-| 3:50–4:05 | 21–22 | Ladder and take-home; end | App |
+| 0:00–0:10 | 1–4 | Title; outline; **Part 1** section; `add.py` vs `sum.gh` | App |
+| 0:10–0:20 | 5 | Connect Claude to Rhino, take the `gh` kit | Their folder + Rhino |
+| 0:20–0:45 | 6–7 | Anatomy; **everyone builds `sum.gh`**, following you on the projector, and writes `sum.md` | Rhino + their folder |
+| 0:45–1:00 | 8–9 | The runner; Claude runs their `sum`: a receipt and a refusal. **This is the setup check** | App ↔ their folder |
+| 1:00–1:30 | 10–12 | **Part 2** section; the wish on the site; take `site` + `measures`, open the site, a tower, a refusal, `park_sun` on it | App ↔ their folder + Rhino |
+| 1:30–2:10 | 13 | **Pairs build `daylit`**, contract first | Rhino + their folder |
+| 2:10–2:25 | | Break | |
+| 2:25–2:35 | 14 | **Part 3** section: a skill wires tools; the context window | App |
+| 2:35–3:10 | 15 | **Pairs write `tower-check`** and run it on their tower | Their folder |
+| 3:10–3:35 | 16 | Paste the stance, `/tower-in-rhino` with the wish | Their folder + Rhino |
+| 3:35–3:55 | 17 | Crit | App + their folders |
+| 3:55–4:05 | 18–19 | The chain and the take-home; end | App |
 
-**If you're behind:** cut slide 13's demo to one sentence, and shorten *Choose what counts* to one measure chosen by the whole room (put its row on the projector). Keep `floor_area` (slide 11), the challenge (15–16) and the winner (17): they are the session.
+**If you're behind:** build `daylit` together on the projector (slide 13) instead of in pairs, and do slide 16 as a demo in your folder with one pair's `tower-check` copied in. Keep `sum` (7–9: it's the setup check) and `tower-check` (15: it's the authorship).
 
 ## Slide by slide
 
 | # | Slide | Do / say | Watch for |
 |---|---|---|---|
-| 3 | The wish | Press `→` four times: plot, park, river and viewpoints, neighbours. "Last time the tool didn't know where the park was. Now it does." | |
-| 4 | What no metric captured | Collect answers out loud, write them up. Group them: sun/shadow, view, outdoor space, neighbours, "can't be measured". Point at the groups again on slide 18. | Nobody did the homework: ask what they *wanted* the tower to do that no slider could. |
-| 5 | Context window | One minute. "New task, new session" is the habit; files are the memory. | |
-| 7 | Connect Rhino | Everyone asks "What's open in Rhino right now?" in a **new session** in their own folder. Walk the room: the reply must show a Rhino tool call. | No Rhino tools: MCP not connected (setup checklist). Claude starts a second Rhino: fine, use that one. The take-away copy prompt leaves their old `settings.json` alone: expected. |
+| 4 | Same shape | Read the table row by row. Land on "what it accepts": the limit moves from code into the slider. | |
+| 5 | Connect Rhino | Everyone asks "What's open in Rhino right now?" in a **new session** in their own folder. Walk the room: the reply must show a Rhino tool call. | No Rhino tools: MCP not connected (setup checklist). Claude starts a second Rhino: fine, use that one. The take-away copy prompt leaves their old `settings.json` alone: expected. |
+| 6 | Anatomy | Press `→` four times. | |
+| 7 | Build sum | Build it live, one step at a time, and wait for the room after each: place, wire, Edit… the sliders, rename, save. Show where the nickname field is in the right-click menu. | Nicknames without `in:`/`out:`. Saving outside their folder, or not in `tools/sum/`. Sliders left at the default range or as whole numbers. Claude offering to build the definition: stop it. |
 | 8 | Runner | Press `→` five times. Stop on step 3: "the runner refuses what a slider would silently clamp". Show the three lines in the notes on the projector. | |
-| 9 | Run sum | Everyone: 12.5 + 30, read the permission prompt, open the receipt, then 2000 + 1. Ask: where does 1000 come from? (The slider.) | Claude improvises a canvas-searching script instead of the three lines: deny it and point at the skill. First run slow (Grasshopper loading). |
-| 11 | floor_area | Pairs, 30 min. Insist on contract first: ranges and two test cases on paper before Grasshopper. Show once on the projector: place a slider, Edit… its range, rename it `in:width`. | Nicknames without `in:`/`out:` ("no inputs" / "no outputs"). Saving outside their folder, or not in `tools/floor_area/`. Floors slider left as a float. Claude offering to build the definition: stop it. |
-| 12 | Tower in Rhino | Everyone opens the site (**Open**, not Import), pastes their stance, runs the wish. Read one report's "judged by eye" line aloud. | Imported into a mm file: the runner warns about units. Stance not pasted: the report says *Balanced*. Students looking for old towers: layers under `runs::tower`. |
-| 13 | Measure | Press `→` five times. Land step 4: the limit is in **your** skill. | |
-| 14 | First measure | Five minutes. Everyone pastes the same row. | Row pasted below the table instead of replacing *(none yet)*: the skill may still say it has no measures. |
-| 15 | Challenge | Pairs, 25 min. Read the rules aloud twice. At 20 min: "best tower and its receipts, now". Collect gfa, sun lost and beyond-plot per pair, from receipts. | Numbers from Claude's summary rather than the receipts: ask for the receipt. Towers that lean or overhang out of the plot to win: the scoreboard strikes them. |
-| 16 | Scoreboard | Type each pair in as they call out (pair name, m², %, m). | |
-| 17 | The winner | Put the winner on the projector in Rhino (perspective, then from the river: `Site::River views`). Ask: is it calm? Is it noticed? Read the Strathern line. Ask for one thing it got away with. | The room defends the winner: good, ask which measure would have caught it. |
-| 18 | Menu | Two minutes. Connect each measure back to the slide 4 groups. Mention the terraces example (notes) if anyone picked terraces. | |
-| 19 | Choose what counts | Pairs, 35 min. Check each pair wrote a sentence for its limit before running. | Limits copied unchanged from the contract: ask why that number. Nothing passes: say it's a finding, not a bug; the skill mustn't loosen the limit. |
-| 20 | Crit | Two or three pairs, both questions. Push on the second: every answer is a new measure or a judgement that stays human. | |
-| 21 | Ladder | Press `→` once for Sessions 3–4. Take-home: a contract for a measure that isn't on the menu. | |
+| 9 | Run sum | Everyone: 12.5 + 30, read the permission prompt, open the receipt, then 2000 + 1. Ask: where does 1000 come from? (Their slider.) **Anyone whose run fails has a setup problem: sort it out now, while the tool is trivial.** | Claude improvises a canvas-searching script instead of the three lines: deny it and point at the skill. First run slow (Grasshopper loading). If their own `sum.gh` is the problem and time is short, the `sum` kit (in the slide's drop-down) is a finished copy. |
+| 10 | Part 2 | Press `→` to show the chain so far (site, tower, park_sun). "One tool's output is the next tool's input." | |
+| 11 | The wish | Press `→` four times: plot, park, river and viewpoints, neighbours. "Last time the tool didn't know where the park was. Now it does." | |
+| 12 | Tower + park_sun | Everyone opens the site (**Open**, not Import), asks for a tower in plain words, then 100 floors, then the park's sun. Ask someone to read out the layer name Claude gave `park_sun`. | Imported into a mm file: the runner warns about units. Students looking for old towers: layers under `runs::tower`. |
+| 13 | daylit | Pairs, 40 min. Insist on contract first: three test cases on paper before Grasshopper. Show once on the projector: the Curve parameter, Offset Curve with Negative, Flatten on Mass Addition's input, the Expression. At 30 min, show the 12 × 12 m test case on yours. | Positive offset distance (the core comes out bigger than the floor: daylit is negative). No Flatten: `dark_m2` shows one number per floor. No 0 merged in: the slim-tower case returns nothing. Claude treating "Curve offset failed" as a broken tool: the contract should say it's expected. |
+| 14 | Part 3 | Press `→` to show `tower-check` around the measures. One minute on the context window: "New task, new session. What must last goes in a file." | |
+| 15 | tower-check | Pairs, 35 min. Check each pair wrote a sentence for every limit before running. | Limits copied unchanged from the contracts: ask why that number. Rows pasted below the table instead of replacing *(none yet)*. Claude adding a measure or loosening a limit itself: the skill forbids it, so point at the rule. |
+| 16 | Design with it | Everyone pastes their stance and runs the wish. Read one report's "judged by eye" line aloud. | Stance not pasted: the report says *Balanced*. `tower-in-rhino` measuring by itself instead of using `tower-check`: ask it to use the skill. Nothing passes: say it's a finding, not a bug. |
+| 17 | Crit | Two or three pairs, both questions. Push on the second: every answer is a new tool or a judgement that stays human. | |
+| 18 | The chain | The whole map. Point at the two links that are theirs. Take-home: the contract of a tool from their studio project. | |
 
-## What to expect in the challenge
+## What to expect
 
-Measured with the kits (Rhino 9, London, the site as built):
+Measured with the kits and the reference `daylit` (Rhino 9, London, the site as built):
 
-- **Height is free above about 20 floors.** On 21 March the sun in London is low (about 38° at noon), so a tower's shadow already reaches past the park by about 70 m of height. A 20 × 20 m tower loses 7.2% of the park's sun at 8 floors, 12.6% at 12, 18.7% at 20, and 18.79% at 24, 40, 60 and 80 floors alike.
-- **The footprint decides.** At any height above that: 20 × 20 m 18.8%, 21 × 21 m 19.75% (passes), 22 × 22 m 20.7% (fails). Orientation matters too: 14 m east-west × 30 m north-south loses 18.1%, the same footprint turned the other way 23.2%.
-- **The best tower found:** 80 floors (the slider's maximum, 280 m) on an 18 × 18 m base that widens upward to 30 m (`taper = 1.66`): 46,815 m², 18.4% sun lost, inside the plot. A straight 21 × 21 m × 80 floors gives 35,280 m². The widest box that passes, 30 × 30 m, only manages 11 floors (9,900 m², 19.0%).
-- So expect the leaders to push floors to 80 and then tune the footprint and the taper. That is the point of slide 17: the winner is a 280 m tower that gets wider as it rises, next to a park, and the measure is happy with it. Ask whether it is *calm*.
-- **Leaning south**, away from the park, quickly leaves the plot (`beyond_plot_m`): a 20 m lean over 30 floors is 15 m out. The plot rule is what stops that exploit.
-- **Twisting** changes little for the park; it raises `river_view` and leaves sliver terraces (`terraces`: 298 m² in pieces of at most 2.6 m²).
+- **`park_sun`:** a 12-floor 20 × 20 m tower takes 12.6% of the park's sun, a 40-floor one 18.8%. Above about 20 floors height barely matters (the 21 March shadow already reaches past the park); the footprint does: 21 × 21 m is 19.75%, 22 × 22 m 20.7%.
+- **`daylit` (depth 7 m):** 20 × 20 m 91% (a 6 × 6 m core per floor, whatever the height or twist), 30 × 30 m 71.56%, 12 × 12 m 100% (with "Curve offset failed"), 30 floors tapering to half size 96.76%. Depth 5 m on 20 × 20 m: 75%.
+- **The two pull the same way for once:** a slim footprint is kind to the park and daylit. What a slim tower trades away is floor area, which only shows up if a pair adds a floor-area wish or limit. If a pair asks why everything passes, that's a good crit question: what would a limit on floor area do?
+- `daylit_percent >= 85` (the starting row in the reference contract) passes anything up to about 23 × 23 m.
 
 ## Likely problems
 
-- **No Rhino tools in Claude.** The MCP server isn't connected to the desktop app (setup checklist). Not fixable in class in a minute: pair them with a neighbour.
-- **"No module named ladybug…"** on Rhino 9: the Ladybug installer gap (setup checklist). Pair them up for Part 2.
+- **No Rhino tools in Claude.** The MCP server isn't connected to the desktop app (setup checklist). Not fixable in class in a minute: pair them with a neighbour. Slide 9 is where this shows up.
+- **"No module named ladybug…"** on Rhino 9: the Ladybug installer gap (setup checklist). Pair them up for `park_sun`.
 - **Units warning.** The site was imported into a millimetre file. Close it and File › Open `site/site.3dm`.
 - **Two Rhinos.** The MCP started its own. Use that one, or close both and let it start one.
 - **A measure gives 100% sun lost, or empty outputs, with "was given nothing".** An input wasn't given (usually the tower layer name is wrong). The layer is `runs::tower::<label as the runner wrote it>::mass`, e.g. `A-quiet-slab`.
-- **Permission prompts on every run.** `run_python` asks each time by design. Students may choose "allow for this session" during the challenge; say what that means (any script, not only the runner).
+- **Permission prompts on every run.** `run_python` asks each time by design. Students may choose "allow for this session" during Part 3; say what that means (any script, not only the runner).
