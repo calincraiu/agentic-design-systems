@@ -38,6 +38,6 @@ The towers are `tower.gh` runs, with everything else at its default (a 20 × 20 
 Whether a terrace is usable, because it doesn't measure **depth**. The tapering tower above leaves 300 m² as rings 17 cm deep; the twisting one leaves 298 m² as corner slivers. `largest_terrace_m2` tells those two apart, but a 13.67 m² ring 17 cm deep is no more usable than a sliver. Look at the baked terraces. A strong lean leaves usable strips: 40 m over 20 floors shifts each floor 2.1 m. It also can't tell you about railings, structure, wind, or which way a terrace faces.
 
 ## Use it in a skill
-A row for the Measures table in your `tower-in-rhino` skill:
+A row for the Measures table in your `tower-check` skill. The limit is only a starting point: change it to one you can defend, and write why in the last cell.
 
-`| tools/terraces/terraces.gh | floors = the tower run's floors layer | largest_terrace_m2 >= 20 |`
+`| tools/terraces/terraces.gh | floors = the tower run's floors layer | largest_terrace_m2 >= 20 | (your reason) |`

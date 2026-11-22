@@ -41,6 +41,6 @@ On `site/site.3dm`, with `neighbours = layer:Site::Neighbours` and `city = Londo
 Which neighbour loses the sun: it averages all five blocks, so a big loss on one wall can hide behind four unaffected buildings (look at the sun map). Where the windows are. Any day other than 21 March.
 
 ## Use it in a skill
-A row for the Measures table in your `tower-in-rhino` skill:
+A row for the Measures table in your `tower-check` skill. The limit is only a starting point: change it to one you can defend, and write why in the last cell.
 
-`| tools/neighbours_sun/neighbours_sun.gh | tower = the tower run's mass layer, neighbours = layer:Site::Neighbours, city = London | sun_lost_percent < 5 |`
+`| tools/neighbours_sun/neighbours_sun.gh | tower = the tower run's mass layer, neighbours = layer:Site::Neighbours, city = London | sun_lost_percent < 5 | (your reason) |`

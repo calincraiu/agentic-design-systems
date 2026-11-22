@@ -37,6 +37,6 @@ On `site/site.3dm`, with `context = layer:Site::Neighbours` and `viewpoints = la
 Whether people notice what they see: a plain slab and a landmark can show the same area. Distance, haze and trees: every viewpoint counts the same, near or far. Views from anywhere other than the 7 river points.
 
 ## Use it in a skill
-A row for the Measures table in your `tower-in-rhino` skill:
+A row for the Measures table in your `tower-check` skill. The limit is only a starting point: change it to one you can defend, and write why in the last cell.
 
-`| tools/river_view/river_view.gh | tower = the tower run's mass layer, context = layer:Site::Neighbours, viewpoints = layer:Site::River views | seen_m2 >= 3000 |`
+`| tools/river_view/river_view.gh | tower = the tower run's mass layer, context = layer:Site::Neighbours, viewpoints = layer:Site::River views | seen_m2 >= 3000 | (your reason) |`

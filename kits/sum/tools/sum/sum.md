@@ -1,7 +1,7 @@
 # Sum: adds two numbers in Grasshopper
 
 ## Who asks, and why
-Anyone who wants two numbers added exactly. It is the Grasshopper version of Session 1's add tool, and the smallest possible Grasshopper tool.
+Anyone who wants two numbers added exactly. It is the Grasshopper version of Session 1's add tool, and the smallest possible Grasshopper tool. In class you build your own; this copy is the reference, if yours won't run.
 
 ## Inputs
 

@@ -5,7 +5,8 @@ Runs inside Rhino (8 or 9), not with uv. Through the Rhino MCP server's run_pyth
     import runpy
     runpy.run_path(r"<repo>/scripts/make_gh.py")["main"]()
 
-or open it in Rhino's ScriptEditor and run it. Writes into kits/, next to each tool's contract.
+or open it in Rhino's ScriptEditor and run it. Writes into kits/, next to each tool's contract, and
+the instructor's reference daylit into instructor/solutions/ (students build their own in class).
 Only GH1 components that Rhino 8 also has.
 """
 from pathlib import Path
@@ -122,7 +123,9 @@ INPUTS, OUTPUTS = (120, 200, 255), (255, 210, 120)  # blue-ish and orange-ish gr
 
 
 def make_sum():
-    """sum: two numbers in, their sum out. The Grasshopper version of Session 1's add tool."""
+    """sum: two numbers in, their sum out. The Grasshopper version of Session 1's add tool.
+
+    Students build this by hand in class (slide 7); this is the reference copy, in its own kit."""
     c = Canvas()
     c.note("sum: adds two numbers", 40, 20)
     a = c.slider("in:a", 0, 1, 1000, 40, 100, decimals=2)
@@ -134,7 +137,7 @@ def make_sum():
     c.wire(add.Params.Output[0], out)
     c.group("Inputs", [a, b], INPUTS)
     c.group("Outputs", [out], OUTPUTS)
-    c.save(ROOT / "kits" / "gh" / "tools" / "sum" / "sum.gh")
+    c.save(ROOT / "kits" / "sum" / "tools" / "sum" / "sum.gh")
 
 
 def make_tower():
@@ -449,6 +452,47 @@ def make_terraces():
     c.save(ROOT / "kits" / "measures" / "tools" / "terraces" / "terraces.gh")
 
 
+def make_daylit():
+    """daylit: the share of a tower's floor area within `depth` metres of the facade.
+
+    The instructor's reference for slide 13, where students build it by hand: the same components, in
+    the same order. Each floor outline is offset inward by depth (a negative distance: the tower's outlines
+    run anticlockwise); what's left inside is the dark core. A floor narrower than 2 x depth has no core:
+    Offset Curve gives nothing and warns, so a 0 is merged in to make the sum 0 rather than empty.
+    """
+    c = Canvas()
+    M = "Maths > Operators"
+    c.note("daylit: how much of each floor is near a window", 40, 0, 24)
+    floors = c._place(c.gh.Kernel.Parameters.Param_Curve(), 40, 80, "in:floors")
+    depth = c.slider("in:depth", 3, 7, 12, 40, 160, decimals=1)
+    c.group("Inputs", [floors, depth], INPUTS)
+    neg = c.component("Negative", 300, 160, M)
+    c.wire(depth, neg.Params.Input[0])
+    core = c.component("Offset Curve", 420, 100, "Curve > Util")
+    c.wire(floors, core.Params.Input[0]); c.wire(neg.Params.Output[0], core.Params.Input[1])
+    core_area = c.component("Area", 560, 100, "Surface")
+    c.wire(core.Params.Output[0], core_area.Params.Input[0])
+    zero = c.component("Merge", 680, 100, "Sets > Tree")  # add a 0, so a tower with no dark core gives 0
+    c.wire(core_area.Params.Output[0], zero.Params.Input[0]); c.constant(zero.Params.Input[1], 0.0)
+    dark = c.component("Mass Addition", 800, 100, M)
+    c.wire(zero.Params.Output[0], dark.Params.Input[0])
+    dark.Params.Input[0].DataMapping = c.gh.Kernel.GH_DataMapping.Flatten  # Offset Curve gives one branch per floor
+    c.group("1 · The dark core: each floor offset inward by depth, its area added up", [neg, core, core_area, zero, dark],
+            (200, 200, 200))
+    floor_area = c.component("Area", 560, 260, "Surface")
+    c.wire(floors, floor_area.Params.Input[0])
+    total = c.component("Mass Addition", 800, 260, M)
+    c.wire(floor_area.Params.Output[0], total.Params.Input[0])
+    c.group("2 · All the floor area", [floor_area, total], (200, 200, 200))
+    share = c.component("Expression", 960, 180, "Maths > Script")
+    share.Expression = "100*(1-y/x)"
+    c.wire(total.Params.Output[0], share.Params.Input[0]); c.wire(dark.Params.Output[0], share.Params.Input[1])
+    outs = [c.output("out:daylit_percent", share.Params.Output[0], 1120, 160, panel=True),
+            c.output("out:dark_m2", dark.Params.Output[0], 1120, 60, panel=True)]
+    c.group("Outputs", outs, OUTPUTS)
+    c.save(ROOT / "instructor" / "solutions" / "daylit" / "daylit.gh")
+
+
 def make_neighbours_sun():
     """The neighbours are measured and also block their own sun, so they need no separate context."""
     make_sun_lost("neighbours_sun", "neighbours", False, "neighbours_sun: sun on the neighbouring buildings on 21 March (Ladybug)")
@@ -518,6 +562,7 @@ def main():
     make_neighbours_sun()
     make_river_view()
     make_terraces()
+    make_daylit()
 
 
 if __name__ == "__main__":

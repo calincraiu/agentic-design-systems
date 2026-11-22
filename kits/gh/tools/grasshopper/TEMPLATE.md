@@ -35,3 +35,8 @@ Worked out **by hand**, before you trust the tool.
 
 ## What it can't tell you
 What a person might expect it to know, but it doesn't.
+
+## Use it in a skill
+Only for a measure: a tool that takes a tower run and returns a number. One row for the Measures table in your `tower-check` skill, with a limit you can defend (`<`, `>`, `<=` or `>=`):
+
+`| tools/<your_tool>/<your_tool>.gh | <input> = the tower run's floors layer | <output> >= <number> | (your reason) |`

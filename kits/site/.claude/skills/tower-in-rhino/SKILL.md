@@ -1,6 +1,6 @@
 ---
 name: tower-in-rhino
-description: Designs towers on the real site in Rhino, from what the student wants. Asks the questions that matter most, writes a short brief, builds three contrasting variants with the Grasshopper tower tool, measures and looks at each one on the site, and reports the trade-offs. Use when the student wants to design or explore a tower on the site, in Rhino.
+description: Designs towers on the real site in Rhino, from what the student wants. Asks the questions that matter most, writes a short brief, builds three contrasting variants with the Grasshopper tower tool, has each one judged by the student's tower-check skill, looks at each one on the site, and reports the trade-offs. Use when the student wants to design or explore a tower on the site, in Rhino.
 ---
 
 # Tower in Rhino
@@ -19,23 +19,15 @@ You help an architecture student explore towers for the plot in `site/site.3dm`:
 2. **Ask** the **three** questions whose answers would change the design most. Then **stop and wait** for the answers.
 3. **Write the brief** at `briefs/<short-name>.md` (format below). Show it in at most six lines and ask if anything is wrong.
 4. **Build three strategies**, not three sizes of one idea. Say them in one line each, then run the tower tool once per variant, labelled "A: …", "B: …", "C: …".
-5. **Measure each one** with every measure in the Measures table below, in the same way, through the runner. Give each measure the tower run's layers (`layer:runs::tower::<label>::mass` or `::floors`; the label as the runner wrote it, e.g. `A-quiet-slab`) and use the same label. Check each limit. A variant that fails a limit may be revised **once** (a new run, labelled e.g. "A2: …"). Don't loop beyond that: report the failure. A wish nobody can satisfy is a finding, not a bug.
+5. **Check each one** with the `tower-check` skill: it is the student's own judge, with their measures and limits. Give it the run name as the runner wrote it (e.g. `A-quiet-slab`). A variant that fails a limit may be revised **once** (a new run, labelled e.g. "A2: …", checked again). Don't loop beyond that: report the failure. A wish nobody can satisfy is a finding, not a bug. If there is no `tower-check` skill, or its Measures table is empty, say that nothing but floor area and height was measured.
 6. **Look at each one.** Take a picture of the Rhino viewport (Rhino MCP `get_viewport_image`, perspective view, default size) and look at it: the runner shows only the newest run of each tool. Check it against the park, the river and the neighbours.
 7. **Report:**
-   - a compact table: variant · key parameters · floor area · height · beyond the plot · each measure · limits passed
+   - a compact table: variant · key parameters · floor area · height · beyond the plot · each measure from `tower-check` · limits passed
    - two or three sentences on the trade-offs, in the student's terms
-   - what you judged **by eye** that no measure in the table measured: say plainly that it is a judgement, not a measurement
+   - what you judged **by eye** that no measure in `tower-check` measured: say plainly that it is a judgement, not a measurement
    - the variant you would develop, and why
 
    Finish by asking which direction they choose. Earlier variants are on hidden layers under `runs::tower`: tell them they can switch them back on in Rhino to compare.
-
-## Measures
-
-What counts as good, beyond floor area and height. Each row is a Grasshopper measure (its contract is the `.md` next to it), the inputs to give it, and a limit it must meet. **This table is the student's to write**: each measure's contract ends with a row to paste in.
-
-| Measure | Inputs | Limit |
-|---|---|---|
-| (none yet) | | |
 
 ## Design stance
 
@@ -44,8 +36,8 @@ What counts as good, beyond floor area and height. Each row is a Grasshopper mea
 ## Rules
 
 - Use only the parameters in the contract, within their ranges. If the runner refuses a value, don't nudge it to fit: say so.
-- Never work out floor area, height or any measure yourself: they come from the tools. If the Measures table is empty, say that nothing but floor area and height was measured.
-- Never change the Measures table or its limits yourself. If a limit looks impossible, say so and let the student decide.
+- Never work out floor area, height or any measure yourself: they come from the tools.
+- Never change `tower-check`, its measures or its limits. If a limit looks impossible, say so and let the student decide.
 - Never present an assumption as the student's wish.
 - Never edit `tower.gh` or the site, and never move, delete or change objects in Rhino. You build only through the tool.
 - Plain language. You are talking to architects, not programmers.

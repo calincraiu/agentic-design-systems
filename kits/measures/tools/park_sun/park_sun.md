@@ -50,6 +50,6 @@ On `site/site.3dm`, with `park = layer:Site::Park` and `context = layer:Site::Ne
 Any other day: winter shadows are much longer, summer ones much shorter. Whether the sun lands where people sit, play or grow things. Sunlight on the neighbours' windows (that's `neighbours_sun`). The feeling of a tall building standing over a park, which has nothing to do with sun hours.
 
 ## Use it in a skill
-A row for the Measures table in your `tower-in-rhino` skill:
+A row for the Measures table in your `tower-check` skill. The limit is only a starting point: change it to one you can defend, and write why in the last cell.
 
-`| tools/park_sun/park_sun.gh | tower = the tower run's mass layer, park = layer:Site::Park, context = layer:Site::Neighbours, city = London | sun_lost_percent < 20 |`
+`| tools/park_sun/park_sun.gh | tower = the tower run's mass layer, park = layer:Site::Park, context = layer:Site::Neighbours, city = London | sun_lost_percent < 20 | (your reason) |`

@@ -139,16 +139,28 @@ def test_the_grasshopper_tower_contract_matches_the_python_tower(tmp_path, monke
         assert f"beyond_plot_m = {beyond}" in out and f"beyond_plot_m = {beyond}`" in contract, (args, out)
 
 
-def test_every_measure_offers_a_row_for_the_tower_skill_that_names_a_real_tool():
+def test_every_measure_offers_a_row_for_tower_check_that_names_a_real_tool():
     import re
-    skill = (KITS / "site" / ".claude" / "skills" / "tower-in-rhino" / "SKILL.md").read_text(encoding="utf-8")
-    assert "## Measures" in skill and "| Measure | Inputs | Limit |" in skill
+    skill = (KITS / "site" / ".claude" / "skills" / "tower-check" / "SKILL.md").read_text(encoding="utf-8")
+    assert "## Measures" in skill and "| Measure | Inputs | Limit | Why this limit |" in skill
     measures = list((KITS / "measures" / "tools").glob("*/*.md"))
     assert len(measures) >= 4
     for contract in measures:
         text = contract.read_text(encoding="utf-8")
-        assert "## Use it in a skill" in text, contract
-        row = re.search(r"`\| (tools/\S+\.gh) \|.*\| (\w+) *(<|>|<=|>=) *[\d.]+ \|`", text)
-        assert row, f"{contract}: no row to paste into the Measures table"
+        assert "## Use it in a skill" in text and "`tower-check`" in text, contract
+        row = re.search(r"`\| (tools/\S+\.gh) \|.*\| (\w+) *(<|>|<=|>=) *[\d.]+ \| \(your reason\) \|`", text)
+        assert row, f"{contract}: no row to paste into tower-check's Measures table"
         assert (KITS / "measures" / row[1]).exists(), row[1]
         assert f"`out:{row[2]}`" in text, f"{contract}: the limit names {row[2]}, which isn't an output"
+
+
+def test_the_design_skill_is_judged_by_the_students_tower_check():
+    skill = (KITS / "site" / ".claude" / "skills" / "tower-in-rhino" / "SKILL.md").read_text(encoding="utf-8")
+    assert "`tower-check`" in skill and "## Measures" not in skill
+
+
+def test_no_kit_holds_a_tool_students_build_themselves():
+    """Students build tools/sum and tools/daylit in their own folder: copying a kit must never overwrite them."""
+    assert not (KITS / "gh" / "tools" / "sum").exists()
+    assert (KITS / "sum" / "tools" / "sum" / "sum.gh").exists()  # the reference copy, a kit of its own
+    assert not list(KITS.glob("*/tools/daylit"))
