@@ -434,50 +434,6 @@ async function takeaway(root) {
     el("p", { class: "muted" }, "If that doesn't work: ", el("a", { href: k.zip }, `download the kit${s} as a zip`), " and unzip it into your folder."));
 }
 
-// ---------------------------------------------------------------- scoreboard: the Session 2 challenge
-// The most floor area, while the park loses less than data-limit % of its sun and the tower stays inside the plot.
-// The instructor types each pair's best tower in, from its receipts. It is kept in this browser (data-store names it),
-// so the debrief slide can show the same board.
-function scoreboard(root) {
-  const limit = +(root.dataset.limit || 20), key = `ads-scoreboard-${root.dataset.store || "challenge"}`;
-  let rows = [];
-  try { rows = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) { rows = []; }
-  const save = () => { try { localStorage.setItem(key, JSON.stringify(rows)); } catch (e) { /* private window: this slide only */ } };
-  const problems = r => [r.sun >= limit ? `sun lost ${r.sun}% ≥ ${limit}%` : null, r.beyond > 0 ? `${r.beyond} m beyond the plot` : null].filter(Boolean);
-  const ranked = () => [...rows].sort((a, b) => (problems(a).length > 0) - (problems(b).length > 0) || b.gfa - a.gfa);
-  const fmt = n => Number(n).toLocaleString("en-GB", { maximumFractionDigits: 1 });
-  const body = el("tbody");
-  const inputs = { team: el("input", { type: "text", placeholder: "pair" }), gfa: el("input", { type: "number", min: 0, step: "any" }),
-    sun: el("input", { type: "number", min: 0, step: "any" }), beyond: el("input", { type: "number", min: 0, step: "any", value: 0 }) };
-  const draw = () => {
-    let place = 0;
-    body.replaceChildren(...ranked().map(r => {
-      const p = problems(r);
-      if (!p.length) place += 1;
-      return el("tr", { class: p.length ? "out" : place === 1 ? "lead" : "" },
-        el("td", {}, p.length ? "–" : String(place)), el("td", {}, r.team), el("td", {}, `${fmt(r.gfa)} m²`),
-        el("td", {}, `${fmt(r.sun)} %`), el("td", {}, `${fmt(r.beyond)} m`), el("td", {}, p.length ? p.join(", ") : "passes"));
-    }));
-    if (!rows.length) body.append(el("tr", {}, el("td", { colspan: 6, class: "muted" }, "Type each pair's best tower: floor area, sun lost on the park, and how far it reaches beyond the plot.")));
-  };
-  const add = () => {
-    const r = { team: inputs.team.value.trim(), gfa: +inputs.gfa.value, sun: +inputs.sun.value, beyond: +inputs.beyond.value || 0 };
-    if (!r.team || !(r.gfa > 0) || inputs.sun.value === "") return inputs.team.focus();
-    rows = rows.filter(x => x.team !== r.team).concat(r);  // a pair's newer tower replaces its older one
-    save(); draw();
-    inputs.team.value = inputs.gfa.value = inputs.sun.value = ""; inputs.beyond.value = 0; inputs.team.focus();
-  };
-  Object.values(inputs).forEach(i => i.addEventListener("keydown", e => { if (e.key === "Enter") add(); }));
-  const undo = el("button", { class: "ghost", onclick: () => { rows.pop(); save(); draw(); } }, "Undo");
-  const clear = el("button", { class: "ghost", onclick: () => { if (confirm("Clear the whole scoreboard?")) { rows = []; save(); draw(); } } }, "Clear");
-  root.classList.add("scoreboard");
-  root.append(el("h4", {}, `The most floor area · park loses under ${limit}% of its sun · inside the plot`),
-    el("table", {}, el("thead", {}, el("tr", {}, ...["#", "Pair", "Floor area", "Sun lost", "Beyond plot", ""].map(h => el("th", {}, h)))), body),
-    el("div", { class: "row" }, el("label", {}, "pair", inputs.team), el("label", {}, "m²", inputs.gfa),
-      el("label", {}, "sun lost %", inputs.sun), el("label", {}, "beyond m", inputs.beyond), el("button", { onclick: add }, "Add"), undo, clear));
-  draw();
-}
-
 // ---------------------------------------------------------------- gallery
 function galleryWidget(root) {
   const frame = el("iframe", { src: "/runs/gallery.html", title: "Gallery of design runs" });
@@ -539,7 +495,7 @@ function contact(root) {
 
 // ---------------------------------------------------------------- wiring
 const WIDGETS = { add: addWidget, dice, "llm-vs-tool": llmVsTool, tries, tower: towerWidget, file: fileWidget, skill: skillWidget,
-  context: contextWidget, takeaway, gallery: galleryWidget, figure, contact, scoreboard };
+  context: contextWidget, takeaway, gallery: galleryWidget, figure, contact };
 const UNBOXED = new Set(["figure", "contact"]);
 const loading = [...document.querySelectorAll("[data-widget]")].map(root => {
   const make = WIDGETS[root.dataset.widget];

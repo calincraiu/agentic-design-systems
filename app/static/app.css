@@ -268,13 +268,6 @@ details.behind pre { margin: 6px 0 0; font-size: 0.8em; max-height: 320px; }
 .tally .fair span { position: absolute; right: 0; top: -1.5em; font-family: var(--mono); font-size: 0.72em; background: var(--paper); padding: 0 4px; }
 .tally .names { display: grid; gap: 6px; margin-top: 4px; font-family: var(--mono); font-size: 0.8em; text-align: center; }
 .tally .names button.ghost { padding: 4px 2px; text-transform: none; letter-spacing: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-/* The Session 2 challenge scoreboard */
-.scoreboard table { font-family: var(--mono); font-size: 0.9em; }
-.scoreboard td, .scoreboard th { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--line); }
-.scoreboard tr.lead td { background: var(--accent-soft); font-weight: 600; }
-.scoreboard tr.out td { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--fail); }
-.scoreboard tr.out td:last-child { text-decoration: none; color: var(--fail); }
-.scoreboard .row input { width: 7em; }
 .w .point { padding: 6px 10px; border-left: 3px solid var(--accent); background: var(--accent-soft); }
 .w .point[hidden] { display: none; }
 
