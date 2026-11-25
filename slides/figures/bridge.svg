@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="Who makes what. Made for you: the runner, the grasshopper skill, and the finished tower and park_sun tools. You make: the sum tool, the daylit measure, and the tower-check skill with your limits. The same runner runs every tool you make">
+  <!-- 1 · made for you -->
+  <g data-step="1">
+    <text x="20" y="44" style="fill:var(--blue)">Made for you</text>
+    <rect class="box-blue" x="20" y="70" width="560" height="70"/>
+    <text class="body" x="36" y="114">runner</text>
+    <text class="small" x="300" y="114">runs any .gh tool</text>
+    <rect class="box-blue" x="20" y="156" width="560" height="70"/>
+    <text class="body" x="36" y="200">grasshopper skill</text>
+    <text class="small" x="300" y="200">how Claude uses it</text>
+    <rect class="box-blue" x="20" y="242" width="560" height="70"/>
+    <text class="body" x="36" y="286">tower, park_sun</text>
+    <text class="small" x="300" y="286">given, finished</text>
+  </g>
+
+  <!-- 2 · you make -->
+  <g data-step="2">
+    <text class="accent-text" x="620" y="44">You make</text>
+    <rect class="box-accent" x="620" y="70" width="560" height="70"/>
+    <text class="body" x="636" y="114">sum</text>
+    <text class="small" x="900" y="114">the first tool</text>
+    <rect class="box-accent" x="620" y="156" width="560" height="70"/>
+    <text class="body" x="636" y="200">daylit</text>
+    <text class="small" x="900" y="200">a measure</text>
+    <rect class="box-accent" x="620" y="242" width="560" height="70"/>
+    <text class="body" x="636" y="286">tower-check</text>
+    <text class="small" x="900" y="286">your limits</text>
+  </g>
+
+  <!-- 3 · the same runner -->
+  <g data-step="3">
+    <line class="thin" x1="20" y1="350" x2="1180" y2="350"/>
+    <text class="accent-text" x="20" y="396">One runner runs everything you make.</text>
+    <text class="small" x="20" y="430">Your part is the definition, its contract and the judgement.</text>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="Adding three numbers with a tool that takes two. Claude runs sum twice. Run 1 adds 12.5 and 30 and gives 42.5. Run 2 adds that 42.5 and 7.5 and gives 50. Claude does the planning; the tool still only adds two numbers">
+  <defs>
+    <marker id="cs-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · the ask -->
+  <g data-step="1">
+    <text class="accent-text" x="40" y="50">You ask: 12.5 + 30 + 7.5</text>
+    <text class="small" x="40" y="80">sum takes two numbers. Claude can still do it.</text>
+  </g>
+
+  <!-- 2 · run 1 -->
+  <g data-step="2">
+    <text class="small accent-text" x="40" y="132">run 1</text>
+    <rect class="box-blue" x="40" y="146" width="300" height="90"/>
+    <text x="190" y="184" text-anchor="middle">sum</text>
+    <text class="small" x="190" y="214" text-anchor="middle">a = 12.5, b = 30</text>
+    <line class="ink" x1="346" y1="191" x2="404" y2="191" marker-end="url(#cs-ink)"/>
+    <rect class="box-accent" x="410" y="161" width="150" height="60"/>
+    <text x="485" y="199" text-anchor="middle">42.5</text>
+  </g>
+
+  <!-- 3 · run 2 uses run 1's result -->
+  <g data-step="3">
+    <line class="ink" x1="566" y1="191" x2="634" y2="191" marker-end="url(#cs-ink)"/>
+    <text class="small accent-text" x="640" y="132">run 2</text>
+    <rect class="box-blue" x="640" y="146" width="300" height="90"/>
+    <text x="790" y="184" text-anchor="middle">sum</text>
+    <text class="small" x="790" y="214" text-anchor="middle">a = 42.5, b = 7.5</text>
+    <line class="ink" x1="946" y1="191" x2="1004" y2="191" marker-end="url(#cs-ink)"/>
+    <rect class="box-accent" x="1010" y="161" width="150" height="60"/>
+    <text x="1085" y="199" text-anchor="middle">50</text>
+  </g>
+
+  <!-- 4 · who plans -->
+  <g data-step="4">
+    <line class="thin" x1="40" y1="290" x2="1160" y2="290"/>
+    <text class="accent-text" x="40" y="338">Claude does the planning.</text>
+    <text class="small" x="40" y="372">Two runs, two receipts, two permission prompts.</text>
+    <text class="small" x="40" y="400">The tool still only adds two numbers.</text>
+  </g>
+</svg>
