@@ -19,7 +19,7 @@ runner = runpy.run_path(r"<this folder>/tools/grasshopper/runner.py")
 runner["run"](r"<this folder>/tools/<name>/<name>.gh", {"<input>": <value>}, __rhino_doc__, label="<short label>")
 ```
 
-- Values are numbers (`12.5`), `True`/`False`, text in quotes, or `"layer:Site::Park"` for the objects on a Rhino layer.
+- Values are numbers (`12.5`), `True`/`False`, text in quotes, or `"layer:Site::Park"` for the objects on a Rhino layer, or a list such as `[1, 2, 3]`.
 - Inputs you leave out keep the value saved in the definition. The output says which.
 - To see what a tool takes without running it, use `runner["describe"](r"<path to .gh>")` instead of `run`.
 

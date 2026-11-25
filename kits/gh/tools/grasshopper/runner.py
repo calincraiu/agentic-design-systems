@@ -206,7 +206,7 @@ def _describe_input(obj):
     if kind == "choice":
         return f"one of: {', '.join(i.Name for i in obj.ListItems)} (now {_current_value(obj)})"
     kind = obj.GetType().Name.replace("Param_", "").lower()
-    return f"{kind}: a value, or layer:<Layer::Name> for the objects on a Rhino layer"
+    return f"{kind}: a value or a list of values, or layer:<Layer::Name> for the objects on a Rhino layer"
 
 
 def _goo_from_layer(rhino_doc, layer):
