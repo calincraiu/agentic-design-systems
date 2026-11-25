@@ -63,6 +63,7 @@ WHERE = {
     "chat": "Chat tab",
     "code-yours": "Code tab · your folder",
     "code-course": "Code tab · course folder",
+    "rhino": "Rhino · Grasshopper",
     "app": "This app",
 }
 LAYOUTS = {"title", "section", "statement", "stage", "split", "diagram", "task", "outline"}
@@ -261,7 +262,8 @@ def kit_files(names):
         folder = KITS / name.strip()
         if not re.fullmatch(r"[\w-]+", name.strip()) or not folder.is_dir():
             raise HTTPException(404, f"No kit called '{name}'")
-        found.append((folder, sorted(p for p in folder.rglob("*") if p.is_file() and "__pycache__" not in p.parts)))
+        skip = {"__pycache__", "runs"}  # runs/: receipts from running a tool inside the kit
+        found.append((folder, sorted(p for p in folder.rglob("*") if p.is_file() and not skip & set(p.relative_to(folder).parts))))
     return found
 
 

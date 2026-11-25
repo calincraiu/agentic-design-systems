@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="The report you will get at the end of the session: three tower variants, A, B and C, each with a park_sun value and a daylit value checked against your limits, and a verdict. A passes both. B fails daylit. C fails park_sun. The decision stays with you">
+  <text class="small" x="260" y="36">park_sun  (limit &lt; 20 %)</text>
+  <text class="small" x="600" y="36">daylit  (limit &gt; 60 %)</text>
+  <text class="small" x="960" y="36">verdict</text>
+  <line class="thin" x1="20" y1="50" x2="1180" y2="50"/>
+
+  <!-- A -->
+  <g data-step="1">
+    <rect class="box-accent" x="64" y="66" width="44" height="106"/>
+    <text x="20" y="130">A</text>
+    <text x="260" y="130" style="font-size:30px">14.2 %</text>
+    <text x="600" y="130" style="font-size:30px">68 %</text>
+    <text x="960" y="130" style="fill:var(--pass);font-size:30px">PASS</text>
+  </g>
+
+  <!-- B -->
+  <g data-step="2">
+    <line class="thin" x1="20" y1="186" x2="1180" y2="186"/>
+    <polygon class="box-accent" points="64,312 124,312 124,236 108,204 80,204 64,236"/>
+    <text x="20" y="266">B</text>
+    <text x="260" y="266" style="font-size:30px">17.5 %</text>
+    <text x="600" y="266" style="font-size:30px">49 %</text>
+    <text x="960" y="266" style="fill:var(--fail);font-size:30px">FAIL</text>
+    <text class="small" x="960" y="294">daylit below its limit</text>
+  </g>
+
+  <!-- C -->
+  <g data-step="3">
+    <line class="thin" x1="20" y1="326" x2="1180" y2="326"/>
+    <polygon class="box-accent" points="64,448 104,448 104,356 134,356 134,448 144,448 144,342 64,342"/>
+    <text x="20" y="400">C</text>
+    <text x="260" y="400" style="font-size:30px">26.9 %</text>
+    <text x="600" y="400" style="font-size:30px">71 %</text>
+    <text x="960" y="400" style="fill:var(--fail);font-size:30px">FAIL</text>
+    <text class="small" x="960" y="428">too much shadow on the park</text>
+  </g>
+
+  <!-- you decide -->
+  <g data-step="4">
+    <text class="accent-text" x="1180" y="462" text-anchor="end">Then you decide.</text>
+  </g>
+</svg>

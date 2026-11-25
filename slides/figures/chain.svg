@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="Session 2's chain of tools and skills. The site file feeds the tower tool. The tower's mass layer goes into park_sun, and its floors layer into daylit, the measure you build. The tower-check skill, which you write, wraps the measures: it runs them and applies your limits, giving pass or fail. The tower-in-rhino skill wraps the tower tool and tower-check: it builds three variants and has each one judged. Its report goes to you, and you decide">
+  <defs>
+    <marker id="ch-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · the site -->
+  <g data-step="1">
+    <rect class="hair" x="20" y="60" width="200" height="90"/>
+    <text x="120" y="100" text-anchor="middle">site.3dm</text>
+    <text class="small" x="120" y="128" text-anchor="middle">plot, park, river</text>
+  </g>
+
+  <!-- 2 · the tower tool -->
+  <g data-step="2">
+    <line class="ink" x1="226" y1="105" x2="254" y2="105" marker-end="url(#ch-ink)"/>
+    <rect class="box-blue" x="260" y="60" width="200" height="90"/>
+    <text x="360" y="100" text-anchor="middle">tower.gh</text>
+    <text class="small" x="360" y="128" text-anchor="middle">8 numbers in</text>
+  </g>
+
+  <!-- 3 · a given measure, fed the tower's mass layer -->
+  <g data-step="3">
+    <line class="ink" x1="466" y1="85" x2="539" y2="66" marker-end="url(#ch-ink)"/>
+    <text class="small" x="470" y="58">mass</text>
+    <rect class="box-blue" x="545" y="30" width="290" height="70"/>
+    <text x="561" y="60">park_sun.gh</text>
+    <text class="small" x="561" y="86">% of the park's sun lost</text>
+  </g>
+
+  <!-- 4 · the measure you build, fed the tower's floors layer -->
+  <g data-step="4">
+    <line class="ink" x1="466" y1="125" x2="539" y2="150" marker-end="url(#ch-ink)"/>
+    <text class="small" x="524" y="180" text-anchor="end">floors</text>
+    <rect class="box-accent" x="545" y="120" width="290" height="70"/>
+    <text x="561" y="150">daylit.gh <tspan class="accent-text">· yours</tspan></text>
+    <text class="small" x="561" y="176">% of floors near a window</text>
+  </g>
+
+  <!-- 5 · the skill you write wraps the measures: runs them, applies your limits -->
+  <g data-step="5">
+    <rect class="dash" x="530" y="16" width="320" height="282" rx="10" style="fill:none;stroke:var(--accent);stroke-width:2"/>
+    <rect class="box-accent" x="545" y="212" width="290" height="72"/>
+    <text x="561" y="242">tower-check <tspan class="accent-text">· yours</tspan></text>
+    <text class="small" x="561" y="268">your limits → PASS / FAIL</text>
+  </g>
+
+  <!-- 6 · the design skill wraps the tower tool and tower-check -->
+  <g data-step="6">
+    <rect class="dash" x="240" y="6" width="625" height="374" rx="14" style="fill:none;stroke:var(--ink);stroke-width:1.5"/>
+    <text x="258" y="330">tower-in-rhino</text>
+    <text class="small" x="258" y="358">stance · brief · 3 variants</text>
+    <text class="small" x="20" y="440">A definition wires components. A skill wires tools, in words.</text>
+  </g>
+
+  <!-- 7 · you -->
+  <g data-step="7">
+    <line class="ink" x1="871" y1="300" x2="934" y2="300" marker-end="url(#ch-ink)"/>
+    <text class="small" x="904" y="288" text-anchor="middle">report</text>
+    <rect class="ink-fill" x="940" y="250" width="240" height="100"/>
+    <text class="paper-text" x="1060" y="292" text-anchor="middle">You decide</text>
+    <text class="paper-text" x="1060" y="322" text-anchor="middle" style="font-size:16px">wish · stance · limits</text>
+  </g>
+</svg>

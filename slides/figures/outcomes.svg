@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="Three things you will be able to do by the end of Session 2. One: turn any Grasshopper definition into a tool. Claude sends values for its named inputs, the definition runs, and Claude gets the named outputs back: numbers, geometry and a receipt. Two: measure a design on a real site. A tower stands on its plot beside a park, and the measure returns 18.8 percent of the park's sun lost. Three: judge with your own limits. A skill you write checks each measure against a limit you set and answers pass or fail">
+  <defs>
+    <marker id="oc-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · a definition becomes a tool -->
+  <g data-step="1">
+    <text class="accent-text" x="20" y="40">1 · Make a tool</text>
+    <text class="small" x="20" y="66">from any Grasshopper definition</text>
+    <rect class="ink-fill" x="20" y="94" width="370" height="44" rx="6"/>
+    <text class="paper-text" x="205" y="123" text-anchor="middle" style="font-size:18px">Claude</text>
+    <line class="ink" x1="50" y1="144" x2="50" y2="198" marker-end="url(#oc-ink)"/>
+    <text class="small" x="64" y="176" style="font-size:15px">in:…</text>
+    <line class="ink" x1="360" y1="198" x2="360" y2="144" marker-end="url(#oc-ink)"/>
+    <text class="small" x="346" y="176" text-anchor="end" style="font-size:15px">out:…</text>
+    <rect class="box-blue" x="20" y="204" width="370" height="76"/>
+    <text x="205" y="236" text-anchor="middle">your .gh definition</text>
+    <text class="small" x="205" y="262" text-anchor="middle" style="font-size:15px">in:… → components → out:…</text>
+    <text class="small" x="20" y="312" style="font-size:15px">Back come numbers, geometry</text>
+    <text class="small" x="20" y="334" style="font-size:15px">in Rhino and a receipt.</text>
+    <text class="small" x="20" y="372" style="font-size:15px">Named inputs, outputs and a</text>
+    <text class="small" x="20" y="394" style="font-size:15px">contract make it runnable.</text>
+  </g>
+
+  <!-- 2 · a measure on a real site -->
+  <g data-step="2">
+    <text class="accent-text" x="415" y="40">2 · Measure a design</text>
+    <text class="small" x="415" y="66">on a real site</text>
+    <rect x="415" y="90" width="370" height="38" style="fill:var(--blue);fill-opacity:0.22;stroke:var(--blue);stroke-width:1.5"/>
+    <text class="small" x="425" y="115" style="fill:var(--blue)">river</text>
+    <rect x="475" y="140" width="250" height="84" style="fill:var(--pass);fill-opacity:0.18;stroke:var(--pass);stroke-width:2"/>
+    <text class="small" x="600" y="188" text-anchor="middle" style="fill:var(--pass)">park</text>
+    <polygon points="570,236 630,236 690,200 630,200" style="fill:var(--ink);fill-opacity:0.28;stroke:none"/>
+    <rect class="hair" x="470" y="236" width="60" height="60" style="fill:var(--sunk)"/>
+    <rect class="hair" x="670" y="236" width="60" height="60" style="fill:var(--sunk)"/>
+    <rect class="box-accent" x="570" y="236" width="60" height="60"/>
+    <text class="small accent-text" x="600" y="272" text-anchor="middle">tower</text>
+    <text x="415" y="336" style="font-size:30px">18.8 %</text>
+    <text class="small" x="415" y="364">of the park's sun lost</text>
+  </g>
+
+  <!-- 3 · your limits decide -->
+  <g data-step="3">
+    <text class="accent-text" x="810" y="40">3 · Judge with your limits</text>
+    <text class="small" x="810" y="66">in a skill you write</text>
+    <rect class="hair" x="810" y="100" width="370" height="64"/>
+    <text class="small" x="826" y="128">park_sun   18.8 %</text>
+    <text class="small" x="826" y="152" style="opacity:.7">limit &lt; 20 %</text>
+    <text x="1164" y="140" text-anchor="end" style="fill:var(--pass)">PASS</text>
+    <rect class="hair" x="810" y="180" width="370" height="64"/>
+    <text class="small" x="826" y="208">daylit   52 %</text>
+    <text class="small" x="826" y="232" style="opacity:.7">limit &gt; 60 %</text>
+    <text x="1164" y="220" text-anchor="end" style="fill:var(--fail)">FAIL</text>
+    <rect class="ink-fill" x="810" y="260" width="370" height="44" rx="6"/>
+    <text class="paper-text" x="826" y="289" style="font-size:16px">tower-check · yours</text>
+    <text class="small" x="810" y="344">The numbers are Claude's.</text>
+    <text class="small" x="810" y="368">The limits and the reasons are yours.</text>
+  </g>
+
+  <line class="thin" x1="20" y1="410" x2="1180" y2="410"/>
+  <text class="small" x="20" y="446">Example values. Yours will differ.</text>
+</svg>

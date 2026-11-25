@@ -9,6 +9,25 @@
 
 Don't make your own folder yet: we do that together. Session 1 doesn't need Rhino.
 
+## Students: before Session 2 (send a week ahead)
+
+- [ ] **Rhino 8 or 9** opens and Grasshopper starts (type `Grasshopper` in Rhino).
+- [ ] **RhinoAI's MCP server** is connected to the Claude desktop app's Code tab. It comes with Rhino 9; on Rhino 8 it has to be installed. To check, ask Claude in the Code tab "What's open in Rhino right now?": the reply should show a Rhino tool call, not a guess.
+- [ ] **Ladybug Tools** is installed (its own installer). **On Rhino 9** there's one more step, because the installer only sets up Rhino 6 to 8 (see below).
+- [ ] Unzip the **new course folder** in place of the old one, open it in the Code tab and run `/setup-course`. Its Rhino step checks Rhino, Grasshopper and Ladybug. Bring any error message to the session.
+
+### Ladybug on Rhino 9
+
+Symptom: Ladybug components show "Failed to import ladybug… No module named ladybug.location". The libraries are in `~/ladybug_tools`, but Rhino 9's IronPython doesn't look there. With Rhino closed, run Ladybug's own command and point it at Rhino 9's settings file:
+
+- Windows (PowerShell):
+  ```
+  & "$HOME\ladybug_tools\python\python.exe" -m ladybug_rhino set-python-search --settings-file "$env:APPDATA\McNeel\Rhinoceros\9.0\Plug-ins\IronPython (814d908a-e25c-493d-97e9-ee3861957f49)\settings\settings-Scheme__Default.xml"
+  ```
+- Mac: not yet tested. On a Mac the installer copies the libraries into each Rhino version's `scripts` folder (6 to 8 only), so copying them into Rhino 9's is the likely fix.
+
+Then start Rhino again. To undo it, delete that settings file.
+
 ## Instructor: make the student copy
 
 Commit first: the zip contains only what's committed. Then:
@@ -44,4 +63,19 @@ From the zip, on **Windows and a Mac**, in the desktop app's Code tab, ideally w
 - [ ] Optional, for the dice tool's notes (slide 18): ask Chat for 20 rolls of a die a few times and count back-to-back repeats (a fair die averages about 3). Note whether it runs code.
 - [ ] `/course-tutor quiz me on session 1` asks sensible questions.
 
-On your own machine, before releasing: `uv sync`, then `uv run pytest`.
+### Session 2 (Rhino)
+
+On **Windows and a Mac**, and on **Rhino 8 and Rhino 9** (the kits are built in Rhino 9; nothing has been run on Rhino 8 or a Mac yet):
+
+- [ ] `/setup-course` in the course folder: the Rhino step prints `sum = 3`, and a `location` line for London from `park_sun`.
+- [ ] The Rhino MCP in the **desktop app's Code tab** (not only in VS Code): how a student connects it on each OS, and whether it uses the Rhino they opened or starts its own.
+- [ ] `kits/sum/tools/sum/sum.gh`, `kits/site/tools/tower/tower.gh`, the four measures and `instructor/solutions/daylit/daylit.gh` open in Grasshopper on Rhino 8, with no missing components.
+- [ ] `site/site.3dm` opens in Rhino 8, in metres.
+- [ ] In an empty folder with the `gh` kit: `sum.gh` built by hand following slide 7, then run by Claude from a new session (slide 9): a receipt for 12.5 + 30, a refusal for 2000 + 1.
+- [ ] Add the `site` and `measures` kits: every test case in each contract (`tower.md`, `park_sun.md`, `neighbours_sun.md`, `river_view.md`, `terraces.md`) gives its expected output. Ask Claude: "run each tool's test cases from its contract".
+- [ ] `daylit.gh` built by hand following slide 13's recipe on **Rhino 8**, then its test cases (`instructor/solutions/daylit/daylit.md`) run by Claude. Especially the 12 × 12 m tower: 100%, with "Curve offset failed". The recipe's "Number parameter, Set Number 0" into Merge: does it work as written on Rhino 8 and on a Mac?
+- [ ] `tower-check` filled with the `park_sun` and `daylit` rows: `/tower-check` on a tower run gives a table of value, limit and PASS/FAIL, with receipts.
+- [ ] `/tower-in-rhino` with the wish: three variants, each checked by `tower-check`, revised at most once, a report with a "judged by eye" line, and `tower-check` never edited.
+- [ ] Ladybug on a Mac with Rhino 9: does the installer gap exist there too, and what fixes it?
+
+On your own machine, before releasing: `uv sync`, then `uv run pytest`. Rebuild the `.gh` files and the site after changing `scripts/make_gh.py`: in Rhino, through the MCP, `runpy.run_path(r"<repo>/scripts/make_gh.py")["main"]()`.

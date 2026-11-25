@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="Claude and a Grasshopper definition cannot reach each other on their own: Claude can't open the file, move a slider or read a panel. Two pieces made for you fill the gap. The grasshopper skill is a page of instructions telling Claude when to run a tool and how to ask Rhino. The runner is a script that opens the file, sets the inputs, solves and reads the outputs. Both come in the gh kit">
+  <defs>
+    <marker id="gp-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · two things that can't reach each other -->
+  <g data-step="1">
+    <rect class="ink-fill" x="40" y="110" width="250" height="110" rx="8"/>
+    <text class="paper-text" x="165" y="170" text-anchor="middle">Claude</text>
+    <rect class="box-blue" x="910" y="110" width="250" height="110"/>
+    <text x="1035" y="156" text-anchor="middle">sum.gh</text>
+    <text class="small" x="1035" y="188" text-anchor="middle">a Grasshopper file</text>
+    <line class="thin dash" x1="300" y1="165" x2="900" y2="165"/>
+    <text x="600" y="176" text-anchor="middle" style="fill:var(--fail);font-size:34px">✕</text>
+    <text class="small" x="600" y="270" text-anchor="middle">Claude can't open it, move a slider</text>
+    <text class="small" x="600" y="298" text-anchor="middle">or read a panel. Not on its own.</text>
+  </g>
+
+  <!-- 2 · two pieces made for you fill the gap -->
+  <g data-step="2">
+    <rect class="paper" x="304" y="96" width="592" height="260" style="stroke:none"/>
+    <line class="ink" x1="296" y1="165" x2="324" y2="165" marker-end="url(#gp-ink)"/>
+    <rect class="box-accent" x="330" y="110" width="250" height="110"/>
+    <text x="455" y="156" text-anchor="middle">skill</text>
+    <text class="small" x="455" y="188" text-anchor="middle">tells Claude how</text>
+    <line class="ink" x1="586" y1="165" x2="624" y2="165" marker-end="url(#gp-ink)"/>
+    <rect class="box-accent" x="630" y="110" width="250" height="110"/>
+    <text x="755" y="156" text-anchor="middle">runner</text>
+    <text class="small" x="755" y="188" text-anchor="middle">does the running</text>
+    <line class="ink" x1="886" y1="165" x2="904" y2="165" marker-end="url(#gp-ink)"/>
+
+    <text class="small" x="330" y="262">A page of instructions:</text>
+    <text class="small" x="330" y="290">when to run a tool and</text>
+    <text class="small" x="330" y="318">how to ask Rhino.</text>
+    <text class="small" x="630" y="262">A script: opens the file,</text>
+    <text class="small" x="630" y="290">sets the inputs, solves,</text>
+    <text class="small" x="630" y="318">reads the outputs.</text>
+  </g>
+
+  <!-- 3 · made for you -->
+  <g data-step="3">
+    <line class="thin" x1="40" y1="380" x2="1160" y2="380"/>
+    <text class="accent-text" x="40" y="424">Both were made for you, and come in the gh kit.</text>
+    <text class="small" x="40" y="452">Without them a .gh file is just a file.</text>
+  </g>
+</svg>

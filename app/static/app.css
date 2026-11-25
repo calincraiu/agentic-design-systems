@@ -99,6 +99,7 @@ body.slides { font-size: clamp(18px, 1.45vw, 26px); line-height: 1.5; overflow: 
 .chip.where-code-yours { color: #fff; background: var(--accent); border-color: var(--accent); }
 .chip.where-code-course { color: var(--muted); border-color: var(--muted); border-style: dashed; }
 .chip.where-app { color: var(--ink); }
+.chip.where-rhino { color: #fff; background: var(--blue); border-color: var(--blue); }
 .titleblock .chip { font-size: 1em; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 0.9em; }
 .badge { border-color: var(--line); color: var(--muted); }

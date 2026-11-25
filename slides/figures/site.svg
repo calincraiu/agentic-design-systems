@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Plan of the site, north up, drawn to scale. In the middle, the 30 by 30 metre plot. Across a 12 metre street to the north, a park 90 by 60 metres. Beyond the park, a river 40 metres wide, with seven viewpoints along its middle. Five neighbouring blocks, 15 to 24 metres high, stand west, east and south of the plot and on either side of the park">
+  <!-- 3.2 px per metre; x = 600 + 3.2 x, y = 690 - 3.2 (y + 55). Same numbers as SITE in scripts/make_gh.py -->
+
+  <!-- 1 · the plot -->
+  <g data-step="1">
+    <rect class="box-accent" x="552" y="466" width="96" height="96"/>
+    <text class="accent-text" x="600" y="520" text-anchor="middle" style="font-size:18px">plot</text>
+    <text class="small" x="600" y="584" text-anchor="middle">30 × 30 m</text>
+    <text class="small" x="600" y="452" text-anchor="middle">street, 12 m</text>
+  </g>
+
+  <!-- 2 · the park -->
+  <g data-step="2">
+    <rect x="456" y="235.6" width="288" height="192" style="fill:var(--pass);fill-opacity:0.18;stroke:var(--pass);stroke-width:2"/>
+    <text x="600" y="330" text-anchor="middle" style="fill:var(--pass)">park</text>
+    <text class="small" x="600" y="356" text-anchor="middle">90 × 60 m</text>
+  </g>
+
+  <!-- 3 · the river and the viewpoints on it -->
+  <g data-step="3">
+    <rect class="blue-fill" x="88" y="34" width="1024" height="128" style="fill-opacity:0.22"/>
+    <text x="110" y="70" style="fill:var(--blue)">river</text>
+    <g style="fill:var(--blue)">
+      <circle cx="216" cy="98" r="7"/><circle cx="344" cy="98" r="7"/><circle cx="472" cy="98" r="7"/>
+      <circle cx="600" cy="98" r="7"/><circle cx="728" cy="98" r="7"/><circle cx="856" cy="98" r="7"/>
+      <circle cx="984" cy="98" r="7"/>
+    </g>
+    <text class="small" x="110" y="146">7 viewpoints, eye height</text>
+  </g>
+
+  <!-- 4 · the neighbours, with their heights -->
+  <g data-step="4">
+    <rect class="hair" x="456" y="466" width="76.8" height="96" style="fill:var(--sunk)"/>
+    <rect class="hair" x="667.2" y="466" width="76.8" height="96" style="fill:var(--sunk)"/>
+    <rect class="hair" x="456" y="600.4" width="288" height="89.6" style="fill:var(--sunk)"/>
+    <rect class="hair" x="296" y="235.6" width="121.6" height="192" style="fill:var(--sunk)"/>
+    <rect class="hair" x="782.4" y="235.6" width="121.6" height="192" style="fill:var(--sunk)"/>
+    <text class="small" x="494" y="520" text-anchor="middle">18 m</text>
+    <text class="small" x="706" y="520" text-anchor="middle">24 m</text>
+    <text class="small" x="600" y="650" text-anchor="middle">15 m</text>
+    <text class="small" x="357" y="336" text-anchor="middle">21 m</text>
+    <text class="small" x="843" y="336" text-anchor="middle">18 m</text>
+    <text class="label" x="760" y="650">neighbours</text>
+  </g>
+
+  <!-- north arrow and scale -->
+  <g>
+    <line class="ink" x1="1110" y1="660" x2="1110" y2="600" style="stroke:var(--ink);stroke-width:2"/>
+    <path d="M1110 590 L1101 610 L1119 610 Z" style="fill:var(--ink)"/>
+    <text x="1110" y="584" text-anchor="middle" style="font-size:18px">N</text>
+    <line x1="88" y1="690" x2="248" y2="690" style="stroke:var(--ink);stroke-width:3"/>
+    <text class="small" x="88" y="676">50 m</text>
+  </g>
+</svg>

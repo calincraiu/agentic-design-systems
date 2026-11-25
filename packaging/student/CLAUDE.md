@@ -21,7 +21,7 @@ This is the **course folder**. It holds the course app (slides with live widgets
 | Folder | What it is |
 |---|---|
 | `slides/` | The course content, as Markdown. `slides/concepts.md` defines the vocabulary |
-| `kits/` | What students copy into their own folder: `add`, `dice`, `tower`, `tool-spec` |
+| `kits/` | What students copy into their own folder: `add`, `dice`, `tower`, `tool-spec` (Session 1); `gh`, `site`, `measures` (Session 2, Grasshopper tools run in Rhino), and `sum`, a finished copy of the adding tool students build in Session 2 |
 | `app/` | The course app's code (plumbing) |
 
 ## Skills here

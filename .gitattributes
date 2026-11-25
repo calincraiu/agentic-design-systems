@@ -1,6 +1,9 @@
 # Same line endings on Windows and Mac
 * text=auto eol=lf
 *.cmd text eol=crlf
+# Rhino and Grasshopper files: never touch their bytes
+*.gh binary
+*.3dm binary
 
 # Left out of the student copy (built with: uv run scripts/package.py)
 instructor export-ignore

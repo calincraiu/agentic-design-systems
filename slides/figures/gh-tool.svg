@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-label="The parts of a Grasshopper tool, on the sum tool. Inputs are two sliders nicknamed in:a and in:b, each from 0 to 1000, and a slider's range is the allowed range. In the middle, an Addition component does the work. The output is a panel nicknamed out:sum. Next to sum.gh sits its contract, sum.md, in plain words with test cases">
+  <defs>
+    <marker id="gt-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+  </defs>
+
+  <!-- 1 · inputs -->
+  <g data-step="1">
+    <rect class="blue-fill" x="40" y="60" width="330" height="220" rx="8" style="fill-opacity:0.12"/>
+    <text x="56" y="92" style="fill:var(--blue)">Inputs</text>
+    <rect class="box-blue" x="56" y="125" width="298" height="40"/>
+    <text class="body" x="70" y="152">in:a   0 ·●···· 1000</text>
+    <rect class="box-blue" x="56" y="185" width="298" height="40"/>
+    <text class="body" x="70" y="212">in:b   0 ··●··· 1000</text>
+    <text class="small" x="40" y="310">the slider's range is the allowed range</text>
+  </g>
+
+  <!-- 2 · the definition -->
+  <g data-step="2">
+    <line class="ink" x1="376" y1="170" x2="474" y2="170" marker-end="url(#gt-ink)"/>
+    <rect class="hair" x="480" y="110" width="240" height="120"/>
+    <text x="600" y="160" text-anchor="middle">Addition</text>
+    <text class="small" x="600" y="188" text-anchor="middle">a + b</text>
+    <text class="small" x="600" y="260" text-anchor="middle">the definition does the work</text>
+  </g>
+
+  <!-- 3 · outputs -->
+  <g data-step="3">
+    <line class="ink" x1="726" y1="170" x2="824" y2="170" marker-end="url(#gt-ink)"/>
+    <rect x="830" y="60" width="330" height="220" rx="8" style="fill:var(--accent);fill-opacity:0.10"/>
+    <text class="accent-text" x="846" y="92">Outputs</text>
+    <rect class="box-accent" x="846" y="140" width="298" height="60"/>
+    <text class="body" x="860" y="178">out:sum   42.5</text>
+  </g>
+
+  <!-- 4 · the contract next to the file -->
+  <g data-step="4">
+    <line class="thin" x1="40" y1="340" x2="1160" y2="340"/>
+    <text class="body" x="40" y="384">tools/sum/sum.gh</text>
+    <text class="small" x="40" y="410">the tool</text>
+    <text class="body" x="620" y="384">tools/sum/sum.md</text>
+    <text class="small" x="620" y="410">its contract: inputs, rule, outputs, test cases, in plain words</text>
+  </g>
+</svg>

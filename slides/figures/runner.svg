@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-label="How a Grasshopper tool runs. The model writes a three-line script: run sum.gh with a = 12.5 and b = 30. The app asks whether that is allowed. In Rhino, the runner opens sum.gh without showing it, sets the inputs named in:, and solves. It reads the outputs named out:, bakes any geometry to a layer of its own, and writes a receipt to runs. The output comes back to the model as text">
+  <defs>
+    <marker id="rn-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-ink"/></marker>
+    <marker id="rn-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah-accent"/></marker>
+  </defs>
+
+  <text class="label" x="40" y="68">Far away</text>
+  <rect class="hair dash" x="300" y="36" width="880" height="300" rx="16" style="stroke:var(--muted)"/>
+  <text class="label" x="324" y="68">On your laptop</text>
+
+  <!-- 1 · the model writes a short script -->
+  <g data-step="1">
+    <rect class="box-accent" x="40" y="110" width="200" height="90"/>
+    <text x="140" y="150" text-anchor="middle">The model</text>
+    <text class="small" x="140" y="178" text-anchor="middle">writes 3 lines</text>
+    <line class="ink" x1="246" y1="155" x2="334" y2="155" marker-end="url(#rn-ink)"/>
+  </g>
+
+  <!-- 2 · the app asks -->
+  <g data-step="2">
+    <rect class="ink-fill" x="340" y="110" width="170" height="90"/>
+    <text class="paper-text" x="425" y="150" text-anchor="middle">The app</text>
+    <text class="paper-text" x="425" y="180" text-anchor="middle" style="font-size:16px">Allowed?</text>
+    <line class="ink" x1="516" y1="155" x2="574" y2="155" marker-end="url(#rn-ink)"/>
+  </g>
+
+  <!-- 3 · Rhino: the runner opens the definition and sets the in: values -->
+  <g data-step="3">
+    <rect class="box-blue" x="580" y="96" width="580" height="200"/>
+    <text x="600" y="128" style="fill:var(--blue)">Rhino · the runner</text>
+    <text class="body" x="600" y="168">opens sum.gh (you don't see it)</text>
+    <text class="body" x="600" y="200">sets the in: values · solves</text>
+    <text class="small" x="600" y="224">a value outside a slider's range is refused</text>
+  </g>
+
+  <!-- 4 · reads the out: values, bakes, writes the receipt -->
+  <g data-step="4">
+    <text class="body" x="600" y="260">reads out: · geometry is baked to runs::&lt;tool&gt;::&lt;run&gt;</text>
+    <text class="body" x="600" y="288" style="fill:var(--accent)">receipt → runs/…_sum.json</text>
+  </g>
+
+  <!-- 5 · the output goes back as text -->
+  <g data-step="5">
+    <path class="accent dash" d="M870 302 V380 H140 V206" marker-end="url(#rn-acc)"/>
+    <text class="small" x="300" y="408">output pasted back as text: sum = 42.5</text>
+  </g>
+</svg>
