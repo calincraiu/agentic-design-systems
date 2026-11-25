@@ -3,7 +3,7 @@
 
 # Make a measure: how much of the tower is daylit?
 
-1. **Contract first.** Copy the template to `tools/daylit/daylit.md`. Fill it in, with three test cases **by hand**.
+1. **Contract first.** Last task you used a measure someone else built. Now build your own. Open the contract of the one you used as a model, copy the template to `tools/daylit/daylit.md`, and fill it in, with three test cases **by hand**.
 2. **Build** it in Grasshopper (recipe in the notes).
 3. **Name** the inputs `in:floors`, `in:depth` and the outputs `out:daylit_percent`, `out:dark_m2`.
 4. **Save** it as `tools/daylit/daylit.gh`.
@@ -13,7 +13,7 @@
 
 <!-- notes -->
 #### What you're building
-`daylit`: a measure that reads a tower's floor outlines and says how much of its floor area is within `depth` metres of the façade (7 m by default). Inputs `in:floors`, `in:depth`; outputs `out:daylit_percent`, `out:dark_m2`.
+You used a measure from the `measures` kit in the last task; this is the same kind of tool, built by you. `daylit`: a measure that reads a tower's floor outlines and says how much of its floor area is within `depth` metres of the façade (7 m by default). Inputs `in:floors`, `in:depth`; outputs `out:daylit_percent`, `out:dark_m2`.
 
 #### Steps
 1. **Write the contract** first: copy the template to `tools/daylit/daylit.md`. The rule: offset each floor outline inward by `depth`; what's left inside is the dark core; daylit share = 100 × (1 − dark area ÷ floor area).
